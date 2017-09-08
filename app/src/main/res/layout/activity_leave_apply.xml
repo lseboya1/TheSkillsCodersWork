@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/blue"
+    tools:context="za.co.lutendomlab.loginfirebase.LeaveForm">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Name"
+                android:textColorHint="@android:color/white"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/lastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Last Name"
+                android:textColorHint="@android:color/white"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/leaveType"
+            android:hint="Type of leave (Vacation,sick,Special, atc)"
+            android:layout_width="match_parent"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:textColorHint="@android:color/white"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_margin="16dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <EditText
+                android:id="@+id/leaveForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="From"
+                android:textColorHint="@android:color/white"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/leaveTo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="To"
+                android:textColorHint="@android:color/white"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/numberOfDays"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:hint="No. of days"
+                android:textColorHint="@android:color/white"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/ConditionOfPayments"
+            android:hint="Condition of payment (Full, Half , Without)"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:textColorHint="@android:color/white"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address during leave"
+            android:textColorHint="@android:color/white"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone number during leave"
+            android:inputType="phone"
+            android:textColorHint="@android:color/white"
+            android:textAlignment="center" />
+
+        <Button
+            android:onClick="Send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:background="#50000000"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:text="Send" />
+
+        <Button
+            android:onClick="Cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#50000000"
+            android:layout_margin="20dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:text="Cancel" />
+    </LinearLayout>
+</ScrollView>

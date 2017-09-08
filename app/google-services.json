@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "152883128290",
+    "firebase_url": "https://signinprojectgroup.firebaseio.com",
+    "project_id": "signinprojectgroup",
+    "storage_bucket": "signinprojectgroup.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152883128290:android:3816c23dacf2c548",
+        "android_client_info": {
+          "package_name": "za.co.lutendomlab.loginfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "152883128290-rkapau3v0gtkl081dh0oh0l08tj0qe3o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "za.co.lutendomlab.loginfirebase",
+            "certificate_hash": "6018f20a0c336181f2581926082abd9d8f5a1431"
+          }
+        },
+        {
+          "client_id": "152883128290-dpfu55illuan1euavt21q3rfj3qdjec2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRTr_ddBlrQm2dPXq-IvbLKhYbJjuKzNE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "152883128290-dpfu55illuan1euavt21q3rfj3qdjec2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
