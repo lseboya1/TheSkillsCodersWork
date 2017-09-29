@@ -11,14 +11,9 @@ public class User {
     long staffNO;
     String email;
 
-    public User() {
+    public User() {}
 
-    }
-
-
-    public void setName(String name)
-    {
-
+    public void setName(String name) {
         this.name= name;
     }
 

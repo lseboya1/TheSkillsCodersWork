@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -34,6 +36,8 @@ public class LeaveApply extends AppCompatActivity {
         setContentView(R.layout.activity_leave_apply);
 
         getSupportActionBar().setTitle("Leave Form");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         name = (EditText)findViewById(R.id.name);
         lastName = (EditText)findViewById(R.id.lastName);
@@ -102,5 +106,16 @@ public class LeaveApply extends AppCompatActivity {
         priceMessage += "Phone number during leave: "+ phoneNumber.getText().toString();
 
         return priceMessage;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
     }
 }

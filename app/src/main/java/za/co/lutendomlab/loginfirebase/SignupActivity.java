@@ -28,6 +28,7 @@ import java.util.Timer;
 
 
 public class SignupActivity extends AppCompatActivity{
+
     private EditText etName;
     private EditText inputEmail;
     private EditText inputPassword;
@@ -39,7 +40,6 @@ public class SignupActivity extends AppCompatActivity{
     private FirebaseAuth auth;
     private StaffNumberGenerator staffNumberGenerator;
     private long generatedStaffNumber;
-    // Write a message to the database
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -27,9 +27,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class HomeScreenUser extends AppCompatActivity{
 
@@ -39,6 +42,15 @@ public class HomeScreenUser extends AppCompatActivity{
     private TextView textViewUserName;
     private TextView staff_number;
     String userName;
+
+    String weekdays;
+    String formattedDate;
+    String time_in = "";
+    String time_out;
+    int week_number;
+    String Sign;
+    int count = 1;
+    private  DatabaseReference db ;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +63,8 @@ public class HomeScreenUser extends AppCompatActivity{
         User users = new User();
         FirebaseUser user =firebaseAuth.getCurrentUser();
         final FirebaseDatabase database =FirebaseDatabase.getInstance();
-        DatabaseReference db = database.getReference().child("User");
+        db= database.getReference().child("User");
+
 
         staff_number = (TextView)findViewById(R.id.staff_number);
 
@@ -117,25 +130,7 @@ public class HomeScreenUser extends AppCompatActivity{
 
                 break;
             case R.id.Register:
-
                 signRegister();
-//                Toast.makeText(HomeScreenUser.this,"Registered",Toast.LENGTH_SHORT).show();
-////                Intent intent1 = new Intent(HomeScreenUser.this, MapsActivity.class);
-////                startActivity(intent1);
-//
-//            //Getting content for email
-//            String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-//            String email = "lseboya101@gmail.com";
-//            String subject = "Att Register ";
-////            String message = FirebaseAuth.getInstance().getCurrentUser().getDisplayName() + " is now " + "Present \n " + currentDateTimeString;
-//                String message = userName + " is now " + "Present \n " + currentDateTimeString;
-//
-//            Toast.makeText(this," " +message,Toast.LENGTH_LONG).show();
-//            //Creating SendMail object
-//            SendMail sm = new SendMail(this, email, subject, message);
-//
-//            //Executing sendmail to send email
-//            sm.execute();
                 break;
 
             case R.id.delete_account:
@@ -188,6 +183,28 @@ public class HomeScreenUser extends AppCompatActivity{
 
     public void signRegister(){
 
+        //current date
+        final Calendar calendar = Calendar.getInstance();
+        System.out.println("Current time => " + calendar.getTime());
+        final SimpleDateFormat df = new SimpleDateFormat("dd, MMMM , yyyy");
+
+        //time
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+02:00"));
+        final Date currentLocalTime = cal.getTime();
+        final DateFormat date = new SimpleDateFormat("KK:mm:ss");
+        date.setTimeZone(TimeZone.getTimeZone("GMT+02:00"));
+
+        //month
+        final SimpleDateFormat month = new SimpleDateFormat("MMMM");
+        String month_year = month.format(calendar.getTime());
+
+        //week
+        week_number  = calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH);
+
+        //Day
+        final SimpleDateFormat Day = new SimpleDateFormat("EEEE");
+        weekdays = Day.format(calendar.getTime());
+
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomeScreenUser.this);
         // Setting Dialog Title
         alertDialog.setTitle("     Mark Register");
@@ -196,32 +213,49 @@ public class HomeScreenUser extends AppCompatActivity{
         alertDialog.setMessage("You want to sign IN ot OUT.?");
 
         // Setting Positive "Yes" Button
-        alertDialog.setPositiveButton("IN \t", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton("Sign IN \t", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
                 // User pressed Email button. Write Logic Here
-                Toast.makeText(HomeScreenUser.this,"Registered",Toast.LENGTH_SHORT).show();
 //                Intent intent1 = new Intent(HomeScreenUser.this, MapsActivity.class);
 //                startActivity(intent1);
 
                 //Getting content for email
-                String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-                String email = "lseboya101@gmail.com";
-                String subject = "Att Register ";
-//            String message = FirebaseAuth.getInstance().getCurrentUser().getDisplayName() + " is now " + "Present \n " + currentDateTimeString;
-                String message = userName + " is now " + "Absent (NOT IN) \n " + currentDateTimeString;
+//                String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+//                String email = "lseboya101@gmail.com";
+//                String subject = "Att Register ";
+////            String message = FirebaseAuth.getInstance().getCurrentUser().getDisplayName() + " is now " + "Present \n " + currentDateTimeString;
+//                String message = userName + " is now " + "Absent (NOT IN) \n " + currentDateTimeString;
+//
+//                //Toast.makeText(HomeScreenUser.this," " +message,Toast.LENGTH_LONG).show();
+//                //Creating SendMail object
+//                SendMail sm = new SendMail(HomeScreenUser.this, email, subject, message);
+//
+//                //Executing sendmail to send email
+//                sm.execute();
 
-                //Toast.makeText(HomeScreenUser.this," " +message,Toast.LENGTH_LONG).show();
-                //Creating SendMail object
-                SendMail sm = new SendMail(HomeScreenUser.this, email, subject, message);
-
-                //Executing sendmail to send email
-                sm.execute();
+                if(df.format(calendar.getTime()).equals(formattedDate)){
+                    Toast.makeText(HomeScreenUser.this,"you already signed in for today",Toast.LENGTH_LONG).show();
+                }else {
+                    time_in = date.format(currentLocalTime);
+                    formattedDate = df.format(calendar.getTime());
+                    Sign = "Sign_in";
+                    /**
+                     * save to fireBase
+                     * Month
+                     * Week number
+                     * Day of the week
+                     * Date
+                     * Time in
+                     */
+                    Toast.makeText(HomeScreenUser.this,"Signed in",Toast.LENGTH_SHORT).show();
+                    time_out = "";
+                }
             }
         });
 
         // Setting Negative "NO" Button
-        alertDialog.setNegativeButton("Out", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton("Sign Out", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
                 //Toast.makeText(HomeScreenUser.this,"Registered",Toast.LENGTH_SHORT).show();
@@ -229,19 +263,33 @@ public class HomeScreenUser extends AppCompatActivity{
 //                startActivity(intent1);
 
                 //Getting content for email
-                String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-                String email = "lseboya101@gmail.com";
-                String subject = "Att Register ";
-//            String message = FirebaseAuth.getInstance().getCurrentUser().getDisplayName() + " is now " + "Present \n " + currentDateTimeString;
-                String message = userName + " is now " + "Signed out \n " + currentDateTimeString;
+//                String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+//                String email = "lseboya101@gmail.com";
+//                String subject = "Att Register ";
+////            String message = FirebaseAuth.getInstance().getCurrentUser().getDisplayName() + " is now " + "Present \n " + currentDateTimeString;
+//                String message = userName + " is now " + "Signed out \n " + currentDateTimeString;
+//
+//               // Toast.makeText(HomeScreenUser.this," " +message,Toast.LENGTH_LONG).show();
+//                //Creating SendMail object
+//                SendMail sm = new SendMail(HomeScreenUser.this, email, subject, message);
+//
+//                //Executing sendmail to send email
+//                sm.execute();
+                Sign = "Sign_out";
 
-               // Toast.makeText(HomeScreenUser.this," " +message,Toast.LENGTH_LONG).show();
-                //Creating SendMail object
-                SendMail sm = new SendMail(HomeScreenUser.this, email, subject, message);
+                if(time_in.equals("")){
+                    Toast.makeText(HomeScreenUser.this,"you didnt sign in",Toast.LENGTH_LONG).show();
+                }else {
+                    weekdays = Day.format(calendar.getTime());
+                    time_out = date.format(currentLocalTime);
 
-                //Executing sendmail to send email
-                sm.execute();
-
+                    /**
+                    * save to firebbse
+                    * Time out
+                    */
+                    Toast.makeText(HomeScreenUser.this,"Signed out",Toast.LENGTH_SHORT).show();
+                    time_in = "";
+                }
             }
         });
 
