@@ -6,15 +6,17 @@ package za.co.lutendomlab.loginfirebase;
 
 public class User {
 
-
+    String userId;
     String name;
     long staffNO;
     String email;
 
     public User() {}
 
-    public void setName(String name) {
+    public void setName(String userId, String name) {
         this.name= name;
+        this.userId = userId;
+
     }
 
     public void setStaffNO(long staffNO)
@@ -28,6 +30,10 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 
     public void setEmail(String email) {

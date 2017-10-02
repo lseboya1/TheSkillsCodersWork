@@ -52,7 +52,10 @@ public class LoginActivity extends AppCompatActivity {
 
         if(auth.getCurrentUser() != null){
 
-            startActivity(new Intent(LoginActivity.this, HomeScreenUser.class));
+           /// startActivity(new Intent(LoginActivity.this, HomeScreenUser.class));
+            Intent intent = new Intent(LoginActivity.this,HomeScreenUser.class);
+            intent.putExtra("userid",auth.getCurrentUser().getUid());
+            startActivity(intent);
             finish();
         }
 
@@ -122,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     finish();
                                     Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
+                                    intent.putExtra("userid",auth.getCurrentUser().getUid());
                                     startActivity(intent);
                                 }
                             }

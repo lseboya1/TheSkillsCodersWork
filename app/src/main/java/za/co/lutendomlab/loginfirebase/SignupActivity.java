@@ -126,7 +126,9 @@ public class SignupActivity extends AppCompatActivity{
                                 DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User");
                                 User user = new User();
                                 user.setStaffNO(generatedStaffNumber);
-                                user.setName(name);
+                                user.setEmail(auth.getCurrentUser().getEmail());
+                                user.setName(auth.getCurrentUser().getUid(),name);
+
                                 myRef.child(task.getResult().getUser().getUid()).setValue(user);
                                 Toast.makeText(getApplicationContext(),"createUserWithEmail:onComplete:",Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();

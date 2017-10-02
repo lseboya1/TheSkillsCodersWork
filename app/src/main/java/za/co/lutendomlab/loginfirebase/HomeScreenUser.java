@@ -51,6 +51,8 @@ public class HomeScreenUser extends AppCompatActivity{
     String Sign;
     int count = 1;
     private  DatabaseReference db ;
+    FirebaseUser user;
+    String userID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,25 +63,43 @@ public class HomeScreenUser extends AppCompatActivity{
 
         firebaseAuth =FirebaseAuth.getInstance();
         User users = new User();
-        FirebaseUser user =firebaseAuth.getCurrentUser();
+        user =firebaseAuth.getCurrentUser();
         final FirebaseDatabase database =FirebaseDatabase.getInstance();
         db= database.getReference().child("User");
 
+        Intent intent = getIntent();
+        userID = intent.getStringExtra("userid");
 
+
+        Toast.makeText(this,userID, Toast.LENGTH_SHORT).show();
         staff_number = (TextView)findViewById(R.id.staff_number);
 
         textViewUserName =(TextView)findViewById(R.id.textViewName);
 
-        db.addChildEventListener(new ChildEventListener() {
+
+
+
+      db.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                User user = dataSnapshot.getValue(User.class);
 
-                userName = user.getName();
-                textViewUserName.setText("Name: "+ userName);
+             // db.child()
+
+                if(userID.equals(dataSnapshot.child("userId").getValue().toString())) {
+
+            Register reg = dataSnapshot.getValue(Register.class);
+
+                    Toast.makeText(HomeScreenUser.this, reg.getTime_in(), Toast.LENGTH_SHORT).show();
+                    User user = dataSnapshot.getValue(User.class);
+
+
+                    userName = user.getName();
+                    textViewUserName.setText("Name: " + userName);
+
 //                textViewUserName.setText("Name: "+user.getName());
-                //  Toast.makeText(HomeScreenUser.this, user.getName(), Toast.LENGTH_SHORT).show();
-                staff_number.setText(String.valueOf("Staff No: "+user.getStaffNO()));
+                    //  Toast.makeText(HomeScreenUser.this, user.getName(), Toast.LENGTH_SHORT).show();
+                    staff_number.setText(String.valueOf("Staff No: " + user.getStaffNO()));
+                }
             }
 
             @Override
@@ -196,10 +216,12 @@ public class HomeScreenUser extends AppCompatActivity{
 
         //month
         final SimpleDateFormat month = new SimpleDateFormat("MMMM");
-        String month_year = month.format(calendar.getTime());
+        final String month_year = month.format(calendar.getTime());
 
         //week
         week_number  = calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH);
+
+       final String weekNumber = Integer.toString(week_number);
 
         //Day
         final SimpleDateFormat Day = new SimpleDateFormat("EEEE");
@@ -212,11 +234,9 @@ public class HomeScreenUser extends AppCompatActivity{
         // Setting Dialog Message
         alertDialog.setMessage("You want to sign IN ot OUT.?");
 
-        // Setting Positive "Yes" Button
         alertDialog.setPositiveButton("Sign IN \t", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
-                // User pressed Email button. Write Logic Here
 //                Intent intent1 = new Intent(HomeScreenUser.this, MapsActivity.class);
 //                startActivity(intent1);
 
@@ -234,12 +254,34 @@ public class HomeScreenUser extends AppCompatActivity{
 //                //Executing sendmail to send email
 //                sm.execute();
 
-                if(df.format(calendar.getTime()).equals(formattedDate)){
-                    Toast.makeText(HomeScreenUser.this,"you already signed in for today",Toast.LENGTH_LONG).show();
-                }else {
+                if(!df.format(calendar.getTime()).equals(formattedDate)){
+
                     time_in = date.format(currentLocalTime);
                     formattedDate = df.format(calendar.getTime());
                     Sign = "Sign_in";
+
+
+
+                   // db= database.getReference().child(month_year);
+
+//Register regi = new Register(formattedDate,weekdays,month_year,time_in,time_out,weekNumber);
+
+                    db.child(user.getUid()).child("Register");
+                    db.child(user.getUid()).child("Register").child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("month").setValue(month_year);
+                    db.child(user.getUid()).child("Register").child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("weekNumbr").setValue(weekNumber);
+                    db.child(user.getUid()).child("Register").child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("day").setValue(weekdays);
+                    db.child(user.getUid()).child("Register").child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("date").setValue(formattedDate);
+                    db.child(user.getUid()).child("Register").child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("timeIn").setValue(time_in);
+
+
+                  /* db.child(user.getUid()).child("Register");
+                    db.child(user.getUid()).child("Register").child("Month").setValue(month_year);
+                    db.child(user.getUid()).child("Register").child("Week").setValue(weekNumber);
+                    db.child(user.getUid()).child("Register").child("Days").setValue(weekdays);
+                            db.child(user.getUid()).child("Register").child("month").setValue(month_year);*/
+                  //  db.child(user.getUid()).child("Month").child(month_year).child("Week").child(weekNumber).child("Days").child(weekdays).child("weekNumbr").setValue(weekNumber);
+                   // db.child(user.getUid()).child("Month").child(month_year).child("Week").child(weekNumber).child("Days").child(weekdays).child("day").setValue(weekdays);
+
                     /**
                      * save to fireBase
                      * Month
@@ -249,14 +291,25 @@ public class HomeScreenUser extends AppCompatActivity{
                      * Time in
                      */
                     Toast.makeText(HomeScreenUser.this,"Signed in",Toast.LENGTH_SHORT).show();
-                    time_out = "";
+                }else if(!Day.format(calendar.getTime()).equals(weekdays)) {
+                    Sign = "Sign_in";
+
+
+                    /**
+                     * save to fireBase
+                     * Date
+                     * Time in
+                     */
+                }else {
+                    Toast.makeText(HomeScreenUser.this,"you already signed in for today",Toast.LENGTH_LONG).show();
+
                 }
             }
         });
-
-        // Setting Negative "NO" Button
         alertDialog.setNegativeButton("Sign Out", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
+
+                db.child(user.getUid()).child(month_year).child(weekNumber).child(weekdays).child("timeout").setValue(time_in);
 
                 //Toast.makeText(HomeScreenUser.this,"Registered",Toast.LENGTH_SHORT).show();
 //                Intent intent1 = new Intent(HomeScreenUser.this, MapsActivity.class);
@@ -287,7 +340,7 @@ public class HomeScreenUser extends AppCompatActivity{
                     * save to firebbse
                     * Time out
                     */
-                    Toast.makeText(HomeScreenUser.this,"Signed out",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeScreenUser.this,"Signed in",Toast.LENGTH_SHORT).show();
                     time_in = "";
                 }
             }
@@ -302,4 +355,8 @@ public class HomeScreenUser extends AppCompatActivity{
         // Showing Alert Message
         alertDialog.show();
     }
+
+
+
 }
+
