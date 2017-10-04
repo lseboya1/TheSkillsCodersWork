@@ -70,8 +70,7 @@
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/country_arrays"
-            android:prompt="@string/country_prompt" />
+            android:entries="@array/country_arrays" />
 
         <TextView
             android:id="@+id/Staff_number"
