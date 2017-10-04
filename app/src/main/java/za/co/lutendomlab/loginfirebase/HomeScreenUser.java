@@ -309,7 +309,7 @@ public class HomeScreenUser extends AppCompatActivity{
         alertDialog.setNegativeButton("Sign Out", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
-                db.child(user.getUid()).child(month_year).child(weekNumber).child(weekdays).child("timeout").setValue(time_in);
+                db.child(user.getUid()).child("Register").child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("timeOut").setValue(time_in);
 
                 //Toast.makeText(HomeScreenUser.this,"Registered",Toast.LENGTH_SHORT).show();
 //                Intent intent1 = new Intent(HomeScreenUser.this, MapsActivity.class);

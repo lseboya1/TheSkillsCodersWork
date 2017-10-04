@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,12 +24,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 
 
 public class SignupActivity extends AppCompatActivity{
 
+    private Spinner spinner;
     private EditText etName;
     private EditText inputEmail;
     private EditText inputPassword;
@@ -177,5 +180,14 @@ public class SignupActivity extends AppCompatActivity{
     public void autoStaffNumberGaneratorIncreament(){
 
         staffNumberGenerator.saveNewStaffNumber((int)  ++this.generatedStaffNumber);
+    }
+
+    public void addItemaOnSpinner(){
+        spinner = (Spinner)findViewById(R.id.spinner);
+
+        List<String> listSpinner = new ArrayList<String>();
+        listSpinner.add("list 1");
+        listSpinner.add("list 1");
+        listSpinner.add("list 1");
     }
 }

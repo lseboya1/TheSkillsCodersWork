@@ -66,6 +66,13 @@
             android:textColorHint="@android:color/white"
             android:textColor="@android:color/white"/>
 
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/country_arrays"
+            android:prompt="@string/country_prompt" />
+
         <TextView
             android:id="@+id/Staff_number"
             android:layout_width="wrap_content"
@@ -79,9 +86,7 @@
             android:textSize="20dp"
             android:textColor="@android:color/holo_red_dark" />
 
-
     </LinearLayout>
-
 
     <Button
         android:id="@+id/sign_up_button"
