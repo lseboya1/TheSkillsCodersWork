@@ -80,9 +80,8 @@
             android:id="@+id/simpleSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp" />
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/Staff_number"
@@ -94,6 +93,7 @@
             android:layout_gravity="center"
             android:clickable="false"
             android:enabled="false"
+            android:visibility="gone"
             android:textSize="20dp"
             android:textColor="@android:color/holo_red_dark" />
 

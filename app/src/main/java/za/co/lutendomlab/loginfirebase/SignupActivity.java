@@ -41,8 +41,9 @@ public class SignupActivity extends AppCompatActivity{
     private FirebaseAuth auth;
     private StaffNumberGenerator staffNumberGenerator;
     private long generatedStaffNumber;
+    private  String facility;
 
-    String[] bankNames={"Codetribe TIH","Codetibe Soweto","Codetribe Thembisa","Codetribe lllll"};
+    String[] facilityList={"Codetribe TIH","Codetibe Soweto","Codetribe Tembisa"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

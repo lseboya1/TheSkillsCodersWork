@@ -12,6 +12,7 @@ public class User {
     String role;
     long staffNO;
     String email;
+    String facility;
 
     public User() {}
 
@@ -23,6 +24,14 @@ public class User {
     public void setStaffNO(long staffNO)
     {
         this.staffNO =staffNO;
+    }
+
+    public String getFacility() {
+        return facility;
+    }
+
+    public void setFacility(String facility) {
+        this.facility = facility;
     }
 
     public long getStaffNO(){return staffNO;}

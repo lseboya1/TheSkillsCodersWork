@@ -22,7 +22,6 @@ public class AdminActivity extends AppCompatActivity {
 
         firebaseAuth =FirebaseAuth.getInstance();
 
-        Toast.makeText(this, "Admin", Toast.LENGTH_SHORT).show();
     }
     public void LogOut(View view){
 
