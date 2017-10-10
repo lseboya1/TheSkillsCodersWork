@@ -35,6 +35,16 @@
             android:textColor="@android:color/white" />
 
         <EditText
+            android:id="@+id/lastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last name"
+            android:textColorHint="@android:color/white"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:textColor="@android:color/white" />
+
+        <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,10 +77,12 @@
             android:textColor="@android:color/white"/>
 
         <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
+            android:id="@+id/simpleSpinner"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/country_arrays" />
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp" />
 
         <TextView
             android:id="@+id/Staff_number"

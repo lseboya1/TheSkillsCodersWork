@@ -9,10 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,16 +22,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Timer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class SignupActivity extends AppCompatActivity{
 
     private Spinner spinner;
     private EditText etName;
+    private EditText lastName;
     private EditText inputEmail;
     private EditText inputPassword;
     private EditText inputConfirmPassword;
@@ -45,10 +42,13 @@ public class SignupActivity extends AppCompatActivity{
     private StaffNumberGenerator staffNumberGenerator;
     private long generatedStaffNumber;
 
+    String[] bankNames={"Codetribe TIH","Codetibe Soweto","Codetribe Thembisa","Codetribe lllll"};
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
 
         progressDialog = new ProgressDialog(this);
         //Get Firebase auth instance
@@ -70,6 +70,7 @@ public class SignupActivity extends AppCompatActivity{
         Staff_number = (TextView) findViewById(R.id.Staff_number);
         inputConfirmPassword = (EditText)findViewById(R.id.re_password);
         etName =(EditText)findViewById(R.id.name);
+        lastName =(EditText)findViewById(R.id.lastName);
         autoStaffNumberGanerator();
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +87,7 @@ public class SignupActivity extends AppCompatActivity{
                 String password = inputPassword.getText().toString().trim();
                 String re_password = inputConfirmPassword.getText().toString().trim();
                 final String name =etName.getText().toString().trim();
+                final String lName =lastName.getText().toString().trim();
 
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(getApplicationContext(),"Enter email address",Toast.LENGTH_SHORT).show();
@@ -130,8 +132,16 @@ public class SignupActivity extends AppCompatActivity{
                                 DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User");
                                 User user = new User();
                                 user.setStaffNO(generatedStaffNumber);
+                                user.setLastName(lName);
+
+                                boolean is_admin = isAdmin(auth.getCurrentUser().getEmail());
+                                if (is_admin) {
+                                    user.setRole("Facilitator");
+                                } else {
+                                    user.setRole("Student");
+                                }
                                 user.setEmail(auth.getCurrentUser().getEmail());
-                                user.setName(auth.getCurrentUser().getUid(),name);
+                                user.setName(auth.getCurrentUser().getUid(),name );
 
                                 myRef.child(task.getResult().getUser().getUid()).setValue(user);
                                 Toast.makeText(getApplicationContext(),"createUserWithEmail:onComplete:",Toast.LENGTH_SHORT).show();
@@ -145,14 +155,41 @@ public class SignupActivity extends AppCompatActivity{
                                 if(!task.isSuccessful()){
                                     Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
-                                }else {
+
+                                } else {
                                     finish();
-                                    startActivity(new Intent(SignupActivity.this, HomeScreenUser.class));
-                            }
+//                                    startActivity(new Intent(SignupActivity.this, HomeScreenUser.class));
+                                    if (is_admin) {
+                                        Intent intent = new Intent(SignupActivity.this, AdminActivity.class);
+                                        startActivity(intent);
+                                    } else {
+                                        Intent intent = new Intent(SignupActivity.this, HomeScreenUser.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
                             }
                         });
             }
         });
+    }
+
+    public boolean isAdmin(String emailAddress) {
+
+        String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(emailAddress);
+        System.out.println(emailAddress +" : "+ matcher.matches());
+        if (matcher.matches()) {
+            String[] email = emailAddress.split("@", 2);
+            if ("mlab.co.za".equalsIgnoreCase(email[1])) {
+                return true;
+            }
+            else
+                return false;
+        }
+        return false;
     }
 
     @Override
@@ -184,13 +221,18 @@ public class SignupActivity extends AppCompatActivity{
     }
 
     public void addItemaOnSpinner(){
-        spinner = (Spinner)findViewById(R.id.spinner);
+//        spinner = (Spinner)findViewById(R.id.spinner);
+//
+//        List<String> listSpinner = new ArrayList<String>();
+//        listSpinner.add("list 1");
+//        listSpinner.add("list 1");
+//        listSpinner.add("list 1");
+//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_spinner_item, listSpinner);
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(dataAdapter);
 
-        List<String> listSpinner = new ArrayList<String>();
-        listSpinner.add("list 1");
-        listSpinner.add("list 1");
-        listSpinner.add("list 1");
-
-//        ArrayAdapter<String> dataAdapter
     }
+
+
 }
