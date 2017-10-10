@@ -10,6 +10,10 @@ public class User {
     String name;
     long staffNO;
     String email;
+    String role;
+
+
+
 
     public User() {}
 
@@ -17,6 +21,14 @@ public class User {
         this.name= name;
         this.userId = userId;
 
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setStaffNO(long staffNO)

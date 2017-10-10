@@ -113,22 +113,10 @@ public class SignupActivity extends AppCompatActivity{
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
-//                                String uid = task.getResult().getUser().getUid();
-//
-//                                //saving name
-//                                //FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                                //DatabaseReference myRef = database.getReference().child("User");
-//                                DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User");
-//                                User user = new User();
-//                                user.setStaffNO(generatedStaffNumber);
-//                                user.setName(name);
-//                                user.setEmail(inputEmail.getText().toString());
-//                                String id = myRef.push().getKey();
-//                                myRef.child("users").child(uid).setValue(user);
 
-                                //////----------------------------------------
                                 DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User");
                                 User user = new User();
+                                user.setRole("Student");
                                 user.setStaffNO(generatedStaffNumber);
                                 user.setEmail(auth.getCurrentUser().getEmail());
                                 user.setName(auth.getCurrentUser().getUid(),name);
@@ -147,7 +135,11 @@ public class SignupActivity extends AppCompatActivity{
                                             Toast.LENGTH_SHORT).show();
                                 }else {
                                     finish();
-                                    startActivity(new Intent(SignupActivity.this, HomeScreenUser.class));
+
+
+                                    startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+
+
                             }
                             }
                         });
@@ -183,14 +175,4 @@ public class SignupActivity extends AppCompatActivity{
         staffNumberGenerator.saveNewStaffNumber((int)  ++this.generatedStaffNumber);
     }
 
-    public void addItemaOnSpinner(){
-        spinner = (Spinner)findViewById(R.id.spinner);
-
-        List<String> listSpinner = new ArrayList<String>();
-        listSpinner.add("list 1");
-        listSpinner.add("list 1");
-        listSpinner.add("list 1");
-
-//        ArrayAdapter<String> dataAdapter
-    }
 }

@@ -1,9 +1,12 @@
 package za.co.lutendomlab.loginfirebase;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -12,10 +15,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +32,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -42,7 +52,12 @@ public class HomeScreenUser extends AppCompatActivity{
     private TextView textViewUserName;
     private TextView staff_number;
     String userName;
-
+    private ImageView imageProfileSelect;
+    private ImageView profile_Pic;
+    Uri filePath ;
+    Bitmap bitmap ;
+    //image uploader
+    int PICK_IMAGE_REQUEST = 111;
     String weekdays;
     String formattedDate;
     String time_in = "";
@@ -53,6 +68,11 @@ public class HomeScreenUser extends AppCompatActivity{
     private  DatabaseReference db ;
     FirebaseUser user;
     String userID;
+    ProgressDialog pd;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+
+    StorageReference storageRef = storage.getReferenceFromUrl("gs://the-skills-coders-work.appspot.com/");    //change the url according to your firebase app
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +80,29 @@ public class HomeScreenUser extends AppCompatActivity{
         setContentView(R.layout.home_screen_user);
 
         getSupportActionBar().setTitle("Home Page");
+
+
+        imageProfileSelect =(ImageView)findViewById(R.id.profile_picture_select);
+        profile_Pic=(ImageView)findViewById(R.id.profile_picture);
+        imageProfileSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                pd = new ProgressDialog(HomeScreenUser.this);
+                pd.setMessage("Uploading....");
+
+
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_PICK);
+                startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST);
+
+
+            }
+        });
+
+
+
 
         firebaseAuth =FirebaseAuth.getInstance();
         User users = new User();
@@ -99,6 +142,21 @@ public class HomeScreenUser extends AppCompatActivity{
 //                textViewUserName.setText("Name: "+user.getName());
                     //  Toast.makeText(HomeScreenUser.this, user.getName(), Toast.LENGTH_SHORT).show();
                     staff_number.setText(String.valueOf("Staff No: " + user.getStaffNO()));
+
+
+                    StorageReference spaceRef = storageRef.child("image.jpg");
+                    spaceRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String url = uri.toString();
+                            Glide.with(getApplicationContext()).load(url).into(profile_Pic);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
                 }
             }
 
@@ -356,6 +414,52 @@ public class HomeScreenUser extends AppCompatActivity{
         alertDialog.show();
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            filePath = data.getData();
+
+            try {
+                //getting image from gallery
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                //Setting image to ImageView
+                profile_Pic.setImageBitmap(bitmap);
+
+                // uploading
+                if(filePath != null) {
+                    pd.show();
+
+                    StorageReference childRef = storageRef.child("image.jpg");
+
+                    //uploading the image
+                    UploadTask uploadTask = childRef.putFile(filePath);
+
+                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            pd.dismiss();
+                            Toast.makeText(HomeScreenUser.this, "Upload successful", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            pd.dismiss();
+                            Toast.makeText(HomeScreenUser.this, "Upload Failed -> " + e, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else {
+                    Toast.makeText(HomeScreenUser.this, "Select an image", Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 
 }

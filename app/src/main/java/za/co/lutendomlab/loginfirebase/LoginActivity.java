@@ -16,6 +16,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by codetribe on 8/23/2017.
@@ -30,6 +35,9 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnSignup;
     private Button btnLogin;
     private Button btnReset;
+    final FirebaseDatabase database =FirebaseDatabase.getInstance();
+    DatabaseReference db = database.getReference().child("User");
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,16 +53,52 @@ public class LoginActivity extends AppCompatActivity {
 
         if(auth.getCurrentUser() != null){
 
-           /// startActivity(new Intent(LoginActivity.this, HomeScreenUser.class));
-            Intent intent = new Intent(LoginActivity.this,HomeScreenUser.class);
-            intent.putExtra("userid",auth.getCurrentUser().getUid());
-            startActivity(intent);
-            finish();
+            db.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                    User user = dataSnapshot.getValue(User.class);
+
+                    if (user.getRole().equals("User"))
+                    {
+                        Toast.makeText(LoginActivity.this,"my role is " +user.getRole(),Toast.LENGTH_SHORT);
+
+                    }
+
+//                    Intent intent = new Intent(LoginActivity.this,HomeScreenUser.class);
+//                    intent.putExtra("userid",auth.getCurrentUser().getUid());
+//                    startActivity(intent);
+//                    finish();
+
+
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
         }
 
 
-//        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+
 
         inputEmail = (EditText)findViewById(R.id.email);
         inputPassword = (EditText)findViewById(R.id.password);
@@ -120,6 +164,48 @@ public class LoginActivity extends AppCompatActivity {
                                     Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
                                     intent.putExtra("userid",auth.getCurrentUser().getUid());
                                     startActivity(intent);
+
+
+
+
+
+                                    db.addChildEventListener(new ChildEventListener() {
+                                        @Override
+                                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                                            User user = dataSnapshot.getValue(User.class);
+
+                                            if (user.getRole().equals("Student"))
+                                            {
+                                                Toast.makeText(LoginActivity.this,"my role is " +user.getRole()+user.getName(),Toast.LENGTH_SHORT);
+
+                                            }
+
+
+
+                                        }
+
+                                        @Override
+                                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+
                                 }
                             }
                         });
