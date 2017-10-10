@@ -3,15 +3,17 @@ package za.co.lutendomlab.loginfirebase;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.graphics.Bitmap;
 import android.net.Uri;
+=======
+>>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,33 +33,36 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+<<<<<<< HEAD
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+=======
+>>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.TimeZone;
 
-public class HomeScreenUser extends AppCompatActivity{
+public class HomeScreenUser extends AppCompatActivity {
 
 
-    private FirebaseAuth firebaseAuth;
     private TextView textViewUserEmail;
     private TextView textViewUserName;
     private TextView staff_number;
     String userName;
+<<<<<<< HEAD
     private ImageView imageProfileSelect;
     private ImageView profile_Pic;
     Uri filePath ;
     Bitmap bitmap ;
     //image uploader
     int PICK_IMAGE_REQUEST = 111;
+=======
+>>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
     String weekdays;
     String formattedDate;
     String time_in = "";
@@ -65,14 +70,19 @@ public class HomeScreenUser extends AppCompatActivity{
     int week_number;
     String Sign;
     int count = 1;
-    private  DatabaseReference db ;
+    private DatabaseReference db;
     FirebaseUser user;
     String userID;
+<<<<<<< HEAD
     ProgressDialog pd;
     FirebaseStorage storage = FirebaseStorage.getInstance();
 
     StorageReference storageRef = storage.getReferenceFromUrl("gs://the-skills-coders-work.appspot.com/");    //change the url according to your firebase app
 
+=======
+    String role;
+    private FirebaseAuth firebaseAuth;
+>>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,6 +91,7 @@ public class HomeScreenUser extends AppCompatActivity{
 
         getSupportActionBar().setTitle("Home Page");
 
+<<<<<<< HEAD
 
         imageProfileSelect =(ImageView)findViewById(R.id.profile_picture_select);
         profile_Pic=(ImageView)findViewById(R.id.profile_picture);
@@ -105,35 +116,40 @@ public class HomeScreenUser extends AppCompatActivity{
 
 
         firebaseAuth =FirebaseAuth.getInstance();
+=======
+        firebaseAuth = FirebaseAuth.getInstance();
+>>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
         User users = new User();
-        user =firebaseAuth.getCurrentUser();
-        final FirebaseDatabase database =FirebaseDatabase.getInstance();
-        db= database.getReference().child("User");
 
-        Intent intent = getIntent();
-        userID = intent.getStringExtra("userid");
+        user = firebaseAuth.getCurrentUser();
+        if (user == null) {
+            startActivity(new Intent(this,LoginActivity.class));
+        }
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        db = database.getReference().child("User");
 
-
-        Toast.makeText(this,userID, Toast.LENGTH_SHORT).show();
-        staff_number = (TextView)findViewById(R.id.staff_number);
-
-        textViewUserName =(TextView)findViewById(R.id.textViewName);
+        userID = user.getUid();
 
 
+        Toast.makeText(this, userID, Toast.LENGTH_SHORT).show();
+        staff_number = (TextView) findViewById(R.id.staff_number);
+
+        textViewUserName = (TextView) findViewById(R.id.textViewName);
 
 
-      db.addChildEventListener(new ChildEventListener() {
+        db.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-             // db.child()
+                // db.child()
 
-                if(userID.equals(dataSnapshot.child("userId").getValue().toString())) {
+                if (userID.equals(dataSnapshot.child("userId").getValue().toString())) {
 
-            Register reg = dataSnapshot.getValue(Register.class);
+                    Register reg = dataSnapshot.getValue(Register.class);
 
-                    Toast.makeText(HomeScreenUser.this, reg.getTime_in(), Toast.LENGTH_SHORT).show();
                     User user = dataSnapshot.getValue(User.class);
+
+                    role = user.getRole();
 
 
                     userName = user.getName();
@@ -182,8 +198,14 @@ public class HomeScreenUser extends AppCompatActivity{
         });
 
 
-        textViewUserEmail =(TextView)findViewById(R.id.textViewEmail);
-        textViewUserEmail.setText("Email :"+user.getEmail());
+        if ("Admin".equals(role)) {
+            finish();
+            Intent intent1 = new Intent(HomeScreenUser.this, AdminActivity.class);
+            startActivity(intent1);
+        }
+
+        textViewUserEmail = (TextView) findViewById(R.id.textViewEmail);
+        textViewUserEmail.setText("Email :" + user.getEmail());
 
     }
 
@@ -197,13 +219,13 @@ public class HomeScreenUser extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.Sign_uot:
 
                 firebaseAuth.signOut();
                 finish();
-                Intent intent = new Intent(this,LoginActivity.class);
+                Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
 
                 break;
@@ -244,22 +266,22 @@ public class HomeScreenUser extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    public void ApplyForLeave(View view){
+    public void ApplyForLeave(View view) {
 
-        Intent intent = new Intent(this,LeaveApply.class);
+        Intent intent = new Intent(this, LeaveApply.class);
         startActivity(intent);
     }
 
-    public void SendNotification(View view){
-        Intent intent = new Intent(this,SendMessage.class);
+    public void SendNotification(View view) {
+        Intent intent = new Intent(this, SendMessage.class);
         startActivity(intent);
     }
 
-    public void UpdateProfile(View view){
-        Toast.makeText(HomeScreenUser.this,"Update profile",Toast.LENGTH_SHORT).show();
+    public void UpdateProfile(View view) {
+        Toast.makeText(HomeScreenUser.this, "Update profile", Toast.LENGTH_SHORT).show();
     }
 
-    public void signRegister(){
+    public void signRegister() {
 
         //current date
         final Calendar calendar = Calendar.getInstance();
@@ -277,9 +299,9 @@ public class HomeScreenUser extends AppCompatActivity{
         final String month_year = month.format(calendar.getTime());
 
         //week
-        week_number  = calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH);
+        week_number = calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH);
 
-       final String weekNumber = Integer.toString(week_number);
+        final String weekNumber = Integer.toString(week_number);
 
         //Day
         final SimpleDateFormat Day = new SimpleDateFormat("EEEE");
@@ -312,15 +334,14 @@ public class HomeScreenUser extends AppCompatActivity{
 //                //Executing sendmail to send email
 //                sm.execute();
 
-                if(!df.format(calendar.getTime()).equals(formattedDate)){
+                if (!df.format(calendar.getTime()).equals(formattedDate)) {
 
                     time_in = date.format(currentLocalTime);
                     formattedDate = df.format(calendar.getTime());
                     Sign = "Sign_in";
 
 
-
-                   // db= database.getReference().child(month_year);
+                    // db= database.getReference().child(month_year);
 
 //Register regi = new Register(formattedDate,weekdays,month_year,time_in,time_out,weekNumber);
 
@@ -337,8 +358,8 @@ public class HomeScreenUser extends AppCompatActivity{
                     db.child(user.getUid()).child("Register").child("Week").setValue(weekNumber);
                     db.child(user.getUid()).child("Register").child("Days").setValue(weekdays);
                             db.child(user.getUid()).child("Register").child("month").setValue(month_year);*/
-                  //  db.child(user.getUid()).child("Month").child(month_year).child("Week").child(weekNumber).child("Days").child(weekdays).child("weekNumbr").setValue(weekNumber);
-                   // db.child(user.getUid()).child("Month").child(month_year).child("Week").child(weekNumber).child("Days").child(weekdays).child("day").setValue(weekdays);
+                    //  db.child(user.getUid()).child("Month").child(month_year).child("Week").child(weekNumber).child("Days").child(weekdays).child("weekNumbr").setValue(weekNumber);
+                    // db.child(user.getUid()).child("Month").child(month_year).child("Week").child(weekNumber).child("Days").child(weekdays).child("day").setValue(weekdays);
 
                     /**
                      * save to fireBase
@@ -348,8 +369,8 @@ public class HomeScreenUser extends AppCompatActivity{
                      * Date
                      * Time in
                      */
-                    Toast.makeText(HomeScreenUser.this,"Signed in",Toast.LENGTH_SHORT).show();
-                }else if(!Day.format(calendar.getTime()).equals(weekdays)) {
+                    Toast.makeText(HomeScreenUser.this, "Signed in", Toast.LENGTH_SHORT).show();
+                } else if (!Day.format(calendar.getTime()).equals(weekdays)) {
                     Sign = "Sign_in";
 
 
@@ -358,8 +379,8 @@ public class HomeScreenUser extends AppCompatActivity{
                      * Date
                      * Time in
                      */
-                }else {
-                    Toast.makeText(HomeScreenUser.this,"you already signed in for today",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(HomeScreenUser.this, "you already signed in for today", Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -388,17 +409,17 @@ public class HomeScreenUser extends AppCompatActivity{
 //                sm.execute();
                 Sign = "Sign_out";
 
-                if(time_in.equals("")){
-                    Toast.makeText(HomeScreenUser.this,"you didnt sign in",Toast.LENGTH_LONG).show();
-                }else {
+                if (time_in.equals("")) {
+                    Toast.makeText(HomeScreenUser.this, "you didnt sign in", Toast.LENGTH_LONG).show();
+                } else {
                     weekdays = Day.format(calendar.getTime());
                     time_out = date.format(currentLocalTime);
 
                     /**
-                    * save to firebbse
-                    * Time out
-                    */
-                    Toast.makeText(HomeScreenUser.this,"Signed in",Toast.LENGTH_SHORT).show();
+                     * save to firebbse
+                     * Time out
+                     */
+                    Toast.makeText(HomeScreenUser.this, "Signed in", Toast.LENGTH_SHORT).show();
                     time_in = "";
                 }
             }
@@ -415,6 +436,7 @@ public class HomeScreenUser extends AppCompatActivity{
     }
 
 
+<<<<<<< HEAD
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -462,5 +484,7 @@ public class HomeScreenUser extends AppCompatActivity{
     }
 
 
+=======
+>>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
 }
 

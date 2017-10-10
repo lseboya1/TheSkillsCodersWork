@@ -35,4 +35,5 @@
         <item>Codetribe Soweto</item>
         <item>Codetribe Thembisa</item>
     </string-array>
+    <string name="title_activity_admin">activity_admin</string>
 </resources>

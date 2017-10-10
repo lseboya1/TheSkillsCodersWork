@@ -3,7 +3,7 @@
     package="za.co.lutendomlab.loginfirebase">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission  android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,16 +19,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignupActivity"
-            android:label="Register"
-            ></activity>
+        <activity
+            android:name=".SignupActivity"
+            android:label="Register" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".HomeScreenUser" />
         <activity android:name=".SendMessage" />
         <activity android:name=".ChangePassword" />
         <activity android:name=".MapsActivity" />
-        <activity android:name=".LeaveApply"></activity>
+        <activity android:name=".LeaveApply" />
+        <activity
+            android:name=".AdminActivity"
+            android:label="@string/title_activity_admin"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
