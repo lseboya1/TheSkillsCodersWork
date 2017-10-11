@@ -9,17 +9,11 @@ public class User {
     String userId;
     String name;
     String lastName;
-    String role;
     long staffNO;
     String email;
-<<<<<<< HEAD
     String role;
-
-
-
-=======
     String facility;
->>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
+
 
     public User() {}
 
@@ -73,11 +67,5 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getRole() {
-        return role;
-    }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 }

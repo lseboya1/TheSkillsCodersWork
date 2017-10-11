@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -26,7 +28,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class SignupActivity extends AppCompatActivity{
+public class SignupActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Spinner spinner;
     private EditText etName;
@@ -49,6 +51,16 @@ public class SignupActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+
+
+
+        Spinner spin =(Spinner)findViewById(R.id.simpleSpinner);
+        spin.setOnItemSelectedListener(SignupActivity.this);
+
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,facilityList);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin.setAdapter(aa);
 
 
         progressDialog = new ProgressDialog(this);
@@ -122,6 +134,7 @@ public class SignupActivity extends AppCompatActivity{
                                 user.setRole("Student");
                                 user.setStaffNO(generatedStaffNumber);
                                 user.setLastName(lName);
+                                user.setFacility(facility);
 
                                 boolean is_admin = isAdmin(auth.getCurrentUser().getEmail());
                                 if (is_admin) {
@@ -147,15 +160,13 @@ public class SignupActivity extends AppCompatActivity{
 
                                 } else {
                                     finish();
-<<<<<<< HEAD
-
 
                                     startActivity(new Intent(SignupActivity.this, LoginActivity.class));
 
 
-                            }
-=======
-//                                    startActivity(new Intent(SignupActivity.this, HomeScreenUser.class));
+
+
+                              startActivity(new Intent(SignupActivity.this, HomeScreenUser.class));
                                     if (is_admin) {
                                         Intent intent = new Intent(SignupActivity.this, AdminActivity.class);
                                         startActivity(intent);
@@ -165,7 +176,7 @@ public class SignupActivity extends AppCompatActivity{
                                         finish();
                                     }
                                 }
->>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
+
                             }
                         });
             }
@@ -218,22 +229,16 @@ public class SignupActivity extends AppCompatActivity{
         staffNumberGenerator.saveNewStaffNumber((int)  ++this.generatedStaffNumber);
     }
 
-<<<<<<< HEAD
-=======
-    public void addItemaOnSpinner(){
-//        spinner = (Spinner)findViewById(R.id.spinner);
-//
-//        List<String> listSpinner = new ArrayList<String>();
-//        listSpinner.add("list 1");
-//        listSpinner.add("list 1");
-//        listSpinner.add("list 1");
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_spinner_item, listSpinner);
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(dataAdapter);
 
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        facility =facilityList[i];
     }
 
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
->>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
+    }
 }

@@ -3,11 +3,9 @@ package za.co.lutendomlab.loginfirebase;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-<<<<<<< HEAD
+
 import android.graphics.Bitmap;
 import android.net.Uri;
-=======
->>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -33,13 +31,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-<<<<<<< HEAD
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-=======
->>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
+
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -54,15 +50,12 @@ public class HomeScreenUser extends AppCompatActivity {
     private TextView textViewUserName;
     private TextView staff_number;
     String userName;
-<<<<<<< HEAD
     private ImageView imageProfileSelect;
     private ImageView profile_Pic;
     Uri filePath ;
     Bitmap bitmap ;
     //image uploader
     int PICK_IMAGE_REQUEST = 111;
-=======
->>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
     String weekdays;
     String formattedDate;
     String time_in = "";
@@ -73,25 +66,23 @@ public class HomeScreenUser extends AppCompatActivity {
     private DatabaseReference db;
     FirebaseUser user;
     String userID;
-<<<<<<< HEAD
     ProgressDialog pd;
     FirebaseStorage storage = FirebaseStorage.getInstance();
 
     StorageReference storageRef = storage.getReferenceFromUrl("gs://the-skills-coders-work.appspot.com/");    //change the url according to your firebase app
 
-=======
+
     String role;
     private FirebaseAuth firebaseAuth;
->>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen_user);
 
-        getSupportActionBar().setTitle("Home Page");
+      //  getSupportActionBar().setTitle("Home Page");
 
-<<<<<<< HEAD
 
         imageProfileSelect =(ImageView)findViewById(R.id.profile_picture_select);
         profile_Pic=(ImageView)findViewById(R.id.profile_picture);
@@ -116,9 +107,9 @@ public class HomeScreenUser extends AppCompatActivity {
 
 
         firebaseAuth =FirebaseAuth.getInstance();
-=======
+
         firebaseAuth = FirebaseAuth.getInstance();
->>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
+
         User users = new User();
 
         user = firebaseAuth.getCurrentUser();
@@ -157,7 +148,7 @@ public class HomeScreenUser extends AppCompatActivity {
 
 //                textViewUserName.setText("Name: "+user.getName());
                     //  Toast.makeText(HomeScreenUser.this, user.getName(), Toast.LENGTH_SHORT).show();
-                    staff_number.setText(String.valueOf("Staff No: " + user.getStaffNO()));
+                   // staff_number.setText(String.valueOf("Location: " + user.getFacility()));
 
 
                     StorageReference spaceRef = storageRef.child("image.jpg");
@@ -209,66 +200,9 @@ public class HomeScreenUser extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-
-            case R.id.Sign_uot:
-
-                firebaseAuth.signOut();
-                finish();
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
-
-                break;
-            case R.id.Register:
-                signRegister();
-                break;
-
-            case R.id.delete_account:
-
-                //get current user
-                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-                if (user != null) {
-                    user.delete()
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(HomeScreenUser.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(HomeScreenUser.this, SignupActivity.class));
-                                        finish();
-
-                                    } else {
-                                        Toast.makeText(HomeScreenUser.this, "Failed to delete your account!", Toast.LENGTH_SHORT).show();
-
-                                    }
-                                }
-                            });
-                }
-                break;
-
-            case R.id.change_password:
-
-                Intent intent2 = new Intent(HomeScreenUser.this, ChangePassword.class);
-                startActivity(intent2);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     public void ApplyForLeave(View view) {
-
-        Intent intent = new Intent(this, LeaveApply.class);
+//
+        Intent intent = new Intent(HomeScreenUser.this, LeaveApply.class);
         startActivity(intent);
     }
 
@@ -281,7 +215,7 @@ public class HomeScreenUser extends AppCompatActivity {
         Toast.makeText(HomeScreenUser.this, "Update profile", Toast.LENGTH_SHORT).show();
     }
 
-    public void signRegister() {
+    public void signRegister(View view) {
 
         //current date
         final Calendar calendar = Calendar.getInstance();
@@ -435,8 +369,6 @@ public class HomeScreenUser extends AppCompatActivity {
         alertDialog.show();
     }
 
-
-<<<<<<< HEAD
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -483,8 +415,12 @@ public class HomeScreenUser extends AppCompatActivity {
         }
     }
 
+    public void SignOut(View view){
 
-=======
->>>>>>> 7cccf0b9599b5e3177d0bfd1144611a04d6a5689
+        firebaseAuth.signOut();
+        finish();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }
 

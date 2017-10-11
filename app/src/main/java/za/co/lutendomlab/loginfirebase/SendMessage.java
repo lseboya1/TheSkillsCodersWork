@@ -21,9 +21,9 @@ public class SendMessage extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_message);
-
-        getSupportActionBar().setTitle("Send Notification");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//        getSupportActionBar().setTitle("Send Notification");
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         message = (EditText)findViewById(R.id.message);
         header = (EditText)findViewById(R.id.header);
