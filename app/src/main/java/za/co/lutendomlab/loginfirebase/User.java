@@ -9,16 +9,25 @@ public class User {
     String userId;
     String name;
     String lastName;
-    String role;
     long staffNO;
     String email;
+    String role;
     String facility;
+
 
     public User() {}
 
     public void setName(String userId, String name) {
         this.name= name;
         this.userId = userId;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setStaffNO(long staffNO)
@@ -58,11 +67,5 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getRole() {
-        return role;
-    }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 }

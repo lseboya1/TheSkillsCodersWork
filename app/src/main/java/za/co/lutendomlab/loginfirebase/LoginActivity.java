@@ -16,13 +16,22 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.auth.FirebaseUser;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+
+/**
+ * Created by codetribe on 8/23/2017.
+ */
+
 import com.google.firebase.database.ValueEventListener;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,7 +43,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     FirebaseUser user;
     private Button btnReset;
-
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference db = database.getReference().child("User");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         progressDialog = new ProgressDialog(this);
-        getSupportActionBar().setTitle("Login");
+        //getSupportActionBar().setTitle("Login");
 
         //get Firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -51,13 +61,18 @@ public class LoginActivity extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
+
+
+
+
+
         if(user != null){
             navigateToUserScreen(user.getUid());
+
         }
 
 
-//        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+
 
         inputEmail = (EditText)findViewById(R.id.email);
         inputPassword = (EditText)findViewById(R.id.password);
@@ -80,100 +95,57 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
             }
         });
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                String email = inputEmail.getText().toString();
-//                final String password = inputPassword.getText().toString();
-//
-//                if(TextUtils.isEmpty(email)){
-//
-//                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(password)) {
-//                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                progressDialog.setMessage("Logging in. Please wait...");
-//                progressDialog.show();
-//
-//                //authentication user
-//                auth.signInWithEmailAndPassword(email,password)
-//                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                // If sign in fails, display a message to the user. If sign in succeeds
-//                                // the auth state listener will be notified and logic to handle the
-//                                // signed in user can be handled in the listener.
-//                                progressDialog.dismiss();
-//
-//                                if(!task.isSuccessful()){
-//                                    //there was an error
-//                                    if(password.length() < 6){
-//                                        inputPassword.setError(getString(R.string.minimum_password));
-//                                    }else {
-//                                        Toast.makeText(LoginActivity.this,getString(R.string.auth_failed),Toast.LENGTH_SHORT).show();
-//                                    }
-//                                }else {
-//
-//                                    finish();
-//                                    Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
-//                                    intent.putExtra("userid",auth.getCurrentUser().getUid());
-//                                    startActivity(intent);
-//                                }
-//                            }
-//                        });
-//            }
-//        });
 
 
     }
 
-    public void LogIn(View view){
 
-        String email = inputEmail.getText().toString();
-        final String password = inputPassword.getText().toString();
 
-        if(TextUtils.isEmpty(email)){
+        public void LogIn (View view){
 
-            Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        progressDialog.setMessage("Logging in. Please wait...");
-        progressDialog.show();
+            String email = inputEmail.getText().toString();
+            final String password = inputPassword.getText().toString();
 
-        //authentication user
-        auth.signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        progressDialog.dismiss();
+            if (TextUtils.isEmpty(email)) {
 
-                        if(!task.isSuccessful()){
-                            //there was an error
-                            if(password.length() < 6){
-                                inputPassword.setError(getString(R.string.minimum_password));
-                            }else {
-                                Toast.makeText(LoginActivity.this,getString(R.string.auth_failed),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (TextUtils.isEmpty(password)) {
+                Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            progressDialog.setMessage("Logging in. Please wait...");
+            progressDialog.show();
+
+            //authentication user
+            auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            // If sign in fails, display a message to the user. If sign in succeeds
+                            // the auth state listener will be notified and logic to handle the
+                            // signed in user can be handled in the listener.
+                            progressDialog.dismiss();
+
+                            if (!task.isSuccessful()) {
+                                //there was an error
+                                if (password.length() < 6) {
+                                    inputPassword.setError(getString(R.string.minimum_password));
+                                } else {
+                                    Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
+
+                                }
+                            } else {
+
+                                navigateToUserScreen(task.getResult().getUser().getUid());
+
                             }
-                        }else {
-
-                            navigateToUserScreen(task.getResult().getUser().getUid());
-
                         }
-                    }
-                });
-    }
+                    });
+        }
 
+<<<<<<< HEAD
     public void navigateToUserScreen(String user_id) {
 
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
@@ -191,13 +163,34 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
                     startActivity(intent);
                     finish();
+=======
+        public void navigateToUserScreen (String user_id){
+            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
+            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    User user = dataSnapshot.getValue(User.class);
+                    if ("Facilitator".equals(user.getRole())) {
+                        Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    } else {
+
+
+
+                        Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
+                        startActivity(intent);
+                        finish();
+                    }
+>>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        }
     }
-}

@@ -65,6 +65,16 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         spin.setAdapter(aa);
 
 
+
+
+        Spinner spin =(Spinner)findViewById(R.id.simpleSpinner);
+        spin.setOnItemSelectedListener(SignupActivity.this);
+
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,facilityList);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin.setAdapter(aa);
+
+
         progressDialog = new ProgressDialog(this);
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -131,23 +141,15 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
-//                                String uid = task.getResult().getUser().getUid();
-//
-//                                //saving name
-//                                //FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                                //DatabaseReference myRef = database.getReference().child("User");
-//                                DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User");
-//                                User user = new User();
-//                                user.setStaffNO(generatedStaffNumber);
-//                                user.setName(name);
-//                                user.setEmail(inputEmail.getText().toString());
-//                                String id = myRef.push().getKey();
-//                                myRef.child("users").child(uid).setValue(user);
 
-                                //////----------------------------------------
                                 DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User");
                                 User user = new User();
+<<<<<<< HEAD
 //                                user.setStaffNO(generatedStaffNumber);
+=======
+                                user.setRole("Student");
+                                user.setStaffNO(generatedStaffNumber);
+>>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
                                 user.setLastName(lName);
                                 user.setFacility(facility);
 
@@ -175,7 +177,13 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
 
                                 } else {
                                     finish();
-//                                    startActivity(new Intent(SignupActivity.this, HomeScreenUser.class));
+
+                                    startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+
+
+
+
+                              startActivity(new Intent(SignupActivity.this, HomeScreenUser.class));
                                     if (is_admin) {
                                         Intent intent = new Intent(SignupActivity.this, AdminActivity.class);
                                         startActivity(intent);
@@ -185,6 +193,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                                         finish();
                                     }
                                 }
+
                             }
                         });
             }
@@ -237,17 +246,29 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         staffNumberGenerator.saveNewStaffNumber((int)  ++this.generatedStaffNumber);
     }
 
+<<<<<<< HEAD
     //Performing action onItemSelected and onNothing selected
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
 
         facility = facilityList[position];
+=======
+>>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
 
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        facility =facilityList[i];
     }
 
     @Override
+<<<<<<< HEAD
     public void onNothingSelected(AdapterView<?> arg0) {
 // TODO Auto-generated method stub
+=======
+    public void onNothingSelected(AdapterView<?> adapterView) {
+>>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
 
     }
 }

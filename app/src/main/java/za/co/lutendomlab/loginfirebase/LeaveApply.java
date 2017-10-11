@@ -35,9 +35,9 @@ public class LeaveApply extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leave_apply);
 
-        getSupportActionBar().setTitle("Leave Form");
+        //getSupportActionBar().setTitle("Leave Form");
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         name = (EditText)findViewById(R.id.name);
         lastName = (EditText)findViewById(R.id.lastName);
