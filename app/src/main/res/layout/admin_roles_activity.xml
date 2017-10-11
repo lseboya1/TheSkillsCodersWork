@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:padding="30dp"
+        android:onClick="Disable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Disable" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="Assign"
+        android:padding="30dp"
+        android:text="Assign Role"/>
+
+    <Spinner
+        android:id="@+id/simpleSpinner"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:onClick="Save"
+        android:text="Save"/>
+
+    <Button
+        android:onClick="TimeSheet"
+        android:padding="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TimeSheet"/>
+
+</LinearLayout>

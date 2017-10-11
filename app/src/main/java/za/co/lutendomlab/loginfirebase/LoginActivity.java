@@ -175,6 +175,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void navigateToUserScreen(String user_id) {
+
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

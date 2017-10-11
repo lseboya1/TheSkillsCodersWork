@@ -36,6 +36,7 @@ public class HomeScreenUser extends AppCompatActivity {
     private TextView textViewUserName;
     private TextView staff_number;
     String userName;
+    String userLastName;
     String weekdays;
     String formattedDate;
     String time_in = "";
@@ -91,11 +92,12 @@ public class HomeScreenUser extends AppCompatActivity {
 
 
                     userName = user.getName();
-                    textViewUserName.setText("Name: " + userName);
+                    userLastName = user.getLastName();
+                    textViewUserName.setText("Name: " + userName + " , "+ userLastName);
 
 //                textViewUserName.setText("Name: "+user.getName());
                     //  Toast.makeText(HomeScreenUser.this, user.getName(), Toast.LENGTH_SHORT).show();
-                    staff_number.setText(String.valueOf("Staff No: " + user.getStaffNO()));
+                    staff_number.setText(String.valueOf("Location: " + user.getFacility()));
                 }
             }
 
@@ -343,7 +345,6 @@ public class HomeScreenUser extends AppCompatActivity {
                      * Time out
                      */
                     Toast.makeText(HomeScreenUser.this, "Signed in", Toast.LENGTH_SHORT).show();
-                    time_in = "";
                 }
             }
         });

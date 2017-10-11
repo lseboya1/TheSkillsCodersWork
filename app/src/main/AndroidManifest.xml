@@ -29,6 +29,7 @@
         <activity android:name=".ChangePassword" />
         <activity android:name=".MapsActivity" />
         <activity android:name=".LeaveApply" />
+        <activity android:name=".AdminOption" />
         <activity
             android:name=".AdminActivity"
             android:label="@string/title_activity_admin"

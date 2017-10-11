@@ -30,4 +30,11 @@ public class AdminActivity extends AppCompatActivity {
         Intent intent = new Intent(this,LoginActivity.class);
         startActivity(intent);
     }
+    public void Option(View view){
+        Toast.makeText(this, "scscsc", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(AdminActivity.this, AdminOption.class);
+
+        Toast.makeText(this, "scscsc", Toast.LENGTH_SHORT).show();
+        startActivity(i);
+    }
 }

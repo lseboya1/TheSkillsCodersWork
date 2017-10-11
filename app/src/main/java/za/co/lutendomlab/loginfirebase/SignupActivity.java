@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -22,11 +24,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class SignupActivity extends AppCompatActivity{
+public class SignupActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Spinner spinner;
     private EditText etName;
@@ -43,12 +47,22 @@ public class SignupActivity extends AppCompatActivity{
     private long generatedStaffNumber;
     private  String facility;
 
-    String[] facilityList={"Codetribe TIH","Codetibe Soweto","Codetribe Tembisa"};
+    String[] facilityList = {"Codetribe TIH","Codetibe Soweto","Codetribe Tembisa"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        //Getting the instance of Spinner and applying OnItemSelectedListener on it
+        Spinner spin = (Spinner) findViewById(R.id.simpleSpinner);
+        spin.setOnItemSelectedListener(this);
+
+        //Creating the ArrayAdapter instance having the bank name list
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,facilityList);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        spin.setAdapter(aa);
 
 
         progressDialog = new ProgressDialog(this);
@@ -72,6 +86,7 @@ public class SignupActivity extends AppCompatActivity{
         inputConfirmPassword = (EditText)findViewById(R.id.re_password);
         etName =(EditText)findViewById(R.id.name);
         lastName =(EditText)findViewById(R.id.lastName);
+        Spinner spinner = (Spinner) findViewById(R.id.simpleSpinner);
         autoStaffNumberGanerator();
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -132,8 +147,9 @@ public class SignupActivity extends AppCompatActivity{
                                 //////----------------------------------------
                                 DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User");
                                 User user = new User();
-                                user.setStaffNO(generatedStaffNumber);
+//                                user.setStaffNO(generatedStaffNumber);
                                 user.setLastName(lName);
+                                user.setFacility(facility);
 
                                 boolean is_admin = isAdmin(auth.getCurrentUser().getEmail());
                                 if (is_admin) {
@@ -221,19 +237,17 @@ public class SignupActivity extends AppCompatActivity{
         staffNumberGenerator.saveNewStaffNumber((int)  ++this.generatedStaffNumber);
     }
 
-    public void addItemaOnSpinner(){
-//        spinner = (Spinner)findViewById(R.id.spinner);
-//
-//        List<String> listSpinner = new ArrayList<String>();
-//        listSpinner.add("list 1");
-//        listSpinner.add("list 1");
-//        listSpinner.add("list 1");
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_spinner_item, listSpinner);
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(dataAdapter);
+    //Performing action onItemSelected and onNothing selected
+    @Override
+    public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
+
+        facility = facilityList[position];
 
     }
 
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+// TODO Auto-generated method stub
 
+    }
 }
