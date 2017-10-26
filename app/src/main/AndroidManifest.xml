@@ -24,7 +24,8 @@
             android:label="Register" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ResetPasswordActivity" />
-        <activity android:name=".HomeScreenUser" />
+        <activity android:name=".HomeScreenUser"
+            android:label="Home page"></activity>
         <activity android:name=".SendMessage" />
         <activity android:name=".ChangePassword" />
         <activity android:name=".MapsActivity" />
