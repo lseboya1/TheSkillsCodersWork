@@ -50,6 +50,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="Name"
+<<<<<<< HEAD
+=======
+                android:editable="false"
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
                 android:textColor="#1c7839"
                 android:textColorHint="#1c7839"
                 android:textAlignment="center" />
@@ -60,6 +64,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="Last Name"
+<<<<<<< HEAD
+=======
+                android:editable="false"
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
                 android:textColor="#1c7839"
                 android:textColorHint="#1c7839"
                 android:textAlignment="center" />
@@ -219,6 +227,7 @@
             android:textStyle="bold"
             android:layout_margin="10dp"/>
 
+<<<<<<< HEAD
         <Button
             android:onClick="Cancel"
             android:layout_width="match_parent"
@@ -229,6 +238,8 @@
             android:textColorHint="#1c7839"
             android:textStyle="bold"
             android:text="Cancel" />
+=======
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
     </LinearLayout>
 
 </ScrollView>

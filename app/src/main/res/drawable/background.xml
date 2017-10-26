@@ -5,7 +5,7 @@
         <bitmap
             android:src="@drawable/back2"
             android:gravity="center"
-            android:alpha="0.1"
+            android:alpha="0"
             />
     </item>
 
@@ -15,6 +15,7 @@
         android:right="-300dp">
         <rotate
             android:fromDegrees="-10"
+
             android:pivotX="0%"
             android:pivotY="100%">
             <shape

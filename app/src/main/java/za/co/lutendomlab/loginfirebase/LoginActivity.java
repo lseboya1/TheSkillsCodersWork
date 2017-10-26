@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -122,18 +123,22 @@ public class LoginActivity extends AppCompatActivity {
                                 if (password.length() < 6) {
                                     inputPassword.setError(getString(R.string.minimum_password));
                                 } else {
-                                    Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
-
+                                    Toast.makeText(LoginActivity.this, getString(R.string.auth_failed,task.getException().getLocalizedMessage()), Toast.LENGTH_SHORT).show();
                                 }
                             } else {
-
                                 navigateToUserScreen(task.getResult().getUser().getUid());
-
                             }
                         }
-                    });
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    progressDialog.dismiss();
+                    Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
+<<<<<<< HEAD
         public void navigateToUserScreen (String user_id){
             DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -145,19 +150,43 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, NavigationDrawer.class);
                         startActivity(intent);
                         finish();
+=======
 
-                    } else {
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
+                public void navigateToUserScreen (String user_id){
+                    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
+                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+<<<<<<< HEAD
                         Intent intent = new Intent(LoginActivity.this, NavigationDrawer.class);
                         startActivity(intent);
                         finish();
                     }
                 }
+=======
+                            User user = dataSnapshot.getValue(User.class);
+                            if ("Facilitator".equals(user.getRole())) {
+                                Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                                startActivity(intent);
+                                finish();
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                            } else {
+                                Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
+                                startActivity(intent);
+                                finish();
+                            }
 
-                }
-            });
-        }
+                        }
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+               }
     }
+

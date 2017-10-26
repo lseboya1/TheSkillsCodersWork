@@ -3,6 +3,11 @@ package za.co.lutendomlab.loginfirebase;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+<<<<<<< HEAD
+=======
+import com.google.firebase.auth.UserProfileChangeRequest;
+
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +25,7 @@ public class User implements Parcelable{
     String email;
     String role;
     String facility;
+<<<<<<< HEAD
     String phoneNumber;
     private int profile;
 
@@ -39,15 +45,38 @@ public class User implements Parcelable{
             return new User(in);
         }
 
+=======
+    private int profile;
+
+
+    protected User(Parcel in) {
+        userId = in.readString();
+        name = in.readString();
+        lastName = in.readString();
+        email = in.readString();
+        role = in.readString();
+        facility = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
         @Override
         public User[] newArray(int size) {
             return new User[size];
         }
     };
 
+<<<<<<< HEAD
     public User(String keyUser, String nameinput, String lastNameinput, String phoneNumberinput, String emailinput) {
     }
 
+=======
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
     public void setName(String name) {
         this.name = name;
     }
@@ -110,12 +139,25 @@ public class User implements Parcelable{
         dest.writeString(email);
         dest.writeString(role);
         dest.writeString(facility);
+<<<<<<< HEAD
         dest.writeString(phoneNumber);
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
+=======
+    }
+
+    public int getProfile() {
+        return profile;
+    }
+
+    public void setProfile(int profile) {
+        this.profile = profile;
+    }
+
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;

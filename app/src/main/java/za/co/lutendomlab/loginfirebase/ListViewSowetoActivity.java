@@ -1,6 +1,10 @@
 package za.co.lutendomlab.loginfirebase;
 
 import android.content.Context;
+<<<<<<< HEAD
+=======
+import android.content.Intent;
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -9,7 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+<<<<<<< HEAD
 import android.widget.TextView;
+=======
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +35,10 @@ import java.util.List;
 public class ListViewSowetoActivity extends android.support.v4.app.Fragment {
 
     private ListView listView;
+<<<<<<< HEAD
     private TextView txtTotalNumber;
+=======
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
     private UserAdapter userAdapter;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -38,7 +48,10 @@ public class ListViewSowetoActivity extends android.support.v4.app.Fragment {
     User user;
 
     Context context;
+<<<<<<< HEAD
     int counter;
+=======
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -54,13 +67,17 @@ public class ListViewSowetoActivity extends android.support.v4.app.Fragment {
         View rootview = inflater.inflate(R.layout.activity_list_of_users, container, false);
         firebaseAuth = FirebaseAuth.getInstance();
 
+<<<<<<< HEAD
         txtTotalNumber = (TextView)rootview.findViewById(R.id.txtTotalNumber);
+=======
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 //        context = getApplicationContext();
         listView = (ListView) rootview.findViewById(R.id.listView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+<<<<<<< HEAD
                 User user = allUsers.get(position);
 //                Intent intent = new Intent(ListViewActivity.this, AdminOption.class);
 //                Toast.makeText(context, "Am Clicked" + user.getName(), Toast.LENGTH_SHORT).show();
@@ -69,6 +86,13 @@ public class ListViewSowetoActivity extends android.support.v4.app.Fragment {
 
 //                intent.putExtra("userProfile", user);
 //                startActivity(intent);
+=======
+
+                User user = allUsers.get(position);
+                Intent intent = new Intent(context,AdminOptionStudents.class);
+                intent.putExtra("userProfile",user);
+                startActivity(intent);
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
             }
         });
@@ -88,12 +112,17 @@ public class ListViewSowetoActivity extends android.support.v4.app.Fragment {
 
                     if("Codetibe Soweto".equals(user.getFacility()) && "Student".equals(user.getRole())) {
                         allUsers.add(user);
+<<<<<<< HEAD
                         counter++;
                     }
                 }
 
                 txtTotalNumber.setText(""+ counter);
 
+=======
+                    }
+                }
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
                 userAdapter = new UserAdapter(context,R.layout.model,allUsers);
                 listView.setAdapter(userAdapter);
 

@@ -24,8 +24,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,7 +44,11 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
     private FirebaseAuth auth;
     private  String facility;
 
+<<<<<<< HEAD
     String[] facilityList = {"Codetribe TIH","Codetibe Soweto","Codetribe Tembisa,Codetribe Alexandr"};
+=======
+    String[] facilityList={"Codetribe TIH","Codetibe Soweto","Codetribe Tembisa"};
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_signup);
 
 
+<<<<<<< HEAD
         btnSignIn = (Button) findViewById(R.id.sign_in_button);
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
         inputEmail = (EditText) findViewById(R.id.email);
@@ -73,6 +76,17 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spinner.setAdapter(aa);
+=======
+
+
+        Spinner spin =(Spinner)findViewById(R.id.simpleSpinner);
+        spin.setOnItemSelectedListener(SignupActivity.this);
+
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,facilityList);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin.setAdapter(aa);
+
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
         progressDialog = new ProgressDialog(this);
         //Get Firebase auth instance
@@ -85,6 +99,21 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
             startActivity(new Intent(getApplicationContext(),HomeScreenUser.class));
         }
 
+<<<<<<< HEAD
+=======
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        btnSignIn = (Button) findViewById(R.id.sign_in_button);
+        btnSignUp = (Button) findViewById(R.id.sign_up_button);
+        inputEmail = (EditText) findViewById(R.id.email);
+        inputPassword = (EditText) findViewById(R.id.password);
+        Staff_number = (TextView) findViewById(R.id.Staff_number);
+        inputConfirmPassword = (EditText)findViewById(R.id.re_password);
+        etName =(EditText)findViewById(R.id.name);
+        lastName =(EditText)findViewById(R.id.lastName);
+        autoStaffNumberGanerator();
+
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,8 +165,11 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
 
                                 DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User");
                                 User user = new User();
+<<<<<<< HEAD
 
 //                                user.setStaffNO(generatedStaffNumber);
+=======
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
                                 user.setRole("Student");
                                 user.setLastName(lName);
                                 user.setFacility(facility);
@@ -169,7 +201,13 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                                     startActivity(new Intent(SignupActivity.this, LoginActivity.class));
 
 
+<<<<<<< HEAD
                               startActivity(new Intent(SignupActivity.this, HomeScreenUser.class));
+=======
+
+
+                                    startActivity(new Intent(SignupActivity.this, HomeScreenUser.class));
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
                                     if (is_admin) {
                                         Intent intent = new Intent(SignupActivity.this, AdminActivity.class);
                                         startActivity(intent);
@@ -215,18 +253,43 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         super.onPostResume();
     }
 
+<<<<<<< HEAD
     //Performing action onItemSelected and onNothing selected
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
 
         facility = facilityList[position];
+=======
+    public void autoStaffNumberGanerator() {
+
+        staffNumberGenerator = new StaffNumberGenerator(this);
+        generatedStaffNumber = staffNumberGenerator.generateSaffNumber();
+
+        if(generatedStaffNumber > 0) {
+            this.Staff_number.setText("Staff No: " + generatedStaffNumber);
+        }
+        else {this.Staff_number.setText("Staff No: " + staffNumberGenerator.DEFAULT_SAFF_NUMBER);
+        }
+    }
+
+    public void autoStaffNumberGaneratorIncreament(){
+
+        staffNumberGenerator.saveNewStaffNumber((int)  ++this.generatedStaffNumber);
+    }
+
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
     }
 
+<<<<<<< HEAD
         @Override
         public void onNothingSelected (AdapterView < ? > arg0){
 // TODO Auto-generated method stub
         }
+=======
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
     //    public void autoStaffNumberGanerator() {
 //

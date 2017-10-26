@@ -1,6 +1,9 @@
 package za.co.lutendomlab.loginfirebase;
 
+<<<<<<< HEAD
 import android.app.ProgressDialog;
+=======
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,8 +17,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.ImageView;
 import android.widget.ListView;
+=======
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,9 +32,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+<<<<<<< HEAD
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+=======
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,6 +121,13 @@ public class AdminActivity extends AppCompatActivity {
 
 //        textViewUserEmail.setText("Email: " + user.getEmail());
 
+<<<<<<< HEAD
+=======
+        textViewUserName = (TextView)findViewById(R.id.textViewName);
+        textViewUserEmail = (TextView)findViewById(R.id.textViewEmail);
+
+
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
@@ -130,6 +146,7 @@ public class AdminActivity extends AppCompatActivity {
         firebaseAuth.signOut();
         finish();
         Intent intent = new Intent(this, LoginActivity.class);
+<<<<<<< HEAD
         startActivity(intent);
     }
 
@@ -139,6 +156,17 @@ public class AdminActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+=======
+        startActivity(intent);
+    }
+
+    public void Facilitators(View view){
+
+        Intent intent = new Intent(this, ListViewFacilitatorsActivity.class);
+        startActivity(intent);
+    }
+
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
     /**
      * Tab
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -192,7 +220,11 @@ public class AdminActivity extends AppCompatActivity {
                 case 2:
                     return "Tembisa";
                 case 3:
+<<<<<<< HEAD
                     return "Alexandra";
+=======
+                    return "Alexander";
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
             }
             return null;
         }

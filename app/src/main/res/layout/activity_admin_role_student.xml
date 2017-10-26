@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     xmlns:app="http://schemas.android.com/apk/res-auto"
+=======
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
     android:orientation="horizontal"
     android:padding="30dp"
     android:layout_width="match_parent"
@@ -14,6 +17,10 @@
         android:orientation="vertical">
 
         <Button
+<<<<<<< HEAD
+=======
+            android:padding="30dp"
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
             android:onClick="Disable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,6 +53,7 @@
 
         <Button
             android:onClick="TimeSheet"
+<<<<<<< HEAD
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TimeSheet"/>
@@ -59,6 +67,12 @@
             android:layout_gravity="center"
             android:drawableLeft="@android:drawable/sym_call_outgoing"
             android:text="       Make a Call"/>
+=======
+            android:padding="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TimeSheet"/>
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
     </LinearLayout>
 
 </LinearLayout>

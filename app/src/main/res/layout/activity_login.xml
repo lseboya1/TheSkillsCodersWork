@@ -13,6 +13,7 @@
         android:layout_height="224dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
+<<<<<<< HEAD
         android:layout_marginTop="10dp"
         android:src="@drawable/geologo" />
 
@@ -40,6 +41,35 @@
                 android:textColor="#1c7839"
                 android:textColorHint="#1c7839" />
 
+=======
+        android:layout_marginTop="16dp"
+        android:src="@drawable/geologo" />
+
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="319dp"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:layout_marginStart="30dp"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:textColor="#1c7839"
+        android:textColorHint="#1c7839" />
+
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="318dp"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="30dp"
+        android:inputType="textPassword"
+        android:textColor="#1c7839"
+        android:textColorHint="#1c7839" />
+
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
     <!-- Login Button -->
 

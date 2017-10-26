@@ -4,8 +4,11 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:padding="10dp"
+<<<<<<< HEAD
     android:background="#F5F5F5"
     android:layout_margin="20dp"
+=======
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
     android:layout_height="match_parent">
 
 
@@ -23,11 +26,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+<<<<<<< HEAD
+=======
+        android:layout_weight="1"
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/name"
             android:text="Name"
+<<<<<<< HEAD
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -36,19 +44,46 @@
             android:text="Last name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+=======
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
         <TextView
             android:id="@+id/email"
             android:text="Email"
+<<<<<<< HEAD
+=======
+            android:textColor="@android:color/black"
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+<<<<<<< HEAD
             android:id="@+id/location"
             android:text="Location"
+=======
+            android:id="@+id/phoneNumber"
+            android:text="Phone Number:"
+            android:textColor="@android:color/black"
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
 
+<<<<<<< HEAD
+=======
+    <ImageView
+        android:id="@+id/call"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/toolbar"
+        android:layout_gravity="bottom"
+        android:src="@drawable/call" />
+
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 </LinearLayout>

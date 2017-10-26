@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:background="@drawable/back1"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-
-    <RelativeLayout
-        android:id="@+id/background"
+    <include
+        layout="@layout/app_bar_main"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="190dp"
         android:background="@drawable/background">
 
@@ -21,8 +23,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             app:theme="@style/TransparentBar">
+=======
+        android:layout_height="match_parent" />
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
 
+<<<<<<< HEAD
         </android.support.v7.widget.Toolbar>
 
         <com.mikhaellopez.circularimageview.CircularImageView
@@ -64,70 +78,140 @@
             android:textColor="#1c7839"
             android:textSize="25sp"
             android:textStyle="bold" />
+=======
+</android.support.v4.widget.DrawerLayout>
 
-
-    </RelativeLayout>
-
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/background"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="-100dp">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@drawable/back1"
+        android:layout_height="match_parent"
+        android:weightSum="1">
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:background="@drawable/background">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:theme="@style/TransparentBar">
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center_vertical"
+                    android:text="About Us "
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp" />
+
+
+            </android.support.v7.widget.Toolbar>
 
             <com.mikhaellopez.circularimageview.CircularImageView
-                android:id="@+id/profile_picture"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/profile_pic"
+                android:id="@+id/circularImageView"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:onClick="SignOut"
+                android:layout_alignBottom="@+id/toolbar"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/exit"
                 app:civ_border_color="@android:color/transparent"
                 app:civ_border_width="10dp" />
 
-            <ImageButton
-                android:id="@+id/profile_picture_select"
-                android:layout_width="56dp"
-                android:layout_height="58dp"
-                android:layout_gravity="top"
-                android:background="@android:color/transparent"
-                android:src="@android:drawable/ic_menu_camera" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/toolbar"
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="22dp"
+                android:layout_toStartOf="@+id/circularImageView"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_vertical"
+                android:onClick="signRegister"
+                android:text="Mark Register"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        </FrameLayout>
+
+        </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="24dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginStart="12dp"
-            android:orientation="vertical">
+            android:layout_below="@id/background"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="-100dp">
 
-            <TextView
-                android:id="@+id/textViewName"
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/profile_picture"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/profile_pic"
+                    app:civ_border_color="@android:color/transparent"
+                    app:civ_border_width="10dp" />
+
+                <ImageButton
+                    android:id="@+id/profile_picture_select"
+                    android:layout_width="56dp"
+                    android:layout_height="58dp"
+                    android:layout_gravity="top"
+                    android:background="@android:color/transparent"
+                    android:src="@android:drawable/ic_menu_camera" />
+
+            </FrameLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:text="Skill Coders"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="24dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textViewEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:textColor="@android:color/black"
-                android:text="theskillcoders@yahoo.co.za"
-                android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/textViewName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Skill Coders"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="@android:color/black"
+                    android:text="theskillcoders@yahoo.co.za"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
 
+<<<<<<< HEAD
 
 
     <Button
@@ -161,5 +245,46 @@
         android:text="Apply for Leave"
         android:textColor="#1c7839"
         android:textColorHint="#1c7839" />
+=======
+>>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
-</LinearLayout>
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/shape_button"
+            android:onClick="UpdateProfile"
+            android:text="Update Profile"
+            android:textColor="#1c7839"
+            android:visibility="gone"
+            android:textColorHint="#1c7839" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/shape_button"
+            android:onClick="SendNotification"
+            android:text="Send Notification"
+            android:textColor="#1c7839"
+            android:visibility="gone"
+            android:textColorHint="#1c7839" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/shape_button"
+            android:onClick="ApplyForLeave"
+            android:text="Apply for Leave"
+            android:textColor="#1c7839"
+            android:visibility="gone"
+            android:textColorHint="#1c7839" />
+
+
+
+    </LinearLayout>
+
+    -->
