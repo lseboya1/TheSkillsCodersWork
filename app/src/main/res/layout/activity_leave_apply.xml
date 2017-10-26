@@ -1,17 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/blue"
+    android:background="@drawable/back1"
     tools:context="za.co.lutendomlab.loginfirebase.LeaveForm">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
+
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:theme="@style/TransparentBar">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Leave form"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:textColor="#1c7839"
+                android:textColorHint="#1c7839" />
+
+
+        </android.support.v7.widget.Toolbar>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -20,12 +44,14 @@
             android:layout_margin="16dp">
 
             <EditText
+
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="Name"
-                android:textColorHint="@android:color/white"
+                android:textColor="#1c7839"
+                android:textColorHint="#1c7839"
                 android:textAlignment="center" />
 
             <EditText
@@ -34,54 +60,100 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="Last Name"
-                android:textColorHint="@android:color/white"
+                android:textColor="#1c7839"
+                android:textColorHint="#1c7839"
                 android:textAlignment="center" />
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/leaveType"
-            android:hint="Type of leave (Vacation,sick,Special, atc)"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
-            android:textColorHint="@android:color/white"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:text="Type of Leave :"
+                android:textSize="17dp"
+                android:textColor="#1c7839"
+                android:textColorHint="#1c7839"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:id="@+id/simpleSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_margin="17dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="From:   "
+                style="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#1c7839"
+                android:textColorHint="#1c7839"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/dialog_date_datePickerFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pick Date"
+                android:background="#2ea955"
+                android:spinnersShown="true" />
+
+            <TextView
+                android:id="@+id/From_date_text"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#1c7839"
+                android:textColorHint="#1c7839"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_margin="16dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="1">
 
+            <TextView
+                android:text="To     :   "
+                style="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#1c7839"
+                android:textColorHint="#1c7839"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/leaveForm"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/dialog_date_datePickerTo"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="From"
-                android:textColorHint="@android:color/white"
-                android:textAlignment="center" />
+                android:text="Pick Date"
+                android:spinnersShown="true"
+                android:background="#2ea955"/>
 
-            <EditText
-                android:id="@+id/leaveTo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="To"
-                android:textColorHint="@android:color/white"
-                android:textAlignment="center" />
+            <TextView
+                android:id="@+id/to_date_text"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#1c7839"
+                android:textColorHint="#1c7839"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/numberOfDays"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="number"
-                android:hint="No. of days"
-                android:textColorHint="@android:color/white"
-                android:textAlignment="center" />
 
         </LinearLayout>
 
@@ -90,15 +162,39 @@
             android:hint="Condition of payment (Full, Half , Without)"
             android:layout_width="match_parent"
             android:textAlignment="center"
-            android:textColorHint="@android:color/white"
+            android:visibility="gone"
+            android:textColor="#1c7839"
+            android:textColorHint="#1c7839"
             android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Condition of payment :"
+                android:textColor="#1c7839"
+                android:textColorHint="#1c7839"
+                android:textSize="17dp" />
+
+            <Spinner
+                android:id="@+id/simpleSpinnerPayments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Address during leave"
-            android:textColorHint="@android:color/white"
+            android:textColor="#1c7839"
+            android:textColorHint="#1c7839"
             android:textAlignment="center" />
 
         <EditText
@@ -107,29 +203,32 @@
             android:layout_height="wrap_content"
             android:hint="Phone number during leave"
             android:inputType="phone"
-            android:textColorHint="@android:color/white"
+            android:textColor="#1c7839"
+            android:textColorHint="#1c7839"
             android:textAlignment="center" />
 
         <Button
-            android:onClick="Send"
+            android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:background="#50000000"
-            android:textColor="@android:color/black"
+            android:background="@drawable/shape_button"
+            android:onClick="Send"
+            android:text="Send"
+            android:textColor="#1c7839"
+            android:textColorHint="#1c7839"
             android:textStyle="bold"
-            android:text="Send" />
+            android:layout_margin="10dp"/>
 
         <Button
             android:onClick="Cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#50000000"
-            android:layout_margin="20dp"
-            android:textColor="@android:color/black"
+            android:background="@drawable/shape_button"
+            android:layout_margin="10dp"
+            android:textColor="#1c7839"
+            android:textColorHint="#1c7839"
             android:textStyle="bold"
             android:text="Cancel" />
     </LinearLayout>
+
 </ScrollView>

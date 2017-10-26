@@ -41,9 +41,9 @@ public class LeaveApply extends AppCompatActivity {
 
         name = (EditText)findViewById(R.id.name);
         lastName = (EditText)findViewById(R.id.lastName);
-        leaveType = (EditText)findViewById(R.id.leaveType);
-        leaveForm = (EditText)findViewById(R.id.leaveForm);
-        leaveTo = (EditText)findViewById(R.id.leaveTo);
+//        leaveType = (EditText)findViewById(R.id.leaveType);
+//        leaveForm = (EditText)findViewById(R.id.leaveForm);
+//        leaveTo = (EditText)findViewById(R.id.leaveTo);
         numberOfDays = (EditText)findViewById(R.id.lastName);
         ConditionOfPayments = (EditText)findViewById(R.id.ConditionOfPayments);
         address = (EditText)findViewById(R.id.address);

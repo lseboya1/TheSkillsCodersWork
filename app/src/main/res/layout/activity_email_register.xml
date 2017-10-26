@@ -4,13 +4,17 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:padding="20dp"
-    android:layout_height="match_parent">
+    android:background="@drawable/back1"
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <TextView
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter your Gmail"/>
+        android:text="Enter your Gmail"
+        android:textColor="#1c7839"
+        android:textColorHint="#1c7839"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -20,25 +24,24 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter your email password"/>
+        android:text="Enter your email password"
+        android:textColor="#1c7839"
+        android:textColorHint="#1c7839"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/password" />
+        android:id="@+id/password"
+        android:layout_marginBottom="320dp"/>
 
     <Button
-        android:text="Click"
-        android:onClick="onButtonClick"
-        android:layout_width="wrap_content"
-        android:visibility="gone"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/buttonSend"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
         android:onClick="sendEmail"
-        android:text="Send"/>
+        android:text="Send"
+        android:background="@drawable/shape_button"
+        android:textColor="#1c7839"
+        android:textColorHint="#1c7839" />
 
 </LinearLayout>

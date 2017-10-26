@@ -5,15 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/blue1"
-    tools:context="za.co.lutendomlab.loginfirebase.SignupActivity">
+    android:background="@drawable/back1"
+    tools:context="za.co.lutendomlab.loginfirebase.SignupActivity"
+    android:weightSum="1">
 
     <ImageView
-        android:layout_width="@dimen/logo_w_h"
-        android:layout_height="@dimen/logo_w_h"
-        android:layout_gravity="center"
+        android:id="@+id/imageView2"
+        android:layout_width="206dp"
+        android:layout_height="91dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/register"/>
+        android:layout_weight="0.58"
+        android:background="@drawable/newicon" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,28 +25,30 @@
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:paddingTop="20dp"
-        android:background="#30000000"
+
         android:orientation="vertical">
 
         <EditText
             android:id="@+id/name"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Name"
-            android:textColorHint="@android:color/white"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:maxLines="1"
-            android:textColor="@android:color/white" />
+            android:textColor="#1c7839"
+            android:textColorHint="#1c7839" />
 
         <EditText
             android:id="@+id/lastName"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Last name"
-            android:textColorHint="@android:color/white"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:maxLines="1"
-            android:textColor="@android:color/white" />
+            android:textColor="#1c7839"
+            android:textColorHint="#1c7839" />
 
         <EditText
             android:id="@+id/email"
@@ -50,20 +56,20 @@
             android:layout_height="wrap_content"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:textColorHint="@android:color/white"
-            android:maxLines="1"
-            android:textColor="@android:color/white" />
-
+            android:textColor="#1c7839"
+            android:textColorHint="#1c7839"
+            android:maxLines="1"/>
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true"
             android:hint="@string/hint_password"
-            android:textColorHint="@android:color/white"
+            android:textColor="#1c7839"
+            android:textColorHint="#1c7839"
             android:maxLines="1"
             android:inputType="textPassword"
-            android:textColor="@android:color/white"/>
+            />
 
         <EditText
             android:id="@+id/re_password"
@@ -73,8 +79,19 @@
             android:hint="Confirm password"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:textColorHint="@android:color/white"
-            android:textColor="@android:color/white"/>
+            android:textColor="#1c7839"
+            android:textColorHint="#1c7839"/>
+
+        <EditText
+            android:id="@+id/phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:hint="Phone Number"
+            android:inputType="number"
+            android:maxLines="1"
+            android:textColor="#1c7839"
+            android:textColorHint="#1c7839"/>
 
 
         <Spinner
@@ -82,22 +99,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:textColor="#1c7839"
+            android:textColorHint="#1c7839"/>
 
-
-        <TextView
-            android:id="@+id/Staff_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Staff Number"
-            android:paddingTop="10dp"
-            android:textColorHint="@android:color/white"
-            android:layout_gravity="center"
-            android:clickable="false"
-            android:enabled="false"
-            android:visibility="gone"
-            android:textSize="20dp"
-            android:textColor="@android:color/holo_red_dark" />
 
     </LinearLayout>
 
@@ -106,13 +111,14 @@
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#30000000"
-        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_button"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/action_sign_in_short"
         android:textSize="20dp"
-        android:textColor="@android:color/black"
+        android:textColor="#1c7839"
+        android:textColorHint="#1c7839"
         android:textStyle="bold" />
 
     <!-- Link to Login Screen -->
@@ -121,12 +127,12 @@
         android:id="@+id/sign_in_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dip"
         android:background="@null"
         android:text="@string/btn_link_to_login"
         android:textAllCaps="false"
         android:textStyle="italic"
-        android:textColor="@android:color/background_light"
+        android:textColor="#1c7839"
+        android:textColorHint="#1c7839"
         android:textSize="15dp"/>
 
 </LinearLayout>

@@ -3,13 +3,13 @@
     <item android:drawable="@color/colorPrimary"/>
     <item>
         <bitmap
-            android:src="@drawable/blue"
+            android:src="@drawable/back2"
             android:gravity="center"
             android:alpha="0.1"
             />
     </item>
 
-    <item android:top="300dp"
+    <item android:top="180dp"
         android:bottom="-300dp"
         android:left="0dp"
         android:right="-300dp">

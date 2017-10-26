@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="za.co.lutendomlab.loginfirebase">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -22,7 +23,7 @@
         <activity
             android:name=".SignupActivity"
             android:label="Register" />
-        <activity android:name=".MainActivity" />
+         <activity android:name=".UpdateProfileActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".HomeScreenUser" />
         <activity android:name=".SendMessage" />
@@ -30,10 +31,16 @@
         <activity android:name=".MapsActivity" />
         <activity android:name=".LeaveApply" />
         <activity android:name=".AdminOption" />
-        <activity
+        <activity android:name=".AdminOptionStudents" />
+        <activity android:name=".timeSheet.TimeSheetsActivity" />
+        <activity android:name=".ListViewFacilitatorsActivity" />
+       <!-- <activity
             android:name=".AdminActivity"
-            android:label="@string/title_activity_admin"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" /> -->
+        <activity
+            android:name=".NavigationDrawer"
+            android:label="@string/title_activity_navigation_drawer"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

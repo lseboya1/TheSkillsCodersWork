@@ -38,42 +38,41 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
     private EditText inputEmail;
     private EditText inputPassword;
     private EditText inputConfirmPassword;
+    private EditText phoneNumber;
     private TextView Staff_number;
     private Button btnSignIn;
     private Button btnSignUp;
     private ProgressDialog progressDialog;
     private FirebaseAuth auth;
-    private StaffNumberGenerator staffNumberGenerator;
-    private long generatedStaffNumber;
     private  String facility;
 
-    String[] facilityList = {"Codetribe TIH","Codetibe Soweto","Codetribe Tembisa"};
+    String[] facilityList = {"Codetribe TIH","Codetibe Soweto","Codetribe Tembisa,Codetribe Alexandr"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+
+        btnSignIn = (Button) findViewById(R.id.sign_in_button);
+        btnSignUp = (Button) findViewById(R.id.sign_up_button);
+        inputEmail = (EditText) findViewById(R.id.email);
+        inputPassword = (EditText) findViewById(R.id.password);
+        inputConfirmPassword = (EditText)findViewById(R.id.re_password);
+        etName =(EditText)findViewById(R.id.name);
+        lastName =(EditText)findViewById(R.id.lastName);
+        phoneNumber = (EditText)findViewById(R.id.phoneNumber);
+        Spinner spinner = (Spinner) findViewById(R.id.simpleSpinner);
+
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
-        Spinner spin = (Spinner) findViewById(R.id.simpleSpinner);
-        spin.setOnItemSelectedListener(this);
+        spinner = (Spinner) findViewById(R.id.simpleSpinner);
+        spinner.setOnItemSelectedListener(this);
 
         //Creating the ArrayAdapter instance having the bank name list
         ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,facilityList);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
-        spin.setAdapter(aa);
-
-
-
-
-        Spinner spin =(Spinner)findViewById(R.id.simpleSpinner);
-        spin.setOnItemSelectedListener(SignupActivity.this);
-
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,facilityList);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin.setAdapter(aa);
-
+        spinner.setAdapter(aa);
 
         progressDialog = new ProgressDialog(this);
         //Get Firebase auth instance
@@ -85,19 +84,6 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
             finish();
             startActivity(new Intent(getApplicationContext(),HomeScreenUser.class));
         }
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        btnSignIn = (Button) findViewById(R.id.sign_in_button);
-        btnSignUp = (Button) findViewById(R.id.sign_up_button);
-        inputEmail = (EditText) findViewById(R.id.email);
-        inputPassword = (EditText) findViewById(R.id.password);
-        Staff_number = (TextView) findViewById(R.id.Staff_number);
-        inputConfirmPassword = (EditText)findViewById(R.id.re_password);
-        etName =(EditText)findViewById(R.id.name);
-        lastName =(EditText)findViewById(R.id.lastName);
-        Spinner spinner = (Spinner) findViewById(R.id.simpleSpinner);
-        autoStaffNumberGanerator();
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,8 +98,14 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
                 String re_password = inputConfirmPassword.getText().toString().trim();
+                String numberPhone = phoneNumber.getText().toString().trim();
                 final String name =etName.getText().toString().trim();
                 final String lName =lastName.getText().toString().trim();
+
+                if (TextUtils.isEmpty(numberPhone)){
+                    Toast.makeText(getApplicationContext(),"Enter phone number",Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(getApplicationContext(),"Enter email address",Toast.LENGTH_SHORT).show();
@@ -144,12 +136,9 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
 
                                 DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User");
                                 User user = new User();
-<<<<<<< HEAD
+
 //                                user.setStaffNO(generatedStaffNumber);
-=======
                                 user.setRole("Student");
-                                user.setStaffNO(generatedStaffNumber);
->>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
                                 user.setLastName(lName);
                                 user.setFacility(facility);
 
@@ -166,7 +155,6 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                                 Toast.makeText(getApplicationContext(),"createUserWithEmail:onComplete:",Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
 
-                                autoStaffNumberGaneratorIncreament();
 
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
@@ -179,8 +167,6 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                                     finish();
 
                                     startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-
-
 
 
                               startActivity(new Intent(SignupActivity.this, HomeScreenUser.class));
@@ -229,46 +215,33 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         super.onPostResume();
     }
 
-    public void autoStaffNumberGanerator() {
-
-        staffNumberGenerator = new StaffNumberGenerator(this);
-        generatedStaffNumber = staffNumberGenerator.generateSaffNumber();
-
-        if(generatedStaffNumber > 0) {
-            this.Staff_number.setText("Staff No: " + generatedStaffNumber);
-        }
-        else {this.Staff_number.setText("Staff No: " + staffNumberGenerator.DEFAULT_SAFF_NUMBER);
-        }
-    }
-
-    public void autoStaffNumberGaneratorIncreament(){
-
-        staffNumberGenerator.saveNewStaffNumber((int)  ++this.generatedStaffNumber);
-    }
-
-<<<<<<< HEAD
     //Performing action onItemSelected and onNothing selected
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
 
         facility = facilityList[position];
-=======
->>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
 
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-        facility =facilityList[i];
     }
 
-    @Override
-<<<<<<< HEAD
-    public void onNothingSelected(AdapterView<?> arg0) {
+        @Override
+        public void onNothingSelected (AdapterView < ? > arg0){
 // TODO Auto-generated method stub
-=======
-    public void onNothingSelected(AdapterView<?> adapterView) {
->>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
+        }
 
-    }
+    //    public void autoStaffNumberGanerator() {
+//
+//        staffNumberGenerator = new StaffNumberGenerator(this);
+//        generatedStaffNumber = staffNumberGenerator.generateSaffNumber();
+//
+//        if(generatedStaffNumber > 0) {
+//            this.Staff_number.setText("Staff No: " + generatedStaffNumber);
+//        }
+//        else {this.Staff_number.setText("Staff No: " + staffNumberGenerator.DEFAULT_SAFF_NUMBER);
+//        }
+//    }
+
+//    public void autoStaffNumberGaneratorIncreament(){
+//
+//        staffNumberGenerator.saveNewStaffNumber((int)  ++this.generatedStaffNumber);
+//    }
 }

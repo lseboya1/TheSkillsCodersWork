@@ -60,19 +60,10 @@ public class LoginActivity extends AppCompatActivity {
         user = auth.getCurrentUser();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-
-
-
-
-
-
         if(user != null){
             navigateToUserScreen(user.getUid());
 
         }
-
-
-
 
         inputEmail = (EditText)findViewById(R.id.email);
         inputPassword = (EditText)findViewById(R.id.password);
@@ -98,8 +89,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-
-
 
         public void LogIn (View view){
 
@@ -145,25 +134,6 @@ public class LoginActivity extends AppCompatActivity {
                     });
         }
 
-<<<<<<< HEAD
-    public void navigateToUserScreen(String user_id) {
-
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                User user = dataSnapshot.getValue(User.class);
-                if ( "Facilitator".equals(user.getRole())) {
-                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                    startActivity(intent);
-                    finish();
-
-                } else {
-                    Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
-                    startActivity(intent);
-                    finish();
-=======
         public void navigateToUserScreen (String user_id){
             DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -172,19 +142,16 @@ public class LoginActivity extends AppCompatActivity {
 
                     User user = dataSnapshot.getValue(User.class);
                     if ("Facilitator".equals(user.getRole())) {
-                        Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, NavigationDrawer.class);
                         startActivity(intent);
                         finish();
 
                     } else {
 
-
-
-                        Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
+                        Intent intent = new Intent(LoginActivity.this, NavigationDrawer.class);
                         startActivity(intent);
                         finish();
                     }
->>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
                 }
 
                 @Override

@@ -29,6 +29,7 @@
     <string name="lbl_forgot_password">Forgot password?</string>
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
     <string name="prompt_password">prompt_password</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
     <string-array name="country_arrays">
         <item>Codetribe TIH</item>
@@ -36,4 +37,10 @@
         <item>Codetribe Thembisa</item>
     </string-array>
     <string name="title_activity_admin">activity_admin</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawer</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

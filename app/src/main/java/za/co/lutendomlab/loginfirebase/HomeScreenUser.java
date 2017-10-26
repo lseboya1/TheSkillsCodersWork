@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,16 +52,12 @@ public class HomeScreenUser extends AppCompatActivity {
     private TextView textViewUserName;
     private TextView staff_number;
     String userName;
-<<<<<<< HEAD
-    String userLastName;
-=======
     private ImageView imageProfileSelect;
     private ImageView profile_Pic;
     Uri filePath ;
     Bitmap bitmap ;
     //image uploader
     int PICK_IMAGE_REQUEST = 111;
->>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
     String weekdays;
     String formattedDate;
     String time_in = "";
@@ -85,8 +83,8 @@ public class HomeScreenUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen_user);
 
-      //  getSupportActionBar().setTitle("Home Page");
-
+        //getSupportActionBar().setTitle("Home Page");
+        firebaseAuth = FirebaseAuth.getInstance();
 
         imageProfileSelect =(ImageView)findViewById(R.id.profile_picture_select);
         profile_Pic=(ImageView)findViewById(R.id.profile_picture);
@@ -97,28 +95,22 @@ public class HomeScreenUser extends AppCompatActivity {
                 pd = new ProgressDialog(HomeScreenUser.this);
                 pd.setMessage("Uploading....");
 
-
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_PICK);
                 startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST);
 
-
             }
         });
-
-
-
-
-        firebaseAuth =FirebaseAuth.getInstance();
-
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        User users = new User();
 
         user = firebaseAuth.getCurrentUser();
         if (user == null) {
             startActivity(new Intent(this,LoginActivity.class));
+        } else {
+            if (user.getPhotoUrl() != null) {
+                String url = user.getPhotoUrl().toString();
+                Glide.with(getApplicationContext()).load(url).into(profile_Pic);
+            }
         }
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         db = database.getReference().child("User");
@@ -127,52 +119,43 @@ public class HomeScreenUser extends AppCompatActivity {
 
 
         Toast.makeText(this, userID, Toast.LENGTH_SHORT).show();
-        staff_number = (TextView) findViewById(R.id.staff_number);
+        //  staff_number = (TextView) findViewById(R.id.staff_number);
 
         textViewUserName = (TextView) findViewById(R.id.textViewName);
 
+        /*StorageReference spaceRef = storageRef.child(user.getUid()+".jpg");
+        spaceRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String url = uri.toString();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+        */
 
         db.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                // db.child()
 
                 if (userID.equals(dataSnapshot.child("userId").getValue().toString())) {
 
                     Register reg = dataSnapshot.getValue(Register.class);
-
                     User user = dataSnapshot.getValue(User.class);
-
                     role = user.getRole();
 
-
                     userName = user.getName();
-                    userLastName = user.getLastName();
-                    textViewUserName.setText("Name: " + userName + " , "+ userLastName);
+                    textViewUserName.setText("Name: " + userName);
 
-//                textViewUserName.setText("Name: "+user.getName());
+                    //  textViewUserName.setText("Name: "+user.getName());
                     //  Toast.makeText(HomeScreenUser.this, user.getName(), Toast.LENGTH_SHORT).show();
-<<<<<<< HEAD
-                    staff_number.setText(String.valueOf("Location: " + user.getFacility()));
-=======
-                   // staff_number.setText(String.valueOf("Location: " + user.getFacility()));
+                    //  staff_number.setText(String.valueOf("Location: " + user.getFacility()));
 
-
-                    StorageReference spaceRef = storageRef.child("image.jpg");
-                    spaceRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            String url = uri.toString();
-                            Glide.with(getApplicationContext()).load(url).into(profile_Pic);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-
-                        }
-                    });
->>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
                 }
             }
 
@@ -220,7 +203,11 @@ public class HomeScreenUser extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void UpdateProfile(View view) {
+    public void UpdateProfileMain(View view){
+
+//        Intent intent = new Intent(this, UpdateProfileActivity.class);
+////        intent.putExtra("User_KEY",userID);
+//        startActivity(intent);
         Toast.makeText(HomeScreenUser.this, "Update profile", Toast.LENGTH_SHORT).show();
     }
 
@@ -363,6 +350,7 @@ public class HomeScreenUser extends AppCompatActivity {
                      * Time out
                      */
                     Toast.makeText(HomeScreenUser.this, "Signed in", Toast.LENGTH_SHORT).show();
+                    time_in = "";
                 }
             }
         });
@@ -394,16 +382,35 @@ public class HomeScreenUser extends AppCompatActivity {
                 if(filePath != null) {
                     pd.show();
 
-                    StorageReference childRef = storageRef.child("image.jpg");
+                    StorageReference childRef = storageRef.child(user.getUid()+".jpg");
 
                     //uploading the image
                     UploadTask uploadTask = childRef.putFile(filePath);
 
                     uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        public void onSuccess(UploadTask.TaskSnapshot task) {
+                            Uri downloadUrl = task.getDownloadUrl();
+                            assert downloadUrl != null;
+                            String profile_url = downloadUrl.toString();
+
+
                             pd.dismiss();
                             Toast.makeText(HomeScreenUser.this, "Upload successful", Toast.LENGTH_SHORT).show();
+
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setPhotoUri(Uri.parse(profile_url))
+                                    .build();
+
+                            user.updateProfile(profileUpdates)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+
+                                            }
+                                        }
+                                    });
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
