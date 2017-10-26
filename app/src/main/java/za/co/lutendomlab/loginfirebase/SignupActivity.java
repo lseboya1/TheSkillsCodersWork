@@ -24,8 +24,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,22 +45,12 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
     private long generatedStaffNumber;
     private  String facility;
 
-    String[] facilityList = {"Codetribe TIH","Codetibe Soweto","Codetribe Tembisa"};
+    String[] facilityList={"Codetribe TIH","Codetibe Soweto","Codetribe Tembisa"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
-        //Getting the instance of Spinner and applying OnItemSelectedListener on it
-        Spinner spin = (Spinner) findViewById(R.id.simpleSpinner);
-        spin.setOnItemSelectedListener(this);
-
-        //Creating the ArrayAdapter instance having the bank name list
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,facilityList);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
-        spin.setAdapter(aa);
 
 
 
@@ -86,7 +74,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
             startActivity(new Intent(getApplicationContext(),HomeScreenUser.class));
         }
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btnSignIn = (Button) findViewById(R.id.sign_in_button);
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
@@ -96,7 +84,6 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         inputConfirmPassword = (EditText)findViewById(R.id.re_password);
         etName =(EditText)findViewById(R.id.name);
         lastName =(EditText)findViewById(R.id.lastName);
-        Spinner spinner = (Spinner) findViewById(R.id.simpleSpinner);
         autoStaffNumberGanerator();
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -144,12 +131,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
 
                                 DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User");
                                 User user = new User();
-<<<<<<< HEAD
-//                                user.setStaffNO(generatedStaffNumber);
-=======
                                 user.setRole("Student");
-                                user.setStaffNO(generatedStaffNumber);
->>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
                                 user.setLastName(lName);
                                 user.setFacility(facility);
 
@@ -183,7 +165,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
 
 
 
-                              startActivity(new Intent(SignupActivity.this, HomeScreenUser.class));
+                                    startActivity(new Intent(SignupActivity.this, HomeScreenUser.class));
                                     if (is_admin) {
                                         Intent intent = new Intent(SignupActivity.this, AdminActivity.class);
                                         startActivity(intent);
@@ -246,14 +228,6 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         staffNumberGenerator.saveNewStaffNumber((int)  ++this.generatedStaffNumber);
     }
 
-<<<<<<< HEAD
-    //Performing action onItemSelected and onNothing selected
-    @Override
-    public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
-
-        facility = facilityList[position];
-=======
->>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
 
 
     @Override
@@ -263,12 +237,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
     @Override
-<<<<<<< HEAD
-    public void onNothingSelected(AdapterView<?> arg0) {
-// TODO Auto-generated method stub
-=======
     public void onNothingSelected(AdapterView<?> adapterView) {
->>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
 
     }
 }

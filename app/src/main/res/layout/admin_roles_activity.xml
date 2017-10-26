@@ -1,46 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="30dp"
+    android:background="@drawable/back1"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:padding="30dp"
-        android:onClick="Disable"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Disable" />
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="Assign"
-        android:padding="30dp"
-        android:text="Assign Role"/>
+        <Button
+            android:padding="5dp"
+            android:onClick="Disable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_button"
+            android:text="Disable" />
 
-    <Spinner
-        android:id="@+id/simpleSpinner"
-        android:layout_width="wrap_content"
-        android:visibility="gone"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="Assign"
+            android:padding="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_button"
+            android:text="Assign Role"/>
 
-    <Button
-        android:id="@+id/save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:onClick="Save"
-        android:text="Save"/>
+        <Spinner
+            android:id="@+id/simpleSpinner"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp" />
 
-    <Button
-        android:onClick="TimeSheet"
-        android:padding="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TimeSheet"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:onClick="Save"
+                android:visibility="gone"
+                android:background="@drawable/shape_button"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="Save"/>
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@drawable/shape_button"
+                android:visibility="gone"
+                android:onClick="Cancel"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="Cancel"/>
+
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

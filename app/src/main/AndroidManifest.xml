@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/register"
+        android:icon="@drawable/geologo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/register"
+        android:roundIcon="@drawable/geologo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity">
@@ -30,6 +30,9 @@
         <activity android:name=".MapsActivity" />
         <activity android:name=".LeaveApply" />
         <activity android:name=".AdminOption" />
+        <activity android:name=".AdminOptionStudents" />
+        <activity android:name=".ListViewFacilitatorsActivity"/>
+        <activity android:name=".timesheets.TimeSheet" />
         <activity
             android:name=".AdminActivity"
             android:label="@string/title_activity_admin"

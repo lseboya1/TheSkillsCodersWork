@@ -10,8 +10,15 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +33,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,30 +51,29 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class HomeScreenUser extends AppCompatActivity {
+import static android.R.id.toggle;
+
+public class HomeScreenUser extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
 
     private TextView textViewUserEmail;
     private TextView textViewUserName;
     private TextView staff_number;
     String userName;
-<<<<<<< HEAD
-    String userLastName;
-=======
+    String surname;
     private ImageView imageProfileSelect;
     private ImageView profile_Pic;
     Uri filePath ;
     Bitmap bitmap ;
     //image uploader
     int PICK_IMAGE_REQUEST = 111;
->>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
     String weekdays;
     String formattedDate;
     String time_in = "";
     String time_out;
     int week_number;
     String Sign;
-    int count = 1;
     private DatabaseReference db;
     FirebaseUser user;
     String userID;
@@ -79,14 +86,46 @@ public class HomeScreenUser extends AppCompatActivity {
     String role;
     private FirebaseAuth firebaseAuth;
 
+    String infor = "Geofencing provides a plethora of applications for administrator, especially" +
+            " in the workforce management category. It is specifically applied to attendance and time " +
+            "functionality, geofencing can allow an administrator to establish geographical areas to " +
+            "limit where the users (the administrator, the facilitator and the students) are allowed " +
+            "to punch in or out.\n" +
+            "\n" +
+            "Geotimesheet app allows all users to register and login in their accounts in the system." +
+            " Any smartphone with Android operating system can be turned into a mobile time track clock" +
+            " by downloading the Geotimesheet app, so it makes tracking time and attendance for travelling" +
+            " users facile. Users can only clock in and out for their shifts. Now more than ever, students " +
+            "can expect self-service tools with easy-to-use resources from their facilitators and administrator," +
+            " so providing a time, attendance, leave forms, sending a message, and beneficial portal on" +
+            " their smartphone device can help meet that growing demand.\n" +
+            "\n" +
+            "The functions which can be performed by the users are: to clock in and out for working" +
+            " hours, the students time hours, view students monthly schedule, leave forms and sending messages.\n";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen_user);
 
-      //  getSupportActionBar().setTitle("Home Page");
+        TextView information = (TextView)findViewById(R.id.information);
+        information.setText(infor);
 
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this,drawer,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         imageProfileSelect =(ImageView)findViewById(R.id.profile_picture_select);
         profile_Pic=(ImageView)findViewById(R.id.profile_picture);
@@ -97,82 +136,72 @@ public class HomeScreenUser extends AppCompatActivity {
                 pd = new ProgressDialog(HomeScreenUser.this);
                 pd.setMessage("Uploading....");
 
-
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_PICK);
                 startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST);
 
-
             }
         });
-
-
-
-
-        firebaseAuth =FirebaseAuth.getInstance();
-
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        User users = new User();
 
         user = firebaseAuth.getCurrentUser();
         if (user == null) {
             startActivity(new Intent(this,LoginActivity.class));
+        } else {
+            if (user.getPhotoUrl() != null) {
+                String url = user.getPhotoUrl().toString();
+                Glide.with(getApplicationContext()).load(url).into(profile_Pic);
+            }
         }
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         db = database.getReference().child("User");
+        db =database.getReference().child("TimeSheet");
+
 
         userID = user.getUid();
 
 
         Toast.makeText(this, userID, Toast.LENGTH_SHORT).show();
-        staff_number = (TextView) findViewById(R.id.staff_number);
+        //  staff_number = (TextView) findViewById(R.id.staff_number);
 
         textViewUserName = (TextView) findViewById(R.id.textViewName);
 
+        /*StorageReference spaceRef = storageRef.child(user.getUid()+".jpg");
+        spaceRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String url = uri.toString();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+        */
 
         db.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                // db.child()
 
                 if (userID.equals(dataSnapshot.child("userId").getValue().toString())) {
 
                     Register reg = dataSnapshot.getValue(Register.class);
-
                     User user = dataSnapshot.getValue(User.class);
-
                     role = user.getRole();
 
-
                     userName = user.getName();
-                    userLastName = user.getLastName();
-                    textViewUserName.setText("Name: " + userName + " , "+ userLastName);
+                    surname =user.getLastName();
+                    textViewUserName.setText("Name: " + userName);
 
-//                textViewUserName.setText("Name: "+user.getName());
+                    //  textViewUserName.setText("Name: "+user.getName());
                     //  Toast.makeText(HomeScreenUser.this, user.getName(), Toast.LENGTH_SHORT).show();
-<<<<<<< HEAD
-                    staff_number.setText(String.valueOf("Location: " + user.getFacility()));
-=======
-                   // staff_number.setText(String.valueOf("Location: " + user.getFacility()));
-
-
-                    StorageReference spaceRef = storageRef.child("image.jpg");
-                    spaceRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            String url = uri.toString();
-                            Glide.with(getApplicationContext()).load(url).into(profile_Pic);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-
-                        }
-                    });
->>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
+                    //  staff_number.setText(String.valueOf("Location: " + user.getFacility()));
+//                    Intent intent = new Intent(HomeScreenUser.this,LeaveApply.class);
+//                    intent.putExtra(USER,user);
+//                    startActivity(intent);
                 }
             }
 
@@ -209,18 +238,100 @@ public class HomeScreenUser extends AppCompatActivity {
 
     }
 
-    public void ApplyForLeave(View view) {
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+
+        int id = item.getItemId();
+
+        switch (id){
+
+            case R.id.update_profile:
+                Toast.makeText(this, "update", Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        //noinspection SimplifiableIfStatement
+
+        /*if (id == R.id.action_settings) {
+            return true;
+        }*/
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Handle navigation view item clicks here.
+//        int id = item.getItemId();
 //
-        Intent intent = new Intent(HomeScreenUser.this, LeaveApply.class);
+//        if (id == R.id.about) {
+//
+//            Toast.makeText(this, "about", Toast.LENGTH_SHORT).show();
+//        }
+
+        switch (item.getItemId()){
+
+            case R.id.about:
+                Toast.makeText(this, "about", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.update_profile:
+                UpdateProfile();
+                Toast.makeText(this, "update_profile", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.send_notification:
+                SendNotification();
+                break;
+
+            case R.id.apply_leave:
+                ApplyForLeave();
+                break;
+
+            case R.id.logout:
+                SignOut();
+                break;
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    public void ApplyForLeave() {
+//
+        Intent intent = new Intent(HomeScreenUser.this,LeaveApply.class);
+        intent.putExtra("name",userName);
+        intent.putExtra("surname",surname);
         startActivity(intent);
     }
 
-    public void SendNotification(View view) {
+    public void SendNotification() {
         Intent intent = new Intent(this, SendMessage.class);
         startActivity(intent);
     }
 
-    public void UpdateProfile(View view) {
+    public void UpdateProfile() {
         Toast.makeText(HomeScreenUser.this, "Update profile", Toast.LENGTH_SHORT).show();
     }
 
@@ -363,6 +474,7 @@ public class HomeScreenUser extends AppCompatActivity {
                      * Time out
                      */
                     Toast.makeText(HomeScreenUser.this, "Signed in", Toast.LENGTH_SHORT).show();
+                    time_in = "";
                 }
             }
         });
@@ -394,16 +506,35 @@ public class HomeScreenUser extends AppCompatActivity {
                 if(filePath != null) {
                     pd.show();
 
-                    StorageReference childRef = storageRef.child("image.jpg");
+                    StorageReference childRef = storageRef.child(user.getUid()+".jpg");
 
                     //uploading the image
                     UploadTask uploadTask = childRef.putFile(filePath);
 
                     uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        public void onSuccess(UploadTask.TaskSnapshot task) {
+                            Uri downloadUrl = task.getDownloadUrl();
+                            assert downloadUrl != null;
+                            String profile_url = downloadUrl.toString();
+
+
                             pd.dismiss();
                             Toast.makeText(HomeScreenUser.this, "Upload successful", Toast.LENGTH_SHORT).show();
+
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setPhotoUri(Uri.parse(profile_url))
+                                    .build();
+
+                            user.updateProfile(profileUpdates)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+
+                                            }
+                                        }
+                                    });
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -423,7 +554,7 @@ public class HomeScreenUser extends AppCompatActivity {
         }
     }
 
-    public void SignOut(View view){
+    public void SignOut(){
 
         firebaseAuth.signOut();
         finish();

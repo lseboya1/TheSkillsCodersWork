@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -133,64 +134,48 @@ public class LoginActivity extends AppCompatActivity {
                                 if (password.length() < 6) {
                                     inputPassword.setError(getString(R.string.minimum_password));
                                 } else {
-                                    Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
-
+                                    Toast.makeText(LoginActivity.this, getString(R.string.auth_failed,task.getException().getLocalizedMessage()), Toast.LENGTH_SHORT).show();
                                 }
                             } else {
-
                                 navigateToUserScreen(task.getResult().getUser().getUid());
-
                             }
                         }
-                    });
-        }
-
-<<<<<<< HEAD
-    public void navigateToUserScreen(String user_id) {
-
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                User user = dataSnapshot.getValue(User.class);
-                if ( "Facilitator".equals(user.getRole())) {
-                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                    startActivity(intent);
-                    finish();
-
-                } else {
-                    Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
-                    startActivity(intent);
-                    finish();
-=======
-        public void navigateToUserScreen (String user_id){
-            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
-            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    }).addOnFailureListener(new OnFailureListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    User user = dataSnapshot.getValue(User.class);
-                    if ("Facilitator".equals(user.getRole())) {
-                        Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                        startActivity(intent);
-                        finish();
-
-                    } else {
-
-
-
-                        Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
-                        startActivity(intent);
-                        finish();
-                    }
->>>>>>> f4f3d008baa51b1e5bebe4cc2bd602a7ef4103f4
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
+                public void onFailure(@NonNull Exception e) {
+                    progressDialog.dismiss();
+                    Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
+
+
+
+                public void navigateToUserScreen (String user_id){
+                    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
+                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            User user = dataSnapshot.getValue(User.class);
+                            if ("Facilitator".equals(user.getRole())) {
+                                Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                                startActivity(intent);
+                                finish();
+
+                            } else {
+                                Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
+                                startActivity(intent);
+                                finish();
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+               }
     }
+

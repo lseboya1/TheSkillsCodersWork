@@ -1,19 +1,54 @@
 package za.co.lutendomlab.loginfirebase;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.google.firebase.auth.UserProfileChangeRequest;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by codeTribe on 8/24/2017.
  */
 
-public class User {
+public class User implements Parcelable{
+
+    public Map<String,String> user;
 
     String userId;
     String name;
     String lastName;
-    long staffNO;
     String email;
     String role;
     String facility;
+    private int profile;
 
+
+    protected User(Parcel in) {
+        userId = in.readString();
+        name = in.readString();
+        lastName = in.readString();
+        email = in.readString();
+        role = in.readString();
+        facility = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public User() {}
 
@@ -30,11 +65,6 @@ public class User {
         this.role = role;
     }
 
-    public void setStaffNO(long staffNO)
-    {
-        this.staffNO =staffNO;
-    }
-
     public String getFacility() {
         return facility;
     }
@@ -42,8 +72,6 @@ public class User {
     public void setFacility(String facility) {
         this.facility = facility;
     }
-
-    public long getStaffNO(){return staffNO;}
 
     public String getName(){return  name;}
 
@@ -65,6 +93,29 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(userId);
+        dest.writeString(name);
+        dest.writeString(lastName);
+        dest.writeString(email);
+        dest.writeString(role);
+        dest.writeString(facility);
+    }
+
+    public int getProfile() {
+        return profile;
+    }
+
+    public void setProfile(int profile) {
+        this.profile = profile;
     }
 
 
