@@ -13,19 +13,8 @@
     <include
         layout="@layout/app_bar_main"
         android:layout_width="match_parent"
-<<<<<<< HEAD
         android:layout_height="190dp"
-        android:background="@drawable/background">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:theme="@style/TransparentBar">
-=======
-        android:layout_height="match_parent" />
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
+        android:background="@drawable/background"/>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -36,49 +25,6 @@
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer" />
 
-<<<<<<< HEAD
-        </android.support.v7.widget.Toolbar>
-
-        <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/circularImageView"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:onClick="SignOut"
-            android:src="@drawable/exit"
-            app:civ_border_color="@android:color/transparent"
-            app:civ_border_width="10dp"
-            android:layout_alignTop="@+id/toolbar"
-            android:layout_alignParentEnd="true" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="18dp"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center_vertical"
-            android:onClick="signRegister"
-            android:textColor="#1c7839"
-            android:text="Mark Register"
-            android:textSize="19sp"
-            android:textStyle="bold"
-            android:layout_alignTop="@+id/toolbar"
-            android:layout_toStartOf="@+id/circularImageView" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/toolbar"
-            android:layout_marginStart="16dp"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center_vertical"
-            android:text="Home Page"
-            android:textColor="#1c7839"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-=======
 </android.support.v4.widget.DrawerLayout>
 
     <!--

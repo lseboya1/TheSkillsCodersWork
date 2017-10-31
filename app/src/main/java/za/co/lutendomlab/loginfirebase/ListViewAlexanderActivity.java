@@ -60,11 +60,7 @@ public class ListViewAlexanderActivity extends android.support.v4.app.Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 User user = allUsers.get(position);
-<<<<<<< HEAD
-                Intent intent = new Intent(context,AdminOption.class);
-=======
                 Intent intent = new Intent(context,AdminOptionStudents.class);
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
                 intent.putExtra("userProfile",user);
                 startActivity(intent);
             }
@@ -82,12 +78,7 @@ public class ListViewAlexanderActivity extends android.support.v4.app.Fragment {
                     Log.i("Ygritte", snapshot.toString());
 
                     user  = snapshot.getValue(User.class);
-
-<<<<<<< HEAD
                     if("Codetribe Alexandra".equals(user.getFacility()) && "Student".equals(user.getRole())) {
-=======
-                    if("Codetribe Alexander".equals(user.getFacility()) && "Student".equals(user.getRole())) {
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
                         allUsers.add(user);
                         counter++;
                     }

@@ -154,7 +154,7 @@ public class TimeSheetsActivity extends AppCompatActivity {
 
         ShapeDrawable border = new ShapeDrawable(new RectShape());
         border.getPaint().setStyle(Paint.Style.FILL_AND_STROKE);
-        border.getPaint().setColor(Color.BLACK);
+        border.getPaint().setColor(Color.GRAY);
 
         // Creating a TextView to add to the row
         companyTV = new TextView(this);

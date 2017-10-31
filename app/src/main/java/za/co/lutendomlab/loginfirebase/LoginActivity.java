@@ -61,15 +61,17 @@ public class LoginActivity extends AppCompatActivity {
         user = auth.getCurrentUser();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        if(user != null){
+        if (user != null) {
             navigateToUserScreen(user.getUid());
+            progressDialog.setMessage("Logging in. Please wait...");
+            progressDialog.show();
 
         }
 
-        inputEmail = (EditText)findViewById(R.id.email);
-        inputPassword = (EditText)findViewById(R.id.password);
-        btnSignup = (Button)findViewById(R.id.btn_signup);
-        btnReset = (Button)findViewById(R.id.btn_reset_password);
+        inputEmail = (EditText) findViewById(R.id.email);
+        inputPassword = (EditText) findViewById(R.id.password);
+        btnSignup = (Button) findViewById(R.id.btn_signup);
+        btnReset = (Button) findViewById(R.id.btn_reset_password);
 
         //get Firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -91,102 +93,95 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-        public void LogIn (View view){
+    public void LogIn(View view) {
 
-            String email = inputEmail.getText().toString();
-            final String password = inputPassword.getText().toString();
+        String email = inputEmail.getText().toString();
+        final String password = inputPassword.getText().toString();
 
-            if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(email)) {
 
-                Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (TextUtils.isEmpty(password)) {
-                Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            progressDialog.setMessage("Logging in. Please wait...");
-            progressDialog.show();
-
-            //authentication user
-            auth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            // If sign in fails, display a message to the user. If sign in succeeds
-                            // the auth state listener will be notified and logic to handle the
-                            // signed in user can be handled in the listener.
-                            progressDialog.dismiss();
-
-                            if (!task.isSuccessful()) {
-                                //there was an error
-                                if (password.length() < 6) {
-                                    inputPassword.setError(getString(R.string.minimum_password));
-                                } else {
-                                    Toast.makeText(LoginActivity.this, getString(R.string.auth_failed,task.getException().getLocalizedMessage()), Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                navigateToUserScreen(task.getResult().getUser().getUid());
-                            }
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    progressDialog.dismiss();
-                    Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+            return;
         }
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        progressDialog.setMessage("Logging in. Please wait...");
+        progressDialog.show();
 
-<<<<<<< HEAD
-        public void navigateToUserScreen (String user_id){
-            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
-            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+        //authentication user
+        auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        progressDialog.dismiss();
 
-                    User user = dataSnapshot.getValue(User.class);
-                    if ("Facilitator".equals(user.getRole())) {
-                        Intent intent = new Intent(LoginActivity.this, NavigationDrawer.class);
-                        startActivity(intent);
-                        finish();
-=======
-
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
-
-                public void navigateToUserScreen (String user_id){
-                    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
-                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-
-<<<<<<< HEAD
-                        Intent intent = new Intent(LoginActivity.this, NavigationDrawer.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }
-=======
-                            User user = dataSnapshot.getValue(User.class);
-                            if ("Facilitator".equals(user.getRole())) {
-                                Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                                startActivity(intent);
-                                finish();
-
+                        if (!task.isSuccessful()) {
+                            //there was an error
+                            if (password.length() < 6) {
+                                inputPassword.setError(getString(R.string.minimum_password));
                             } else {
-                                Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
-                                startActivity(intent);
-                                finish();
+                                Toast.makeText(LoginActivity.this, getString(R.string.auth_failed, task.getException().getLocalizedMessage()), Toast.LENGTH_SHORT).show();
                             }
-
+                        } else {
+                            navigateToUserScreen(task.getResult().getUser().getUid());
                         }
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-               }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
+    public void navigateToUserScreen(String user_id) {
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+//                    User user = dataSnapshot.getValue(User.class);
+//                    if ("Facilitator".equals(user.getRole())) {
+//                        Intent intent = new Intent(LoginActivity.this, NavigationDrawer.class);
+//                        startActivity(intent);
+//                        finish();
+
+//                public void navigateToUserScreen (String user_id){
+//                    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
+//                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(DataSnapshot dataSnapshot) {
+//                        Intent intent = new Intent(LoginActivity.this, NavigationDrawer.class);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                }
+                User user = dataSnapshot.getValue(User.class);
+                if ("Facilitator".equals(user.getRole())) {
+                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                    startActivity(intent);
+                    finish();
+                    progressDialog.dismiss();
+
+                } else {
+                    Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
+                    startActivity(intent);
+                    finish();
+                    progressDialog.dismiss();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+}

@@ -1,5 +1,10 @@
 package za.co.lutendomlab.loginfirebase;
 
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by codetribe on 10/2/2017.
  */
@@ -13,6 +18,8 @@ public class Register {
     String time_out;
     String week_number;
 
+    public Map<String, String> register;
+
     public Register(String date, String day, String month, String time_in, String time_out, String week_number) {
         this.date = date;
         this.day = day;
@@ -20,6 +27,10 @@ public class Register {
         this.time_in = time_in;
         this.time_out = time_out;
         this.week_number = week_number;
+    }
+
+    public Register(String time_out) {
+        this.time_out = time_out;
     }
 
     public Register(){}
@@ -71,5 +82,19 @@ public class Register {
 
     public void setWeek_number(String week_number) {
         this.week_number = week_number;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> result = new HashMap<>();
+
+        result.put("date",date);
+        result.put("month",month);
+        result.put("day",day);
+        result.put("time_in",time_in);
+        result.put("time_out",time_out);
+        result.put("week_number",week_number);
+
+        return result;
     }
 }

@@ -17,10 +17,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-<<<<<<< HEAD
-=======
 import android.support.v7.widget.Toolbar;
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,6 +49,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TimeZone;
 
 import static android.R.id.toggle;
@@ -62,12 +61,8 @@ public class HomeScreenUser extends AppCompatActivity
 
     private TextView textViewUserEmail;
     private TextView textViewUserName;
-    private TextView staff_number;
     String userName;
-<<<<<<< HEAD
-=======
     String surname;
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
     private ImageView imageProfileSelect;
     private ImageView profile_Pic;
     Uri filePath ;
@@ -81,6 +76,7 @@ public class HomeScreenUser extends AppCompatActivity
     int week_number;
     String Sign;
     private DatabaseReference db;
+    private DatabaseReference databaseReference;
     FirebaseUser user;
     String userID;
     ProgressDialog pd;
@@ -115,14 +111,15 @@ public class HomeScreenUser extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen_user);
 
-<<<<<<< HEAD
-        //getSupportActionBar().setTitle("Home Page");
-=======
         TextView information = (TextView)findViewById(R.id.information);
         information.setText(infor);
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
+
+
+
+
 
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -134,8 +131,10 @@ public class HomeScreenUser extends AppCompatActivity
         NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
         firebaseAuth = FirebaseAuth.getInstance();
+        userID = firebaseAuth.getCurrentUser().getUid();
+//        user = firebaseAuth.getCurrentUser();
+
 
         imageProfileSelect =(ImageView)findViewById(R.id.profile_picture_select);
         profile_Pic=(ImageView)findViewById(R.id.profile_picture);
@@ -164,76 +163,74 @@ public class HomeScreenUser extends AppCompatActivity
             }
         }
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        db = database.getReference().child("User");
-        db =database.getReference().child("TimeSheet");
+         databaseReference = database.getReference().child("User").child(userID);
+//        db = database.getReference().child("User");
+        db =database.getReference().child("TimeSheet").child(userID);
 
 
-        userID = user.getUid();
+//        userID = user.getUid();
 
 
-        Toast.makeText(this, userID, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, userID, Toast.LENGTH_SHORT).show();
         //  staff_number = (TextView) findViewById(R.id.staff_number);
 
         textViewUserName = (TextView) findViewById(R.id.textViewName);
+//
+//        db.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//
+//
+//                if (userID.equals(dataSnapshot.child("userId").getValue().toString())) {
+//
+//                    Register reg = dataSnapshot.getValue(Register.class);
+//                    User user = dataSnapshot.getValue(User.class);
+//                    role = user.getRole();
+//
+//                    userName = user.getName();
+//                    surname =user.getLastName();
+//                    textViewUserName.setText("Name: " + userName);
+//
+//                    //  textViewUserName.setText("Name: "+user.getName());
+//                    //  Toast.makeText(HomeScreenUser.this, user.getName(), Toast.LENGTH_SHORT).show();
+//                    //  staff_number.setText(String.valueOf("Location: " + user.getFacility()));
+////                    Intent intent = new Intent(HomeScreenUser.this,LeaveApply.class);
+////                    intent.putExtra(USER,user);
+////                    startActivity(intent);
+//                }
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
-        /*StorageReference spaceRef = storageRef.child(user.getUid()+".jpg");
-        spaceRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onSuccess(Uri uri) {
-                String url = uri.toString();
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
+                User user = dataSnapshot.getValue(User.class);
+                role = user.getRole();
 
-            }
-        });
-        */
-
-        db.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-
-                if (userID.equals(dataSnapshot.child("userId").getValue().toString())) {
-
-                    Register reg = dataSnapshot.getValue(Register.class);
-                    User user = dataSnapshot.getValue(User.class);
-                    role = user.getRole();
-
-                    userName = user.getName();
-<<<<<<< HEAD
-=======
-                    surname =user.getLastName();
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
-                    textViewUserName.setText("Name: " + userName);
-
-                    //  textViewUserName.setText("Name: "+user.getName());
-                    //  Toast.makeText(HomeScreenUser.this, user.getName(), Toast.LENGTH_SHORT).show();
-                    //  staff_number.setText(String.valueOf("Location: " + user.getFacility()));
-<<<<<<< HEAD
-
-=======
-//                    Intent intent = new Intent(HomeScreenUser.this,LeaveApply.class);
-//                    intent.putExtra(USER,user);
-//                    startActivity(intent);
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
-                }
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                userName = user.getName();
+                surname =user.getLastName();
+                textViewUserName.setText("Name: " + userName + ", " + surname);
 
             }
 
@@ -282,8 +279,8 @@ public class HomeScreenUser extends AppCompatActivity
 
         switch (id){
 
-            case R.id.update_profile:
-                Toast.makeText(this, "update", Toast.LENGTH_SHORT).show();
+            case R.id.markRegister:
+                signRegister();
                 break;
         }
 
@@ -299,12 +296,6 @@ public class HomeScreenUser extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
-//        int id = item.getItemId();
-//
-//        if (id == R.id.about) {
-//
-//            Toast.makeText(this, "about", Toast.LENGTH_SHORT).show();
-//        }
 
         switch (item.getItemId()){
 
@@ -313,7 +304,6 @@ public class HomeScreenUser extends AppCompatActivity
                 break;
 
             case R.id.update_profile:
-                UpdateProfile();
                 Toast.makeText(this, "update_profile", Toast.LENGTH_SHORT).show();
                 break;
 
@@ -348,19 +338,7 @@ public class HomeScreenUser extends AppCompatActivity
         startActivity(intent);
     }
 
-<<<<<<< HEAD
-    public void UpdateProfileMain(View view){
-
-//        Intent intent = new Intent(this, UpdateProfileActivity.class);
-////        intent.putExtra("User_KEY",userID);
-//        startActivity(intent);
-=======
-    public void UpdateProfile() {
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
-        Toast.makeText(HomeScreenUser.this, "Update profile", Toast.LENGTH_SHORT).show();
-    }
-
-    public void signRegister(View view) {
+    public void signRegister() {
 
         //current date
         final Calendar calendar = Calendar.getInstance();
@@ -424,13 +402,23 @@ public class HomeScreenUser extends AppCompatActivity
 
 //Register regi = new Register(formattedDate,weekdays,month_year,time_in,time_out,weekNumber);
 
-                    db.child(user.getUid()).child("Register");
-                    db.child(user.getUid()).child("Register").child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("month").setValue(month_year);
-                    db.child(user.getUid()).child("Register").child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("weekNumbr").setValue(weekNumber);
-                    db.child(user.getUid()).child("Register").child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("day").setValue(weekdays);
-                    db.child(user.getUid()).child("Register").child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("date").setValue(formattedDate);
-                    db.child(user.getUid()).child("Register").child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("timeIn").setValue(time_in);
+//                    db.child(user.getUid()).child("Register");
 
+
+
+                    Register register = new Register( formattedDate, weekdays,  month_year,  time_in,  time_out,  weekNumber);
+                    Map<String , Object >registerValues = register.toMap();
+
+                    Map<String , Object> childUpdate = new HashMap<>();
+                    childUpdate.put(userID,registerValues);
+                    db.child(month_year).child("Week" + weekNumber).child("Weekdays").child(weekdays).updateChildren(childUpdate);
+
+                   /* db.child(user.getUid()).child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("month").setValue(month_year);
+                    db.child(user.getUid()).child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("weekNumbr").setValue(weekNumber);
+                    db.child(user.getUid()).child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("day").setValue(weekdays);
+                    db.child(user.getUid()).child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("date").setValue(formattedDate);
+                    db.child(user.getUid()).child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("timeIn").setValue(time_in);
+*/
 
                   /* db.child(user.getUid()).child("Register");
                     db.child(user.getUid()).child("Register").child("Month").setValue(month_year);
@@ -467,7 +455,13 @@ public class HomeScreenUser extends AppCompatActivity
         alertDialog.setNegativeButton("Sign Out", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
-                db.child(user.getUid()).child("Register").child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("timeOut").setValue(time_in);
+                db.child(month_year).child("Week" + weekNumber).child("Weekdays").child(weekdays).child(userID).child("timeOut").setValue(time_out);
+
+//                Register register = new Register( formattedDate, weekdays,  month_year,  time_in,  time_out,  weekNumber);
+//                Map<String , Object >registerValues = register.toMap();
+//                Map<String , Object> childUpdate = new HashMap<>();
+//                childUpdate.put(userID,registerValues);
+//                db.child(month_year).child("Week" + weekNumber).child("Weekdays").child(weekdays).updateChildren(childUpdate);
 
                 //Toast.makeText(HomeScreenUser.this,"Registered",Toast.LENGTH_SHORT).show();
 //                Intent intent1 = new Intent(HomeScreenUser.this, MapsActivity.class);

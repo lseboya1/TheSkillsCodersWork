@@ -6,10 +6,4 @@
         android:orderInCategory="100"
         app:showAsAction="always"
         android:title="Mark Register" />
-
-    <item
-        android:id="@+id/logut"
-        android:orderInCategory="100"
-        app:showAsAction="always"
-        android:title="Mark Register" />
 </menu>

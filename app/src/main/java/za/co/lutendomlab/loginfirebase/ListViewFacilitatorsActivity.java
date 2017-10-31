@@ -2,16 +2,13 @@ package za.co.lutendomlab.loginfirebase;
 
 import android.content.Context;
 import android.content.Intent;
-<<<<<<< HEAD
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-=======
 import android.os.Bundle;
 import android.support.annotation.Nullable;
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -31,15 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by codetribe on 10/24/2017.
- */
-
-<<<<<<< HEAD
 public class ListViewFacilitatorsActivity extends AppCompatActivity {
-=======
-public class ListViewFacilitatorsActivity extends AppCompatActivity{
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
     private ListView listView;
     private TextView txtTotalNumber;
@@ -60,17 +49,11 @@ public class ListViewFacilitatorsActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_users);
 
-<<<<<<< HEAD
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setVisibility(View.VISIBLE);
-
         txtTotalNumber = (TextView) findViewById(R.id.txtTotalNumber);
-=======
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
-        toolbar.setVisibility(View.VISIBLE);
+//        toolbar = (Toolbar)findViewById(R.id.toolbar);
+//        toolbar.setVisibility(View.VISIBLE);
 
         txtTotalNumber = (TextView)findViewById(R.id.txtTotalNumber);
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -84,7 +67,6 @@ public class ListViewFacilitatorsActivity extends AppCompatActivity{
         childEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-<<<<<<< HEAD
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     Log.i("Ygritte", snapshot.toString());
@@ -101,7 +83,6 @@ public class ListViewFacilitatorsActivity extends AppCompatActivity{
                 txtTotalNumber.setText("" + counter);
 
                 userAdapter = new UserAdapter(context, R.layout.model, allUsers);
-=======
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
 
                     Log.i("Ygritte", snapshot.toString());
@@ -117,25 +98,17 @@ public class ListViewFacilitatorsActivity extends AppCompatActivity{
                 txtTotalNumber.setText(""+ counter);
 
                 userAdapter = new UserAdapter(context,R.layout.model,allUsers);
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
                 listView.setAdapter(userAdapter);
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-<<<<<<< HEAD
                         User user = allUsers.get(position);
                         String phoneNumbur = "0790420795";
                         Intent phoneIntent = new Intent(Intent.ACTION_DIAL,
                                 Uri.fromParts("tel", phoneNumbur, null));
                         startActivity(phoneIntent);
-=======
-                User user = allUsers.get(position);
-                Intent intent = new Intent(context,AdminOption.class);
-                intent.putExtra("userProfile",user);
-                startActivity(intent);
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
                     }
                 });
 
@@ -155,19 +128,15 @@ public class ListViewFacilitatorsActivity extends AppCompatActivity{
         super.onStart();
         databaseReference.addValueEventListener(childEventListener);
     }
-<<<<<<< HEAD
-
     @Override
     public void onStop() {
         super.onStop();
         databaseReference.removeEventListener(childEventListener);
     }
-=======
 //
 //    @Override
 //    public void onStop() {
 //        super.onStop();
 //        databaseReference.removeEventListener(childEventListener);
 //    }
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 }

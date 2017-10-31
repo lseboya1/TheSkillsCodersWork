@@ -3,30 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="#ffffff"
     android:layout_height="match_parent">
-
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:theme="@style/TransparentBar">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center_vertical"
-            android:text="Time Sheet"
-            android:textColor="#303F9F"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-
-    </android.support.v7.widget.Toolbar>
 
 
     <ImageView

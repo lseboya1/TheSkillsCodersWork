@@ -33,21 +33,9 @@
         <activity android:name=".LeaveApply" />
         <activity android:name=".AdminOption" />
         <activity android:name=".AdminOptionStudents" />
-<<<<<<< HEAD
         <activity android:name=".timeSheet.TimeSheetsActivity" />
         <activity android:name=".ListViewFacilitatorsActivity" />
-       <!-- <activity
-=======
-        <activity android:name=".ListViewFacilitatorsActivity"/>
-        <activity android:name=".timesheets.TimeSheet" />
-        <activity
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
-            android:name=".AdminActivity"
-            android:theme="@style/AppTheme.NoActionBar" /> -->
-        <activity
-            android:name=".NavigationDrawer"
-            android:label="@string/title_activity_navigation_drawer"
-            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".AdminActivity" />
     </application>
 
 </manifest>

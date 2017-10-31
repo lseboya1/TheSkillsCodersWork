@@ -81,7 +81,6 @@
             android:maxLines="1"
             android:textColor="#1c7839"
             android:textColorHint="#1c7839"/>
-<<<<<<< HEAD
 
         <EditText
             android:id="@+id/phone_number"
@@ -93,9 +92,6 @@
             android:maxLines="1"
             android:textColor="#1c7839"
             android:textColorHint="#1c7839"/>
-=======
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
-
 
         <Spinner
             android:id="@+id/simpleSpinner"
@@ -106,9 +102,6 @@
             android:textColor="#1c7839"
             android:textColorHint="#1c7839"/>
 
-
-<<<<<<< HEAD
-=======
         <TextView
             android:id="@+id/Staff_number"
             android:layout_width="wrap_content"
@@ -124,7 +117,6 @@
             android:textSize="20dp"
             />
 
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
     </LinearLayout>
 
     <Button
@@ -147,11 +139,7 @@
     <Button
         android:id="@+id/sign_in_button"
         android:layout_width="fill_parent"
-<<<<<<< HEAD
         android:layout_height="wrap_content"
-=======
-        android:layout_height="44dp"
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
         android:background="@null"
         android:text="@string/btn_link_to_login"
         android:textAllCaps="false"

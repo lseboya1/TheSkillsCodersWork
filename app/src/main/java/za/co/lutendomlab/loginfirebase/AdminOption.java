@@ -12,16 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-
-<<<<<<< HEAD
 import za.co.lutendomlab.loginfirebase.timeSheet.TimeSheetsActivity;
-=======
-import za.co.lutendomlab.loginfirebase.timesheets.TimeSheet;
-
-/**
- * Created by codetribe on 10/10/2017.
- */
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
 public class AdminOption extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -42,10 +33,6 @@ public class AdminOption extends AppCompatActivity implements AdapterView.OnItem
 //
         Intent intent = getIntent();
         user = intent.getParcelableExtra("userProfile");
-
-        Toast.makeText(this, "user "+ user.getName(), Toast.LENGTH_SHORT).show();
-
-
 
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
         spin = (Spinner) findViewById(R.id.simpleSpinner);
@@ -83,8 +70,6 @@ public class AdminOption extends AppCompatActivity implements AdapterView.OnItem
 
     public void Save(View view){
 
-        user.setRole(role);
-
         save = (Button)findViewById(R.id.save);
         save.setVisibility(View.GONE);
         spin.setVisibility(View.GONE);
@@ -92,11 +77,7 @@ public class AdminOption extends AppCompatActivity implements AdapterView.OnItem
 
     public void TimeSheet(View v){
 
-<<<<<<< HEAD
         Intent intent = new Intent(AdminOption.this, TimeSheetsActivity.class);
-=======
-        Intent intent = new Intent(AdminOption.this, MainActivity.class);
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
         intent.putExtra("userProfile", user);
         startActivity(intent);
     }

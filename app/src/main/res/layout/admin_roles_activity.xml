@@ -14,11 +14,7 @@
         android:orientation="vertical">
 
         <Button
-<<<<<<< HEAD
-            android:padding="30dp"
-=======
             android:padding="5dp"
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
             android:onClick="Disable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,11 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="Assign"
-<<<<<<< HEAD
-            android:padding="30dp"
-=======
             android:padding="5dp"
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
             android:layout_marginTop="20dp"
             android:background="@drawable/shape_button"
             android:text="Assign Role"/>
@@ -49,29 +41,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
-=======
             android:padding="15dp"
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
-                android:padding="30dp"
                 android:onClick="Save"
                 android:visibility="gone"
-                android:background="@drawable/shape_button"
-                android:layout_margin="16dp"
-=======
                 android:padding="5dp"
-                android:onClick="Save"
-                android:visibility="gone"
                 android:background="@drawable/shape_button"
                 android:layout_margin="5dp"
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
                 android:layout_weight="1"
                 android:text="Save"/>
 
@@ -79,7 +60,6 @@
                 android:id="@+id/cancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
                 android:padding="30dp"
                 android:background="@drawable/shape_button"
                 android:visibility="gone"
@@ -88,20 +68,9 @@
                 android:layout_weight="1"
                 android:text="Cancel"/>
 
-
-
             <Button
-                android:onClick="TimeSheet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="30dp"
-                android:background="@drawable/shape_button"
-                android:visibility="gone"
-                android:layout_margin="16dp"
-                android:layout_weight="1"
-                android:text="TimeSheet"/>
-
-=======
                 android:padding="5dp"
                 android:background="@drawable/shape_button"
                 android:visibility="gone"
@@ -110,7 +79,6 @@
                 android:layout_weight="1"
                 android:text="Cancel"/>
 
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
         </LinearLayout>
     </LinearLayout>
 

@@ -38,8 +38,8 @@
             android:text="Mark Register"
             android:textColor="#1c7839"
             android:textSize="20sp"
-            android:textStyle="bold"
             android:visibility="gone"
+            android:textStyle="bold"
             android:layout_alignBaseline="@+id/textView2"
             android:layout_alignBottom="@+id/textView2"
             android:layout_alignParentEnd="true" />

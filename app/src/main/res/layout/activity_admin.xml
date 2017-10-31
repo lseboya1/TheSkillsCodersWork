@@ -12,33 +12,16 @@
     <RelativeLayout
         android:id="@+id/background"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="210dp"
         android:background="@drawable/background">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:theme="@style/TransparentBar">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:gravity="center_vertical"
-                android:text="Home Page"
-<<<<<<< HEAD
-=======
-                android:onClick="SignOut"
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
-                android:textColor="#1c7839"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-
-        </android.support.v7.widget.Toolbar>
+            android:text="Log Out"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:onClick="SignOut"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,15 +32,17 @@
             android:onClick="Facilitators"
             android:text="Facilitators"
             android:textColor="#1c7839"
-            android:textSize="19sp" />
+            android:textSize="19sp"
+            android:id="@+id/textView5" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/toolbar"
-            android:layout_marginTop="12dp">
+            android:layout_below="@+id/textView5"
+            android:layout_alignParentEnd="true">
 
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -118,11 +103,7 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:theme="@style/AppTheme.AppBarOverlay">
-=======
         android:theme="@style/AppTheme">
->>>>>>> e337382d1cb35965593f8aea6d788a41f46ba000
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
@@ -137,6 +118,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
 
 </LinearLayout>
