@@ -117,10 +117,6 @@ public class HomeScreenUser extends AppCompatActivity
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
-
-
-
-
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,drawer,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -174,7 +170,7 @@ public class HomeScreenUser extends AppCompatActivity
 //        Toast.makeText(this, userID, Toast.LENGTH_SHORT).show();
         //  staff_number = (TextView) findViewById(R.id.staff_number);
 
-        textViewUserName = (TextView) findViewById(R.id.textViewName);
+
 //
 //        db.addChildEventListener(new ChildEventListener() {
 //            @Override
@@ -221,6 +217,9 @@ public class HomeScreenUser extends AppCompatActivity
 //            }
 //        });
 
+        textViewUserEmail = (TextView) findViewById(R.id.textViewEmail);
+        textViewUserName = (TextView) findViewById(R.id.textViewName);
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -231,6 +230,7 @@ public class HomeScreenUser extends AppCompatActivity
                 userName = user.getName();
                 surname =user.getLastName();
                 textViewUserName.setText("Name: " + userName + ", " + surname);
+                textViewUserEmail.setText("Email: " + user.getEmail());
 
             }
 
@@ -239,16 +239,7 @@ public class HomeScreenUser extends AppCompatActivity
 
             }
         });
-
-
-        if ("Admin".equals(role)) {
-            finish();
-            Intent intent1 = new Intent(HomeScreenUser.this, AdminActivity.class);
-            startActivity(intent1);
-        }
-
-        textViewUserEmail = (TextView) findViewById(R.id.textViewEmail);
-        textViewUserEmail.setText("Email :" + user.getEmail());
+//        textViewUserEmail.setText("Email :" + user.getEmail());
 
     }
 
@@ -300,11 +291,14 @@ public class HomeScreenUser extends AppCompatActivity
         switch (item.getItemId()){
 
             case R.id.about:
-                Toast.makeText(this, "about", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.update_profile:
-                Toast.makeText(this, "update_profile", Toast.LENGTH_SHORT).show();
+                finish();
+                Intent intent = new Intent(HomeScreenUser.this, UpdateProfileActivity.class);
+//                intent.putExtra("User_KEY",userID);
+                startActivity(intent);
+//                Toast.makeText(this, "update_profile", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.send_notification:

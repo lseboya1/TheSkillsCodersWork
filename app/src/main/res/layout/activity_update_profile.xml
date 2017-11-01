@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@drawable/back1"
@@ -18,6 +18,27 @@
         android:padding="20dp"
         android:layout_centerHorizontal="true">
 
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_picture"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@android:color/white"
+                android:src="@drawable/profile_pic" />
+
+            <ImageButton
+                android:layout_width="56dp"
+                android:layout_height="58dp"
+                android:layout_gravity="top"
+                android:onClick="ProfilePictureSelect"
+                android:background="@android:color/transparent"
+                android:src="@android:drawable/ic_menu_camera" />
+
+        </FrameLayout>
+
     <EditText
         android:id="@+id/name"
         android:layout_width="match_parent"
@@ -32,14 +53,6 @@
         android:hint="Last Name"
         android:maxLines="1" />
 
-    <EditText
-        android:id="@+id/phoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Phone number"
-        android:inputType="number"
-        android:maxLines="1" />
-
 
     <EditText
         android:id="@+id/email"
@@ -52,12 +65,21 @@
         android:inputType="textEmailAddress"
         android:maxLines="1"/>
 
+        <EditText
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone number"
+            android:inputType="number"
+            android:maxLines="1" />
+
     <EditText
         android:id="@+id/Password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusableInTouchMode="true"
         android:hint="password"
+        android:visibility="gone"
         android:imeActionId="@+id/login"
         android:imeOptions="actionUnspecified"
         android:inputType="textPassword"

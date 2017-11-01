@@ -6,10 +6,6 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by codeTribe on 8/24/2017.
- */
-
 public class User implements Parcelable {
 
     public Map<String, String> user;
@@ -21,6 +17,7 @@ public class User implements Parcelable {
     String role;
     String facility;
     String phoneNumber;
+    String status;
 
     protected User(Parcel in) {
         userId = in.readString();
@@ -47,10 +44,15 @@ public class User implements Parcelable {
             }
         };
 
-        public User(String keyUser, String nameinput, String lastNameinput, String phoneNumberinput, String emailinput) {
-        }
+    public User(String userId, String name, String lastName, String email, String phoneNumber) {
+        this.userId = userId;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
 
-        public void setName(String name) {
+    public void setName(String name) {
             this.name = name;
         }
 
@@ -126,7 +128,15 @@ public class User implements Parcelable {
             this.phoneNumber = phoneNumber;
         }
 
-        public int getProfile() {
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getProfile() {
             return profile;
         }
 

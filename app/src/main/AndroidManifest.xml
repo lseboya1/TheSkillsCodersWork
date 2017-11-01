@@ -13,20 +13,29 @@
         android:roundIcon="@drawable/geologo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".SpashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="Register"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".SignupActivity"
-            android:label="Register" />
-         <activity android:name=".UpdateProfileActivity" />
+            android:label="Register"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".UpdateProfileActivity" />
         <activity android:name=".ResetPasswordActivity" />
-        <activity android:name=".HomeScreenUser"
-            android:label="Home page"></activity>
+        <activity
+            android:name=".HomeScreenUser"
+            android:label="Home page" />
         <activity android:name=".SendMessage" />
         <activity android:name=".ChangePassword" />
         <activity android:name=".MapsActivity" />

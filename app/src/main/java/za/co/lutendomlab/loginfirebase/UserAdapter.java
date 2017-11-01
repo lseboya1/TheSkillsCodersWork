@@ -11,6 +11,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -21,6 +27,10 @@ public class UserAdapter extends ArrayAdapter<User> {
     private List<User> users;
     private int resource;
     View  viewList;
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth firebaseAuth;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReferenceFromUrl("gs://the-skills-coders-work.appspot.com/");
 
     public UserAdapter(Context context,int resource ,List<User> users ) {
         super(context, resource, users);
@@ -50,7 +60,6 @@ public class UserAdapter extends ArrayAdapter<User> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         View listViewItem = convertView;
 
         if(listViewItem == null) {
@@ -62,29 +71,27 @@ public class UserAdapter extends ArrayAdapter<User> {
 
 
         TextView name = (TextView)listViewItem.findViewById(R.id.name);
-        TextView lastName = (TextView)listViewItem.findViewById(R.id.lastName);
         TextView email = (TextView)listViewItem.findViewById(R.id.email);
-        TextView location = (TextView)listViewItem.findViewById(R.id.location);
         ImageView profile = (ImageView)listViewItem.findViewById(R.id.profile);
-
-
+        TextView phoneNumber = (TextView)listViewItem.findViewById(R.id.phoneNumber);
 
         name.setText(String.format("Name: %s", currentUser.getName()));
         email.setText(String.format("Email: %s", currentUser.getEmail()));
-//        location.setText(String.format("Facility: %s", currentUser.getFacility()));
-//        TextView lastName = (TextView)listViewItem.findViewById(R.id.lastName);
-//        TextView location = (TextView)listViewItem.findViewById(R.id.location);
-//        ImageView profile = (ImageView)listViewItem.findViewById(R.id.profile);
-
-
 
         name.setText("Name: " + currentUser.getName() + " , " + currentUser.getLastName());
-//        lastName.setText("Last name: " + currentUser.getLastName());
         email.setText("Email: " + currentUser.getEmail());
-//        location.setText("Facility: " + currentUser.getFacility());
+        phoneNumber.setText(String.format("Phone Number: %s",currentUser.getPhoneNumber()));
 
+        profile.setImageResource(currentUser.getProfile());
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
 
-//        profile.setImageResource(currentUser.getProfile());
+        if(firebaseUser.getPhotoUrl() != null){
+        String url = firebaseUser.getPhotoUrl().toString();
+        Glide.with(getContext()).load(url).into(profile);
+    }else {
+            profile.setImageResource(R.drawable.profile_pic);
+        }
 
         return listViewItem;
     }

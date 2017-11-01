@@ -69,8 +69,6 @@ public class ListViewFacilitatorsActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                    Log.i("Ygritte", snapshot.toString());
-
                     user = snapshot.getValue(User.class);
 
                     if ("Facilitator".equals(user.getRole())) {

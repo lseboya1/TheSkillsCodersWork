@@ -65,6 +65,9 @@ public class AdminActivity extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference().child("User").child(userID);
 
+        textViewUserName = (TextView)findViewById(R.id.textViewName);
+        textViewUserEmail = (TextView)findViewById(R.id.textViewEmail);
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -176,8 +179,6 @@ public class AdminActivity extends AppCompatActivity {
 
 //        textViewUserEmail.setText("Email: " + user.getEmail());
 
-        textViewUserName = (TextView)findViewById(R.id.textViewName);
-        textViewUserEmail = (TextView)findViewById(R.id.textViewEmail);
         textViewUserEmail.setText("Email: "+ user.getEmail());
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -266,4 +267,6 @@ public class AdminActivity extends AppCompatActivity {
             return null;
         }
     }
+
+
 }

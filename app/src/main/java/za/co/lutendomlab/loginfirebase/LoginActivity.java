@@ -100,11 +100,11 @@ public class LoginActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(email)) {
 
-            Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+            inputEmail.setError("Enter email address!");
             return;
         }
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+            inputPassword.setError("Enter password!");
             return;
         }
         progressDialog.setMessage("Logging in. Please wait...");
@@ -140,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void navigateToUserScreen(String user_id) {
+    public void navigateToUserScreen(final String user_id) {
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -163,20 +163,24 @@ public class LoginActivity extends AppCompatActivity {
 //                    }
 //                }
                 User user = dataSnapshot.getValue(User.class);
+
+//                if ("Able".equals(user.getStatus())) {
                 if ("Facilitator".equals(user.getRole())) {
                     Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                     startActivity(intent);
                     finish();
                     progressDialog.dismiss();
 
-                } else {
+                } else if ("Student".equals(user.getRole())) {
                     Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
                     startActivity(intent);
                     finish();
                     progressDialog.dismiss();
                 }
-
-            }
+//            }else{
+//                    Toast.makeText(LoginActivity.this, "Your Account is not active. Please contact your HR ", Toast.LENGTH_SHORT).show();
+//                }
+        }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
