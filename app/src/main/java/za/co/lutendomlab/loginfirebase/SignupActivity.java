@@ -255,7 +255,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
 //                            findViewById(R.id.verify_email_button).setEnabled(true);
 
                             if (task.isSuccessful()) {
-                                //link will be sent to the email 
+                                //link will be sent to the email
                                 Toast.makeText(SignupActivity.this, "Verification email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
                             } else {
 //                                Log.e(TAG, "sendEmailVerification", task.getException());Toast.makeText(SignupActivity.this, "Failed to send verification email.", Toast.LENGTH_SHORT).show();
