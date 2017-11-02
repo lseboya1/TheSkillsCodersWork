@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:background="@drawable/back1"
     android:layout_width="match_parent"
@@ -18,16 +17,15 @@
 
         <Button
             android:onClick="ChangeStatus"
-            android:background="@drawable/shape_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Disable/Able" />
 
         <Spinner
-            android:id="@+id/simpleSpinner"
+            android:id="@+id/status_spinner"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:visibility="gone"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp" />
 
@@ -39,25 +37,23 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/cancel_student"
+                android:id="@+id/cancel_admin"
                 android:padding="5dp"
-                android:onClick="Cancel"
+                android:onClick="CancelStatus"
                 android:layout_width="match_parent"
                 android:layout_marginRight="5dp"
-                android:visibility="gone"
                 android:layout_weight="1"
-                android:background="@drawable/shape_button"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:text="Cancel" />
 
             <Button
-                android:id="@+id/save_student"
+                android:id="@+id/save_admin"
                 android:padding="5dp"
-                android:visibility="gone"
-                android:onClick="Save"
+                android:onClick="SaveStatus"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/shape_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Save" />
@@ -65,24 +61,59 @@
         </LinearLayout>
 
         <Button
-            android:onClick="TimeSheet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_button"
-            android:text="TimeSheet"/>
+            android:onClick="Assign"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Assign Role"/>
 
+        <Spinner
+            android:id="@+id/role_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/cancel_role"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:onClick="CancelRole"
+                android:text="Cancel"/>
+
+            <Button
+                android:id="@+id/save_role"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:visibility="gone"
+                android:onClick="SaveRole"
+                android:layout_weight="1"
+                android:text="Save"/>
+
+        </LinearLayout>
 
         <Button
-            android:id="@+id/buttonok"
             android:layout_width="150dp"
             android:paddingLeft="10dp"
             android:layout_height="wrap_content"
-            android:onClick="MakaCall"
+            android:onClick="MakaCallAdmin"
             android:layout_marginTop="10dp"
-            android:background="@drawable/shape_button"
             android:layout_gravity="center"
             android:drawableLeft="@android:drawable/sym_call_outgoing"
             android:text="Make a Call"/>
+
     </LinearLayout>
 
 </LinearLayout>

@@ -57,6 +57,7 @@ public class UpdateProfileActivity extends AppCompatActivity{
     String keyUser;
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
+    User user;
 
     private ImageView profile_Pic;
     int PICK_IMAGE_REQUEST = 111;
@@ -65,8 +66,6 @@ public class UpdateProfileActivity extends AppCompatActivity{
     ProgressDialog pd;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReferenceFromUrl("gs://the-skills-coders-work.appspot.com/");
-
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,7 +90,7 @@ public class UpdateProfileActivity extends AppCompatActivity{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                User user = dataSnapshot.getValue(User.class);
+                user = dataSnapshot.getValue(User.class);
 
                 name.setText(user.getName());
                 lastName.setText(user.getLastName());
@@ -136,7 +135,14 @@ public class UpdateProfileActivity extends AppCompatActivity{
 
     public void Save(View view){
         updateUser();
-        startActivity(new Intent(UpdateProfileActivity.this, HomeScreenUser.class));
+
+        if (user.getRole().equals("Student")) {
+            startActivity(new Intent(UpdateProfileActivity.this, HomeScreenUser.class));
+        }else {
+            if(user.getRole().equals("Facilitator")){
+                startActivity(new Intent(UpdateProfileActivity.this, AdminActivity.class));
+            }
+        }
     }
 
     public void ProfilePictureSelect(View view){

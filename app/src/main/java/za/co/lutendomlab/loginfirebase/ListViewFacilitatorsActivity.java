@@ -73,8 +73,6 @@ public class ListViewFacilitatorsActivity extends AppCompatActivity {
 
                     if ("Facilitator".equals(user.getRole())) {
                         allUsers.add(user);
-                        counter++;
-                        Toast.makeText(context, "Total = " + counter, Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -102,11 +100,16 @@ public class ListViewFacilitatorsActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+//                        User user = allUsers.get(position);
+//                        String phoneNumbur = "0790420795";
+//                        Intent phoneIntent = new Intent(Intent.ACTION_DIAL,
+//                                Uri.fromParts("tel", phoneNumbur, null));
+//                        startActivity(phoneIntent);
+
                         User user = allUsers.get(position);
-                        String phoneNumbur = "0790420795";
-                        Intent phoneIntent = new Intent(Intent.ACTION_DIAL,
-                                Uri.fromParts("tel", phoneNumbur, null));
-                        startActivity(phoneIntent);
+                        Intent intent = new Intent(context,AdminOption.class);
+                        intent.putExtra("userProfile",user);
+                        startActivity(intent);
                     }
                 });
 

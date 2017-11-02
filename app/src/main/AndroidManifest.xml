@@ -36,15 +36,28 @@
         <activity
             android:name=".HomeScreenUser"
             android:label="Home page" />
-        <activity android:name=".SendMessage" />
-        <activity android:name=".ChangePassword" />
+        <activity android:name=".SendMessage"
+            android:label="Send Message"/>
+
+        <activity android:name=".ChangePassword"
+            android:label="Change password"/>
+
         <activity android:name=".MapsActivity" />
-        <activity android:name=".LeaveApply" />
+
+        <activity android:name=".LeaveApply"
+            android:label="Apply for leave"/>
+
         <activity android:name=".AdminOption" />
         <activity android:name=".AdminOptionStudents" />
-        <activity android:name=".timeSheet.TimeSheetsActivity" />
-        <activity android:name=".ListViewFacilitatorsActivity" />
-        <activity android:name=".AdminActivity" />
+
+        <activity android:name=".timeSheet.TimeSheetsActivity"
+            android:label="TimeSheet" />
+
+        <activity android:name=".ListViewFacilitatorsActivity"
+            android:label="Facilitator" />
+
+        <activity android:name=".AdminActivity"
+            android:label="Home page"  />
     </application>
 
 </manifest>

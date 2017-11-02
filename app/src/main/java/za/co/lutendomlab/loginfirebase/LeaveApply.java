@@ -47,6 +47,7 @@ public class LeaveApply extends AppCompatActivity  implements AdapterView.OnItem
     private  EditText address;
     private  EditText phoneNumber;
     Spinner spin2;
+    Spinner spin;
     String typeOfLeaveSelected;
     String leaveConditionSelected;
 
@@ -74,10 +75,8 @@ public class LeaveApply extends AppCompatActivity  implements AdapterView.OnItem
         From_date_text = (TextView)findViewById(R.id.From_date_text);
         to_date_text = (TextView)findViewById(R.id.to_date_text);
 
-        Spinner spin =(Spinner)findViewById(R.id.simpleSpinner);
+        spin =(Spinner)findViewById(R.id.simpleSpinner);
         spin.setOnItemSelectedListener(LeaveApply.this);
-
-
 
         spin2 =(Spinner)findViewById(R.id.simpleSpinnerPayments);
         spin2.setOnItemSelectedListener(LeaveApply.this);

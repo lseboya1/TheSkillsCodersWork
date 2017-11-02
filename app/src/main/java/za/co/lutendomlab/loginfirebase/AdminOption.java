@@ -1,6 +1,7 @@
 package za.co.lutendomlab.loginfirebase;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -12,37 +13,64 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import za.co.lutendomlab.loginfirebase.timeSheet.TimeSheetsActivity;
 
 public class AdminOption extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
 
-    String[] roleList = {"Student","Facilitator","Admin"};
+    String[] roleList = {"Facilitator","Admin"};
+    String[] statusList = {"Disable", "Able"};
     String role;
-    Button save;
-    Button cancel;
-    Spinner spin;
-    User user;
+    String status;
 
+    Button save_role;
+    Button cancel_role;
+    Spinner role_spinner;
+
+    Spinner status_spinner;
+    Button cancel_admin;
+    Button save_admin;
+
+    User user;
     FirebaseAuth firebaseAuth;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_roles_activity);
+        setContentView(R.layout.activity_admin_roles);
 //
         Intent intent = getIntent();
         user = intent.getParcelableExtra("userProfile");
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUserId());
+
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
-        spin = (Spinner) findViewById(R.id.simpleSpinner);
-        spin.setOnItemSelectedListener(this);
+        save_role = (Button)findViewById(R.id.save_role);
+        cancel_role = (Button)findViewById(R.id.cancel_role);
+        role_spinner = (Spinner) findViewById(R.id.role_spinner);
+        role_spinner.setOnItemSelectedListener(this);
+
+        cancel_admin = (Button)findViewById(R.id.cancel_admin);
+        save_admin = (Button)findViewById(R.id.save_admin);
+        status_spinner = (Spinner) findViewById(R.id.status_spinner);
+        status_spinner.setOnItemSelectedListener(this);
 
         //Creating the ArrayAdapter instance having the bank name list
         ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,roleList);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
-        spin.setAdapter(aa);
+        role_spinner.setAdapter(aa);
+
+        //Creating the ArrayAdapter instance having the bank name list
+        ArrayAdapter a = new ArrayAdapter(this,android.R.layout.simple_spinner_item,statusList);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        status_spinner.setAdapter(a);
     }
 
     //Performing action onItemSelected and onNothing selected
@@ -50,8 +78,9 @@ public class AdminOption extends AppCompatActivity implements AdapterView.OnItem
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 
         role = roleList[position];
+        status = statusList[position];
 
-        Toast.makeText(getApplicationContext(),"Selected" + role, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Selected" + role + " " + status , Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -61,18 +90,24 @@ public class AdminOption extends AppCompatActivity implements AdapterView.OnItem
     }
 
     public void Assign(View view){
-        save = (Button)findViewById(R.id.save);
-        save.setVisibility(View.VISIBLE);
-        cancel = (Button)findViewById(R.id.cancel);
-        cancel.setVisibility(View.VISIBLE);
-        spin.setVisibility(View.VISIBLE);
+
+        save_role.setVisibility(View.VISIBLE);
+        cancel_role.setVisibility(View.VISIBLE);
+        role_spinner.setVisibility(View.VISIBLE);
     }
 
-    public void Save(View view){
+    public void SaveRole(View view){
 
-        save = (Button)findViewById(R.id.save);
-        save.setVisibility(View.GONE);
-        spin.setVisibility(View.GONE);
+        String keyUser = user.getUserId();
+        String selectedRole = role;
+
+        User user2 = new User();
+        user2.setRole(selectedRole);
+        databaseReference.child("role").setValue(user2.getRole());
+
+        save_role.setVisibility(View.GONE);
+        cancel_role.setVisibility(View.GONE);
+        role_spinner.setVisibility(View.GONE);
     }
 
     public void TimeSheet(View v){
@@ -82,16 +117,47 @@ public class AdminOption extends AppCompatActivity implements AdapterView.OnItem
         startActivity(intent);
     }
 
-    public void Cancel(View view){
+    public void CancelRole(View view){
 
-//        firebaseAuth.signOut();
-
-        save.setVisibility(View.GONE);
-        cancel.setVisibility(View.GONE);
-        spin.setVisibility(View.GONE);
+        save_role.setVisibility(View.GONE);
+        cancel_role.setVisibility(View.GONE);
+        role_spinner.setVisibility(View.GONE);
     }
 
-    public void Disable(View view){
+    public void CancelStatus(View view){
 
+        status_spinner.setVisibility(View.GONE);
+        save_admin.setVisibility(View.GONE);
+        cancel_admin.setVisibility(View.GONE);
+    }
+
+    public void ChangeStatus(View view){
+
+        status_spinner.setVisibility(View.VISIBLE);
+        save_admin.setVisibility(View.VISIBLE);
+        cancel_admin.setVisibility(View.VISIBLE);
+
+    }
+
+    public void SaveStatus(View view){
+
+        String keyUser = user.getUserId();
+        String selectedStatus = status;
+
+        User user1 = new User(keyUser, selectedStatus);
+        databaseReference.child("status").setValue(user1.getStatus());
+
+        status_spinner.setVisibility(View.GONE);
+        save_admin.setVisibility(View.GONE);
+        cancel_admin.setVisibility(View.GONE);
+    }
+
+    public void MakaCallAdmin(View view) {
+
+//        String phoneNumbur = user.getPhoneNumber();
+        String phoneNumbur = "111111111";
+        Intent phoneIntent = new Intent(Intent.ACTION_DIAL,
+                Uri.fromParts("tel", phoneNumbur, null));
+        startActivity(phoneIntent);
     }
 }

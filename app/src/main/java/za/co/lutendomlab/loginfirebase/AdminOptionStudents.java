@@ -39,8 +39,10 @@ public class AdminOptionStudents extends AppCompatActivity implements AdapterVie
 
             firebaseAuth = FirebaseAuth.getInstance();
             databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUserId());
+
             cancel_student = (Button) findViewById(R.id.cancel_student);
             save_student = (Button) findViewById(R.id.save_student);
+
             simpleSpinner = (Spinner)findViewById(R.id.simpleSpinner);
             simpleSpinner.setOnItemSelectedListener(this);
 
