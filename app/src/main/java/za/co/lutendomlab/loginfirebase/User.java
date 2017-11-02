@@ -52,6 +52,11 @@ public class User implements Parcelable {
         this.phoneNumber = phoneNumber;
     }
 
+    public User(String userId, String status) {
+        this.userId = userId;
+        this.status = status;
+    }
+
     public void setName(String name) {
             this.name = name;
         }

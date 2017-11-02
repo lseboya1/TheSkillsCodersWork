@@ -83,7 +83,7 @@ public class ListViewActivity extends android.support.v4.app.Fragment {
 
                     user  = snapshot.getValue(User.class);
 
-                    if("Codetribe TIH".equals(user.getFacility()) && "Student".equals(user.getRole())) {
+                    if("Codetribe TIH".equals(user.getFacility()) && "Student".equals(user.getRole()) && "Able".equals(user.getStatus())) {
                         allUsers.add(user);
                     }
                 }

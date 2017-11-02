@@ -9,15 +9,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import za.co.lutendomlab.loginfirebase.timeSheet.TimeSheetsActivity;
 
@@ -26,8 +21,6 @@ public class AdminOptionStudents extends AppCompatActivity implements AdapterVie
         User user;
         FirebaseAuth firebaseAuth;
         DatabaseReference databaseReference;
-        FirebaseDatabase firebaseDatabase;
-        private ValueEventListener childEventListener;
 
 
     Spinner simpleSpinner;
@@ -38,16 +31,17 @@ public class AdminOptionStudents extends AppCompatActivity implements AdapterVie
 
         @Override
         protected void onCreate(@Nullable Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-                setContentView(R.layout.activity_admin_role_student);
-//
-                Intent intent = getIntent();
-                user = intent.getParcelableExtra("userProfile");
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_admin_role_student);
 
-                firebaseAuth = FirebaseAuth.getInstance();
-                cancel_student = (Button) findViewById(R.id.cancel_student);
-                save_student = (Button) findViewById(R.id.save_student);
-                simpleSpinner = (Spinner)findViewById(R.id.simpleSpinner);
+            Intent intent = getIntent();
+            user = intent.getParcelableExtra("userProfile");
+
+            firebaseAuth = FirebaseAuth.getInstance();
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUserId());
+            cancel_student = (Button) findViewById(R.id.cancel_student);
+            save_student = (Button) findViewById(R.id.save_student);
+            simpleSpinner = (Spinner)findViewById(R.id.simpleSpinner);
             simpleSpinner.setOnItemSelectedListener(this);
 
             //Creating the ArrayAdapter instance having the bank name list
@@ -60,8 +54,8 @@ public class AdminOptionStudents extends AppCompatActivity implements AdapterVie
 
         public void MakaCall(View view) {
 
-//                String phoneNumbur = user.getPhoneNumber();
-                String phoneNumbur = "111111111";
+                String phoneNumbur = user.getPhoneNumber();
+//                String phoneNumbur = "111111111";
                 Intent phoneIntent = new Intent(Intent.ACTION_DIAL,
                         Uri.fromParts("tel", phoneNumbur, null));
                 startActivity(phoneIntent);
@@ -76,30 +70,16 @@ public class AdminOptionStudents extends AppCompatActivity implements AdapterVie
 
         public void Save(View view) {
 
-                firebaseDatabase = FirebaseDatabase.getInstance();
-                databaseReference = firebaseDatabase.getReference().child("User");
+            String keyUser = user.getUserId();
 
-                childEventListener = new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
+            String selectedStatus = status;
 
-                                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                                         //update status
-                                        UpdateStatus();
+            User user1 = new User(keyUser, selectedStatus);
+            databaseReference.child("status").setValue(user1.getStatus());
 
-                                }
-
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                };
-
-        }
-
-        public void UpdateStatus(){
+            cancel_student.setVisibility(View.GONE);
+            simpleSpinner.setVisibility(View.GONE);
+            save_student.setVisibility(View.GONE);
 
         }
 
