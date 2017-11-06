@@ -40,9 +40,6 @@
                 android:textColor="#1c7839"
                 android:textColorHint="#1c7839" />
 
-    <!-- Login Button -->
-
-
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"

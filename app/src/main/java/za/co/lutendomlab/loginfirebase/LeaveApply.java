@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -57,10 +58,13 @@ public class LeaveApply extends AppCompatActivity  implements AdapterView.OnItem
     Button datePickerTo;
     String user;
     String surname;
+    static String dayDifference;
     static String dateFrom;
     static String dateTo;
+
     static TextView From_date_text;
     static TextView to_date_text;
+    static TextView number_of_days;
 
 
 
@@ -69,11 +73,14 @@ public class LeaveApply extends AppCompatActivity  implements AdapterView.OnItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leave_apply);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent intent = getIntent();
         surname = intent.getStringExtra("surname");
         user = intent.getStringExtra("name");
         From_date_text = (TextView)findViewById(R.id.From_date_text);
         to_date_text = (TextView)findViewById(R.id.to_date_text);
+        number_of_days = (TextView)findViewById(R.id.number_of_days);
 
         spin =(Spinner)findViewById(R.id.simpleSpinner);
         spin.setOnItemSelectedListener(LeaveApply.this);
@@ -99,7 +106,7 @@ public class LeaveApply extends AppCompatActivity  implements AdapterView.OnItem
 //        leaveTo = (EditText)findViewById(R.id.leaveTo);
         lastName.setText(surname);
         numberOfDays = (EditText)findViewById(R.id.lastName);
-        ConditionOfPayments = (EditText)findViewById(R.id.ConditionOfPayments);
+//        ConditionOfPayments = (EditText)findViewById(R.id.ConditionOfPayments);
         address = (EditText)findViewById(R.id.address);
         phoneNumber = (EditText)findViewById(R.id.phoneNumber);
 
@@ -151,15 +158,51 @@ public class LeaveApply extends AppCompatActivity  implements AdapterView.OnItem
 
             String mytag = getTag();
             if ("from_date".equals(mytag)) {
-                processFromDate( year, month, day);
-                dateFrom =year +"/" +month +"/"+day ;
+                processFromDate( month, day, year);
+                dateFrom =month +"/" +day +"/"+year ;
                 From_date_text.setText(dateFrom);
             } else if ("to_date".equals(mytag)) {
-                processToDate( year, month, day);
-                dateTo =year +"/" +month +"/"+day ;
+                processToDate( month, day, year);
+                dateTo =month +"/" +day +"/"+year ;
                 to_date_text.setText(dateTo);
+
+                calculateDays();
             }
         }
+
+        public void calculateDays(){
+
+            try {
+                //Dates to compare
+                String CurrentDate = dateFrom;
+                String FinalDate = dateTo;
+
+                Date date1;
+                Date date2;
+
+                SimpleDateFormat dates = new SimpleDateFormat("MM/dd/yyyy");
+
+                //Setting dates
+                date1 = dates.parse(CurrentDate);
+                date2 = dates.parse(FinalDate);
+
+                //Comparing dates
+                long difference = Math.abs(date1.getTime() - date2.getTime());
+                long differenceDates = difference / (24 * 60 * 60 * 1000);
+
+                //Convert long to String
+                dayDifference = Long.toString(differenceDates);
+
+                Log.e("HERE", "HERE: " + dayDifference);
+
+            } catch (Exception exception) {
+                Log.e("DIDN'T WORK", "exception " + exception);
+            }
+
+//            TextView number_of_days = (TextView)findViewById(R.id.number_of_days);
+            number_of_days.setText("Number Of Days: " + dayDifference + " Days");
+        }
+
     }
 
     public static void processFromDate( int year, int month, int day) {
@@ -211,13 +254,12 @@ public class LeaveApply extends AppCompatActivity  implements AdapterView.OnItem
 
     public String inforMassege(){
 
-
         String Message = "Name: " + name.getText().toString();
         Message += "\nLast Name: " + lastName.getText().toString();
         Message += " \nType of leave: " + typeOfLeaveSelected.toString();
         Message += "\nTaking leave from: " + dateFrom;
         Message += " To: " + dateTo;
-        //Message += "\nNumber of days: " + numberOfDays.getText().toString();
+        Message += "\nNumber of days: " + number_of_days.getText().toString();
         Message += " \nCondition of payment: " + leaveConditionSelected.toString();
         Message += "\nAddress during leave: "+ address.getText().toString();
         Message += "\nPhone number during leave: "+ phoneNumber.getText().toString();
@@ -261,10 +303,6 @@ public class LeaveApply extends AppCompatActivity  implements AdapterView.OnItem
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
-    }
-
-    public void PaymentaConditions(){
-
     }
 
 }

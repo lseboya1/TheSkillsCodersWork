@@ -80,12 +80,12 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
-        if(auth.getCurrentUser() !=null)
-        {
-            //profile activity here
-            finish();
-            startActivity(new Intent(getApplicationContext(),HomeScreenUser.class));
-        }
+//        if(auth.getCurrentUser() !=null)
+//        {
+//            //profile activity here
+//            finish();
+//            startActivity(new Intent(getApplicationContext(),HomeScreenUser.class));
+//        }
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -159,14 +159,13 @@
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/ConditionOfPayments"
-            android:hint="Condition of payment (Full, Half , Without)"
-            android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:visibility="gone"
+        <TextView
+            android:id="@+id/number_of_days"
+            android:text="Number Of Days :"
+            android:layout_margin="16dp"
             android:textColor="#1c7839"
             android:textColorHint="#1c7839"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <LinearLayout
@@ -220,16 +219,6 @@
             android:textColorHint="#1c7839"
             android:textStyle="bold"
             android:layout_margin="10dp"/>
-        <Button
-            android:onClick="Cancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_button"
-            android:layout_margin="10dp"
-            android:textColor="#1c7839"
-            android:textColorHint="#1c7839"
-            android:textStyle="bold"
-            android:text="Cancel" />
     </LinearLayout>
 
 </ScrollView>

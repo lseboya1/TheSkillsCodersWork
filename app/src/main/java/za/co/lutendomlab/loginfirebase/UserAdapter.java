@@ -29,8 +29,8 @@ public class UserAdapter extends ArrayAdapter<User> {
     View  viewList;
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
-    FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageRef = storage.getReferenceFromUrl("gs://the-skills-coders-work.appspot.com/");
+//    FirebaseStorage storage = FirebaseStorage.getInstance();
+//    StorageReference storageRef = storage.getReferenceFromUrl("gs://the-skills-coders-work.appspot.com/");
 
     public UserAdapter(Context context,int resource ,List<User> users ) {
         super(context, resource, users);
@@ -83,12 +83,14 @@ public class UserAdapter extends ArrayAdapter<User> {
         phoneNumber.setText(String.format("Phone Number: %s",currentUser.getPhoneNumber()));
 
         profile.setImageResource(currentUser.getProfile());
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
         if(firebaseUser.getPhotoUrl() != null){
         String url = firebaseUser.getPhotoUrl().toString();
-        Glide.with(getContext()).load(url).into(profile);
+            int url1 = currentUser.getProfile();
+        Glide.with(getContext()).load(url1).into(profile);
     }else {
             profile.setImageResource(R.drawable.profile_pic);
         }

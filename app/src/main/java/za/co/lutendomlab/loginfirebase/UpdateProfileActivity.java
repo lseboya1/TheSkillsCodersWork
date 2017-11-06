@@ -9,6 +9,8 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -72,6 +74,8 @@ public class UpdateProfileActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         firebaseAuth = FirebaseAuth.getInstance();
         keyUser = firebaseAuth.getCurrentUser().getUid();
 
@@ -115,7 +119,6 @@ public class UpdateProfileActivity extends AppCompatActivity{
 //        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
-
     public void updateUser(){
 
         nameinput = name.getText().toString().trim();
@@ -154,6 +157,17 @@ public class UpdateProfileActivity extends AppCompatActivity{
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_PICK);
         startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
