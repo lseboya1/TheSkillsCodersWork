@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/about"
-            android:title="About Us"
-            android:icon="@drawable/about_us"/>
-            <item
-                android:id="@+id/update_profile"
-                android:title="Update Profile"
-                android:icon="@drawable/update"/>
-            <item
-                android:id="@+id/send_notification"
-                android:title="Send Notification"
-                android:icon="@drawable/email"/>
-            <item
-                android:id="@+id/apply_leave"
-                android:title="Aply for Leave"
-                android:icon="@drawable/send" />
-            <item
-                android:id="@+id/logout"
-                android:title="Log Out"
-                android:icon="@drawable/power"/>
+            android:icon="@drawable/about_us"
+            android:title="About Us" />
+        <item
+            android:id="@+id/update_profile"
+            android:icon="@drawable/update"
+            android:title="Update Profile" />
+        <item
+            android:id="@+id/send_notification"
+            android:icon="@drawable/email"
+            android:title="Send Notification" />
+        <item
+            android:id="@+id/apply_leave"
+            android:icon="@drawable/send"
+            android:title="Aply for Leave" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/power"
+            android:title="Log Out" />
     </group>
 
 </menu>

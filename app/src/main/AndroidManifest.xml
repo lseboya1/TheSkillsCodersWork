@@ -12,8 +12,15 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/geologo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
+
         <activity android:name=".SpashScreenActivity">
+        </activity>
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="Register"
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,20 +29,15 @@
         </activity>
 
         <activity
-            android:name=".LoginActivity"
-            android:label="Register"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
             android:name=".SignupActivity"
             android:label="Register"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
 
         <activity android:name=".UpdateProfileActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity
             android:name=".HomeScreenUser"
-            android:label="Home page" />
+            android:label="Home" />
         <activity android:name=".SendMessage"
             android:label="Send Message"/>
 

@@ -11,8 +11,8 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
+
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
@@ -54,6 +54,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 import static android.R.id.toggle;
+import static za.co.lutendomlab.loginfirebase.R.id.information;
 
 public class HomeScreenUser extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -65,8 +66,8 @@ public class HomeScreenUser extends AppCompatActivity
     String surname;
     private ImageView imageProfileSelect;
     private ImageView profile_Pic;
-    Uri filePath ;
-    Bitmap bitmap ;
+    Uri filePath;
+    Bitmap bitmap;
     //image uploader
     int PICK_IMAGE_REQUEST = 111;
     String weekdays;
@@ -84,6 +85,9 @@ public class HomeScreenUser extends AppCompatActivity
 
     StorageReference storageRef = storage.getReferenceFromUrl("gs://the-skills-coders-work.appspot.com/");    //change the url according to your firebase app
 
+    DrawerLayout drawer;
+    NavigationView navigationView;
+    Toolbar toolbar;
 
     String role;
     private FirebaseAuth firebaseAuth;
@@ -110,21 +114,18 @@ public class HomeScreenUser extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen_user);
-
-        TextView information = (TextView)findViewById(R.id.information);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //toolbar.setSubtitle(R.string.unofficial);
+        setSupportActionBar(toolbar);
+        TextView information = (TextView) findViewById(R.id.information);
         information.setText(infor);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this,drawer,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -132,8 +133,8 @@ public class HomeScreenUser extends AppCompatActivity
 //        user = firebaseAuth.getCurrentUser();
 
 
-        imageProfileSelect =(ImageView)findViewById(R.id.profile_picture_select);
-        profile_Pic=(ImageView)findViewById(R.id.profile_picture);
+        imageProfileSelect = (ImageView) findViewById(R.id.profile_picture_select);
+        profile_Pic = (ImageView) findViewById(R.id.profile_picture);
         imageProfileSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,7 +152,7 @@ public class HomeScreenUser extends AppCompatActivity
 
         user = firebaseAuth.getCurrentUser();
         if (user == null) {
-            startActivity(new Intent(this,LoginActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
         } else {
             if (user.getPhotoUrl() != null) {
                 String url = user.getPhotoUrl().toString();
@@ -159,25 +160,24 @@ public class HomeScreenUser extends AppCompatActivity
             }
         }
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-         databaseReference = database.getReference().child("User").child(userID);
-//        db = database.getReference().child("User");
-        db =database.getReference().child("TimeSheet").child(userID);
+        databaseReference = database.getReference().child("User").child(userID);
+        //db = database.getReference().child("User");
+        db = database.getReference().child("TimeSheet").child(userID);
 
 
-//        userID = user.getUid();
+        //userID = user.getUid();
 
 
-//        Toast.makeText(this, userID, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, userID, Toast.LENGTH_SHORT).show();
         //  staff_number = (TextView) findViewById(R.id.staff_number);
 
 
-//
-//        db.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//
-//
-//                if (userID.equals(dataSnapshot.child("userId").getValue().toString())) {
+
+        //db.addChildEventListener(new ChildEventListener() {
+        //@Override
+        //public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+        //if (userID.equals(dataSnapshot.child("userId").getValue().toString())) {
 //
 //                    Register reg = dataSnapshot.getValue(Register.class);
 //                    User user = dataSnapshot.getValue(User.class);
@@ -228,7 +228,7 @@ public class HomeScreenUser extends AppCompatActivity
                 role = user.getRole();
 
                 userName = user.getName();
-                surname =user.getLastName();
+                surname = user.getLastName();
                 textViewUserName.setText("Name: " + userName + ", " + surname);
                 textViewUserEmail.setText("Email: " + user.getEmail());
 
@@ -245,7 +245,7 @@ public class HomeScreenUser extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -268,18 +268,12 @@ public class HomeScreenUser extends AppCompatActivity
 
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
 
             case R.id.markRegister:
                 signRegister();
                 break;
         }
-
-        //noinspection SimplifiableIfStatement
-
-        /*if (id == R.id.action_settings) {
-            return true;
-        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -288,7 +282,7 @@ public class HomeScreenUser extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.about:
                 break;
@@ -296,9 +290,7 @@ public class HomeScreenUser extends AppCompatActivity
             case R.id.update_profile:
                 finish();
                 Intent intent = new Intent(HomeScreenUser.this, UpdateProfileActivity.class);
-//                intent.putExtra("User_KEY",userID);
                 startActivity(intent);
-//                Toast.makeText(this, "update_profile", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.send_notification:
@@ -314,16 +306,16 @@ public class HomeScreenUser extends AppCompatActivity
                 break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     public void ApplyForLeave() {
 //
-        Intent intent = new Intent(HomeScreenUser.this,LeaveApply.class);
-        intent.putExtra("name",userName);
-        intent.putExtra("surname",surname);
+        Intent intent = new Intent(HomeScreenUser.this, LeaveApply.class);
+        intent.putExtra("name", userName);
+        intent.putExtra("surname", surname);
         startActivity(intent);
     }
 
@@ -399,12 +391,11 @@ public class HomeScreenUser extends AppCompatActivity
 //                    db.child(user.getUid()).child("Register");
 
 
+                    Register register = new Register(formattedDate, weekdays, month_year, time_in, time_out, weekNumber);
+                    Map<String, Object> registerValues = register.toMap();
 
-                    Register register = new Register( formattedDate, weekdays,  month_year,  time_in,  time_out,  weekNumber);
-                    Map<String , Object >registerValues = register.toMap();
-
-                    Map<String , Object> childUpdate = new HashMap<>();
-                    childUpdate.put(userID,registerValues);
+                    Map<String, Object> childUpdate = new HashMap<>();
+                    childUpdate.put(userID, registerValues);
                     db.child(month_year).child("Week" + weekNumber).child("Weekdays").child(weekdays).updateChildren(childUpdate);
 
                    /* db.child(user.getUid()).child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("month").setValue(month_year);
@@ -516,10 +507,10 @@ public class HomeScreenUser extends AppCompatActivity
                 profile_Pic.setImageBitmap(bitmap);
 
                 // uploading
-                if(filePath != null) {
+                if (filePath != null) {
                     pd.show();
 
-                    StorageReference childRef = storageRef.child(user.getUid()+".jpg");
+                    StorageReference childRef = storageRef.child(user.getUid() + ".jpg");
 
                     //uploading the image
                     UploadTask uploadTask = childRef.putFile(filePath);
@@ -556,8 +547,7 @@ public class HomeScreenUser extends AppCompatActivity
                             Toast.makeText(HomeScreenUser.this, "Upload Failed -> " + e, Toast.LENGTH_SHORT).show();
                         }
                     });
-                }
-                else {
+                } else {
                     Toast.makeText(HomeScreenUser.this, "Select an image", Toast.LENGTH_SHORT).show();
                 }
 
@@ -567,7 +557,7 @@ public class HomeScreenUser extends AppCompatActivity
         }
     }
 
-    public void SignOut(){
+    public void SignOut() {
 
         firebaseAuth.signOut();
         finish();

@@ -2,35 +2,27 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@drawable/back1"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/back1"
+    android:orientation="vertical"
+    android:id="@+id/content_main"
+    tools:showIn="@layout/app_bar_main">
 
-
-    <RelativeLayout
+   <RelativeLayout
         android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="190dp"
         android:background="@drawable/background">
-
-
-        <!--<android.support.v7.widget.Toolbar-->
-            <!--android:id="@+id/toolbar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="24dp"-->
-            <!--app:popupTheme="@style/AppTheme.PopupOverlay">
-
-
-
-        </android.support.v7.widget.Toolbar>   -->
-
+       <!--
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView2"
+            android:layout_alignBottom="@+id/textView2"
+            android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp"
             android:fontFamily="sans-serif-light"
             android:gravity="center_vertical"
@@ -38,16 +30,15 @@
             android:text="Mark Register"
             android:textColor="#1c7839"
             android:textSize="20sp"
-            android:visibility="gone"
             android:textStyle="bold"
-            android:layout_alignBaseline="@+id/textView2"
-            android:layout_alignBottom="@+id/textView2"
-            android:layout_alignParentEnd="true" />
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/toolbar"
             android:layout_marginStart="18dp"
             android:fontFamily="sans-serif-light"
             android:gravity="center_vertical"
@@ -55,9 +46,7 @@
             android:textColor="#1c7839"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:visibility="gone"
-            android:layout_alignTop="@+id/toolbar"
-            android:layout_alignParentStart="true" />
+            android:visibility="gone" /> -->
 
 
     </RelativeLayout>
@@ -106,7 +95,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
-                android:text="Skill Coders"
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
@@ -116,7 +104,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
                 android:textColor="@android:color/black"
-                android:text="theskillcoders@yahoo.co.za"
                 android:textSize="15sp" />
         </LinearLayout>
 
@@ -127,28 +114,27 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center_vertical"
-        android:text="Information"
         android:textColor="#1c7839"
-
         android:textStyle="bold" />
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/information"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:text="Home Page"
-        android:textSize="12sp"
-        android:textColor="#000000" />
+            <TextView
+                android:id="@+id/information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+                android:text="Home Page"
+                android:textColor="#000000"
+                android:textSize="12sp" />
         </LinearLayout>
 
     </ScrollView>

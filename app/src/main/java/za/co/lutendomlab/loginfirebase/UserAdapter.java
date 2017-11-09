@@ -87,9 +87,9 @@ public class UserAdapter extends ArrayAdapter<User> {
         firebaseUser = firebaseAuth.getCurrentUser();
 
         if(firebaseUser.getPhotoUrl() != null){
-        String url = firebaseUser.getPhotoUrl().toString();
-        Glide.with(getContext()).load(url).into(profile);
-    }else {
+            String url = firebaseUser.getPhotoUrl().toString();
+            Glide.with(getContext()).load(url).into(profile);
+        } else {
             profile.setImageResource(R.drawable.profile_pic);
         }
 

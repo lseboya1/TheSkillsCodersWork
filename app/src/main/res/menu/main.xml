@@ -5,5 +5,5 @@
         android:id="@+id/markRegister"
         android:orderInCategory="100"
         app:showAsAction="always"
-        android:title="Mark Register" />
+        android:title="@string/mark_register" />
 </menu>

@@ -12,19 +12,29 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Geo-TimeSheet"
-        android:textSize="17dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_weight="0.25"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/geologo" />
+
+        <TextView
+            android:layout_weight="0.75"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/geo_timesheet"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    </LinearLayout>
 
 </LinearLayout>
