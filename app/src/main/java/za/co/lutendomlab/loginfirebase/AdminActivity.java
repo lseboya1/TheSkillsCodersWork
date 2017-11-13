@@ -18,6 +18,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,19 +45,11 @@ import java.util.List;
 public class AdminActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TextView textViewUserEmail;
-    private TextView textViewUserName;
-    private ImageView profile_Pic;
 
     String userID;
-    String userName;
-    String surname;
-    String role;
     private DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
-
-//    Context context;
-//    List<User> allUsers = new ArrayList<>();
+    Toolbar toolbar;
 
     FirebaseUser user;
 
@@ -69,7 +62,9 @@ public class AdminActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //toolbar.setSubtitle(R.string.unofficial);
+//        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -89,30 +84,28 @@ public class AdminActivity extends AppCompatActivity
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference().child("User").child(userID);
 
-        textViewUserName = (TextView)findViewById(R.id.textViewName);
-        textViewUserEmail = (TextView)findViewById(R.id.textViewEmail);
-        profile_Pic=(ImageView)findViewById(R.id.profile_picture);
+//        textViewUserName = (TextView)findViewById(R.id.textViewName);
+//        textViewUserEmail = (TextView)findViewById(R.id.textViewEmail);
+//        profile_Pic=(ImageView)findViewById(R.id.profile_picture);
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                User user = dataSnapshot.getValue(User.class);
-                role = user.getRole();
-
-                userName = user.getName();
-                surname =user.getLastName();
-                textViewUserName.setText("Name: " + userName + ", " + surname);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        textViewUserEmail.setText("Email: "+ user.getEmail());
+//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//                User user = dataSnapshot.getValue(User.class);
+//                role = user.getRole();
+//
+//                userName = user.getName();
+//                surname =user.getLastName();
+//                textViewUserName.setText("Name: " + userName + ", " + surname);
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -120,10 +113,10 @@ public class AdminActivity extends AppCompatActivity
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        if (user.getPhotoUrl() != null){
-            String url = user.getPhotoUrl().toString();
-            Glide.with(getApplicationContext()).load(url).into(profile_Pic);
-        }
+//        if (user.getPhotoUrl() != null){
+//            String url = user.getPhotoUrl().toString();
+//            Glide.with(getApplicationContext()).load(url).into(profile_Pic);
+//        }
 
 
         //Tabs
@@ -194,20 +187,16 @@ public class AdminActivity extends AppCompatActivity
         switch (item.getItemId()){
 
             case R.id.about:
+                startActivity(new Intent(AdminActivity.this, AboutUsActivity.class));
                 break;
 
             case R.id.update_profile:
-                finish();
-                Intent intent = new Intent(AdminActivity.this, UpdateProfileActivity.class);
+                Intent intent = new Intent(AdminActivity.this, ViewProfileAdmin.class);
                 startActivity(intent);
                 break;
 
             case R.id.logout:
-                Toast.makeText(this, "Out", Toast.LENGTH_SHORT).show();
-//                firebaseAuth.signOut();
-//                finish();
-//                Intent intent1 = new Intent(this, LoginActivity.class);
-//                startActivity(intent1);
+                SignOut();
                 break;
         }
 
@@ -274,6 +263,12 @@ public class AdminActivity extends AppCompatActivity
             return null;
         }
     }
+    public void SignOut() {
 
+        firebaseAuth.signOut();
+        finish();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 
 }

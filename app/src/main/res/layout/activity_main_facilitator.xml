@@ -9,11 +9,16 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include
-        layout="@layout/content_main_admin"
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:background="@drawable/background"/>
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentEnd="true">
+    </ListView>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -25,4 +30,3 @@
         app:menu="@menu/activity_main_admin" />
 
 </android.support.v4.widget.DrawerLayout>
-

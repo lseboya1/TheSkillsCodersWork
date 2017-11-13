@@ -63,11 +63,6 @@ public class ListViewSowetoActivity extends android.support.v4.app.Fragment {
 
 
                 User user = allUsers.get(position);
-//                Intent intent = new Intent(ListViewActivity.this, AdminOption.class);
-//                Toast.makeText(context, "Am Clicked" + user.getName(), Toast.LENGTH_SHORT).show();
-                // Log.i("Ygritte", userInfo.toString());
-//                intent.putExtra("userProfile", user);
-//                startActivity(intent);
                 Intent intent = new Intent(context,AdminOptionStudents.class);
                 intent.putExtra("userProfile",user);
                 startActivity(intent);

@@ -18,7 +18,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,7 +33,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,9 +50,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
-
-import static android.R.id.toggle;
-import static za.co.lutendomlab.loginfirebase.R.id.information;
 
 public class HomeScreenUser extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -84,39 +79,33 @@ public class HomeScreenUser extends AppCompatActivity
     FirebaseStorage storage = FirebaseStorage.getInstance();
 
     StorageReference storageRef = storage.getReferenceFromUrl("gs://the-skills-coders-work.appspot.com/");    //change the url according to your firebase app
-
+    ImageView imageView;
     DrawerLayout drawer;
     NavigationView navigationView;
     Toolbar toolbar;
 
     String role;
     private FirebaseAuth firebaseAuth;
+    ImageView mark_reg;
 
-    String infor = "Geofencing provides a plethora of applications for administrator, especially" +
-            " in the workforce management category. It is specifically applied to attendance and time " +
-            "functionality, geofencing can allow an administrator to establish geographical areas to " +
-            "limit where the users (the administrator, the facilitator and the students) are allowed " +
-            "to punch in or out.\n" +
-            "\n" +
-            "Geotimesheet app allows all users to register and login in their accounts in the system." +
+    String infor =
+            "Geo-timesheet app allows all you to register and login in their accounts in the system." +
             " Any smartphone with Android operating system can be turned into a mobile time track clock" +
             " by downloading the Geotimesheet app, so it makes tracking time and attendance for travelling" +
             " users facile. Users can only clock in and out for their shifts. Now more than ever, students " +
-            "can expect self-service tools with easy-to-use resources from their facilitators and administrator," +
-            " so providing a time, attendance, leave forms, sending a message, and beneficial portal on" +
-            " their smartphone device can help meet that growing demand.\n" +
-            "\n" +
-            "The functions which can be performed by the users are: to clock in and out for working" +
-            " hours, the students time hours, view students monthly schedule, leave forms and sending messages.\n";
+            "can expect self-service tools with easy-to-use resources from their facilitators and administrator,";
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen_user);
+        imageView =(ImageView)findViewById(R.id.imageView);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         //toolbar.setSubtitle(R.string.unofficial);
         setSupportActionBar(toolbar);
+
         TextView information = (TextView) findViewById(R.id.information);
         information.setText(infor);
 
@@ -157,6 +146,7 @@ public class HomeScreenUser extends AppCompatActivity
             if (user.getPhotoUrl() != null) {
                 String url = user.getPhotoUrl().toString();
                 Glide.with(getApplicationContext()).load(url).into(profile_Pic);
+
             }
         }
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -216,7 +206,7 @@ public class HomeScreenUser extends AppCompatActivity
 //
 //            }
 //        });
-
+//
         textViewUserEmail = (TextView) findViewById(R.id.textViewEmail);
         textViewUserName = (TextView) findViewById(R.id.textViewName);
 
@@ -266,6 +256,11 @@ public class HomeScreenUser extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
+
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
         int id = item.getItemId();
 
         switch (id) {
@@ -285,11 +280,11 @@ public class HomeScreenUser extends AppCompatActivity
         switch (item.getItemId()) {
 
             case R.id.about:
+                startActivity(new Intent(HomeScreenUser.this, AboutUsActivity.class));
                 break;
 
             case R.id.update_profile:
-                finish();
-                Intent intent = new Intent(HomeScreenUser.this, UpdateProfileActivity.class);
+                Intent intent = new Intent(HomeScreenUser.this, ViewProfileStudent.class);
                 startActivity(intent);
                 break;
 
@@ -304,6 +299,9 @@ public class HomeScreenUser extends AppCompatActivity
             case R.id.logout:
                 SignOut();
                 break;
+//            case R.id.nav_view:
+//                navigationView.setItemBackgroundResource(R.drawable.call);
+//                break;
         }
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -398,6 +396,9 @@ public class HomeScreenUser extends AppCompatActivity
                     childUpdate.put(userID, registerValues);
                     db.child(month_year).child("Week" + weekNumber).child("Weekdays").child(weekdays).updateChildren(childUpdate);
 
+                    mark_reg = (ImageView)findViewById(R.id.mark_reg);
+                    mark_reg.setImageResource(R.drawable.in);
+//                    mark_reg.setImageResource(R.drawable.call);
                    /* db.child(user.getUid()).child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("month").setValue(month_year);
                     db.child(user.getUid()).child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("weekNumbr").setValue(weekNumber);
                     db.child(user.getUid()).child(month_year).child("Week" + weekNumber).child(weekNumber).child("Days").child(weekdays).child("day").setValue(weekdays);
@@ -439,9 +440,6 @@ public class HomeScreenUser extends AppCompatActivity
         });
         alertDialog.setNegativeButton("Sign Out", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-
-                db.child(month_year).child("Week" + weekNumber).child("Weekdays").child(weekdays).child(userID).child("timeOut").setValue(time_out);
-
 //                Register register = new Register( formattedDate, weekdays,  month_year,  time_in,  time_out,  weekNumber);
 //                Map<String , Object >registerValues = register.toMap();
 //                Map<String , Object> childUpdate = new HashMap<>();
@@ -473,10 +471,11 @@ public class HomeScreenUser extends AppCompatActivity
                     weekdays = Day.format(calendar.getTime());
                     time_out = date.format(currentLocalTime);
 
-                    /**
-                     * save to firebbse
-                     * Time out
-                     */
+                    db.child(month_year).child("Week" + weekNumber).child("Weekdays").child(weekdays).child(userID).child("timeOut").setValue(time_out);
+
+                    mark_reg = (ImageView)findViewById(R.id.mark_reg);
+                    mark_reg.setImageResource(R.drawable.out);
+
                     Toast.makeText(HomeScreenUser.this, "Signed in", Toast.LENGTH_SHORT).show();
                     time_in = "";
                 }
@@ -505,6 +504,7 @@ public class HomeScreenUser extends AppCompatActivity
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 //Setting image to ImageView
                 profile_Pic.setImageBitmap(bitmap);
+                imageView.setImageBitmap(bitmap);
 
                 // uploading
                 if (filePath != null) {

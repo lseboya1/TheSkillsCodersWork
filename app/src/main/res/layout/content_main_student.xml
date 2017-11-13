@@ -1,121 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/back1"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/content_main"
     tools:showIn="@layout/app_bar_main">
 
-   <RelativeLayout
-        android:id="@+id/background"
+    <RelativeLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:background="@drawable/background">
-       <!--
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView2"
-            android:layout_alignBottom="@+id/textView2"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="15dp"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center_vertical"
-            android:onClick="signRegister"
-            android:text="Mark Register"
-            android:textColor="#1c7839"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:visibility="gone" />
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/toolbar"
-            android:layout_marginStart="18dp"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center_vertical"
-            android:text="Home Page"
-            android:textColor="#1c7839"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:visibility="gone" /> -->
 
+        <ImageView
+            android:id="@+id/profile_picture"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="56dp"
+            android:scaleType="centerCrop"
+            android:background="@android:color/darker_gray"/>
+
+        <ImageButton
+            android:id="@+id/profile_picture_select"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:visibility="gone"
+            android:layout_gravity="top"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_camera" />
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/background"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="-100dp">
-
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <com.mikhaellopez.circularimageview.CircularImageView
-                android:id="@+id/profile_picture"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/profile_pic"
-                app:civ_border_color="@android:color/transparent"
-                app:civ_border_width="10dp" />
-
-            <ImageButton
-                android:id="@+id/profile_picture_select"
-                android:layout_width="56dp"
-                android:layout_height="58dp"
-                android:layout_gravity="top"
-                android:background="@android:color/transparent"
-                android:src="@android:drawable/ic_menu_camera" />
-
-        </FrameLayout>
-
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="24dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginStart="12dp"
-            android:orientation="vertical">
+            android:layout_gravity="end"
+            android:orientation="vertical"
+            android:background="@color/colorPrimary">
 
             <TextView
                 android:id="@+id/textViewName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
+                android:text="name : Codetribe"
+                android:textStyle="bold"
+                android:layout_marginLeft="16dp"
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/textViewEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
-                android:textColor="@android:color/black"
-                android:textSize="15sp" />
+                android:text="Codetribe@yahoo.com"
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
-    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center_vertical"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="5dp"
         android:textColor="#1c7839"
-        android:textStyle="bold" />
+        android:textSize="25sp"
+        android:layout_weight="1"
+        android:text="Information"/>
+
+    <ImageView
+        android:id="@+id/mark_reg"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:layout_marginRight="16sp"
+        android:layout_gravity="bottom"/>
+
+</LinearLayout>
+
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -123,18 +96,22 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/information"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="6dp"
                 android:text="Home Page"
+                android:layout_gravity="center"
+                android:typeface="serif"
                 android:textColor="#000000"
-                android:textSize="12sp" />
+                android:textSize="15sp" />
+
         </LinearLayout>
 
     </ScrollView>

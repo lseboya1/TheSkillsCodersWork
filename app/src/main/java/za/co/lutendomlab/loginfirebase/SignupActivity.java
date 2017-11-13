@@ -80,12 +80,12 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
-        if(auth.getCurrentUser() !=null)
-        {
-            //profile activity here
-            finish();
-            startActivity(new Intent(getApplicationContext(),HomeScreenUser.class));
-        }
+//        if(auth.getCurrentUser() !=null)
+//        {
+//            //profile activity here
+//            finish();
+//            startActivity(new Intent(getApplicationContext(),HomeScreenUser.class));
+//        }
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +120,6 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                     Toast.makeText(getApplicationContext(),"Enter your phone number",Toast.LENGTH_SHORT).show();
                     return;
                 }
-
 
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(getApplicationContext(),"Enter email address",Toast.LENGTH_SHORT).show();
@@ -188,7 +187,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                               startActivity(new Intent(SignupActivity.this, HomeScreenUser.class));
                                     startActivity(new Intent(SignupActivity.this, HomeScreenUser.class));
                                     if (is_admin) {
-                                        Intent intent = new Intent(SignupActivity.this, AdminActivity.class);
+                                        Intent intent = new Intent(SignupActivity.this, FacilitatorMainActivity.class);
                                         startActivity(intent);
                                     } else {
                                         Intent intent = new Intent(SignupActivity.this, HomeScreenUser.class);

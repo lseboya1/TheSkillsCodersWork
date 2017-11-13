@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_horizontal"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/profile_picture"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:background="@android:color/darker_gray"/>
+
+
+
+        <ImageView
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_gravity="end"
+            android:onClick="EditProfile"
+            android:layout_marginRight="10dp"
+            android:padding="10dp"
+            android:src="@drawable/editprofile"
+            android:paddingLeft="10dp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15sp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="first Name"
+                android:paddingTop="25sp"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:layout_margin="5dp"
+                android:background="#ffffff"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/lastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Last Name"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:layout_margin="5dp"
+                android:background="#ffffff"
+                android:maxLines="1" />
+
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:layout_margin="5dp"
+                android:background="#ffffff"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone number"
+                android:inputType="number"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:layout_margin="5dp"
+                android:background="#ffffff"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/facility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Facility"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:layout_margin="5dp"
+                android:background="#ffffff"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/role"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Role"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:layout_margin="5dp"
+                android:background="#ffffff"
+                android:maxLines="1" />
+
+        </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>

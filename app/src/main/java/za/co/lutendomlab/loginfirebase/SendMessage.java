@@ -21,27 +21,33 @@ public class SendMessage extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_message);
-//
-//        getSupportActionBar().setTitle("Send Notification");
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         message = (EditText)findViewById(R.id.message);
         header = (EditText)findViewById(R.id.header);
     }
 
-    public void Send(View view){
+    public void Send(View view) {
 
-        String Message = message.getText().toString();
-        String headerMessage = header.getText().toString();
+        if (message.getText().toString().isEmpty() && header.getText().toString().isEmpty()) {
 
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:"));//only emails apps should handle this
-        intent.putExtra(Intent.EXTRA_EMAIL,new String [] {"khuthadzo@mlab.co.za","veronica@mlab.co.za"});
-        intent.putExtra(Intent.EXTRA_SUBJECT, headerMessage);
-        intent.putExtra(Intent.EXTRA_TEXT, Message);
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
 
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
+        } else {
+
+            String Message = message.getText().toString();
+            String headerMessage = header.getText().toString();
+
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:"));//only emails apps should handle this
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"khuthadzo@mlab.co.za", "veronica@mlab.co.za"});
+            intent.putExtra(Intent.EXTRA_SUBJECT, headerMessage);
+            intent.putExtra(Intent.EXTRA_TEXT, Message);
+
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            }
         }
     }
 

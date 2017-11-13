@@ -4,10 +4,6 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/about"
-            android:icon="@drawable/about_us"
-            android:title="About Us" />
-        <item
             android:id="@+id/update_profile"
             android:icon="@drawable/update"
             android:title="Update Profile" />
@@ -18,7 +14,11 @@
         <item
             android:id="@+id/apply_leave"
             android:icon="@drawable/send"
-            android:title="Aply for Leave" />
+            android:title="Apply for Leave" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/about_us"
+            android:title="About Us" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/power"

@@ -77,6 +77,7 @@ public class ListViewActivity extends android.support.v4.app.Fragment {
         childEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
 
                     Log.i("Ygritte", snapshot.toString());
@@ -89,7 +90,6 @@ public class ListViewActivity extends android.support.v4.app.Fragment {
                 }
                 userAdapter = new UserAdapter(context,R.layout.model,allUsers);
                 listView.setAdapter(userAdapter);
-
             }
 
             @Override

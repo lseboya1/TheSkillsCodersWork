@@ -62,10 +62,11 @@ public class LoginActivity extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         if (user != null) {
-            navigateToUserScreen(user.getUid());
+//            Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
+//            startActivity(intent);
             progressDialog.setMessage("Logging in. Please wait...");
             progressDialog.show();
-
+            navigateToUserScreen(user.getUid());
         }
 
         inputEmail = (EditText) findViewById(R.id.email);
@@ -165,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
                 User user = dataSnapshot.getValue(User.class);
 
 //                if ("Able".equals(user.getStatus())) {
-                if ("Facilitator".equals(user.getRole())) {
+                if ("Admin".equals(user.getRole())) {
                     Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                     startActivity(intent);
                     finish();
@@ -176,6 +177,12 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                     progressDialog.dismiss();
+                }else if ("Facilitator".equals(user.getRole())) {
+                    Intent intent = new Intent(LoginActivity.this, FacilitatorMainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    progressDialog.dismiss();
+
                 }
 //            }else{
 //                    Toast.makeText(LoginActivity.this, "Your Account is not active. Please contact your HR ", Toast.LENGTH_SHORT).show();

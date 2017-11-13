@@ -29,8 +29,8 @@ public class UserAdapter extends ArrayAdapter<User> {
     View  viewList;
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
-    FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageRef = storage.getReferenceFromUrl("gs://the-skills-coders-work.appspot.com/");
+//    FirebaseStorage storage = FirebaseStorage.getInstance();
+//    StorageReference storageRef = storage.getReferenceFromUrl("gs://the-skills-coders-work.appspot.com/");
 
     public UserAdapter(Context context,int resource ,List<User> users ) {
         super(context, resource, users);
@@ -69,27 +69,29 @@ public class UserAdapter extends ArrayAdapter<User> {
 
         User currentUser = getItem(position);
 
-
         TextView name = (TextView)listViewItem.findViewById(R.id.name);
         TextView email = (TextView)listViewItem.findViewById(R.id.email);
         ImageView profile = (ImageView)listViewItem.findViewById(R.id.profile);
         TextView phoneNumber = (TextView)listViewItem.findViewById(R.id.phoneNumber);
 
-        name.setText(String.format("Name: %s", currentUser.getName()));
-        email.setText(String.format("Email: %s", currentUser.getEmail()));
+//        name.setText(String.format("Name: %s", currentUser.getName()));
+//        email.setText(String.format("Email: %s", currentUser.getEmail()));
 
         name.setText("Name: " + currentUser.getName() + " , " + currentUser.getLastName());
         email.setText("Email: " + currentUser.getEmail());
         phoneNumber.setText(String.format("Phone Number: %s",currentUser.getPhoneNumber()));
 
+
         profile.setImageResource(currentUser.getProfile());
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
         if(firebaseUser.getPhotoUrl() != null){
-            String url = firebaseUser.getPhotoUrl().toString();
-            Glide.with(getContext()).load(url).into(profile);
-        } else {
+        String url = firebaseUser.getPhotoUrl().toString();
+            int url1 = currentUser.getProfile();
+        Glide.with(getContext()).load(url).into(profile);
+        }else {
             profile.setImageResource(R.drawable.profile_pic);
         }
 

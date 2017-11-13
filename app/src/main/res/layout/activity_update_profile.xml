@@ -3,67 +3,75 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@drawable/back1"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="#10000000"
-        android:padding="20dp"
-        android:layout_centerHorizontal="true">
+        android:layout_gravity="center_horizontal"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
 
         <FrameLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.mikhaellopez.circularimageview.CircularImageView
+            <ImageView
                 android:id="@+id/profile_picture"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@android:color/white"
-                android:src="@drawable/profile_pic" />
+                android:scaleType="centerCrop"
+                android:background="@android:color/darker_gray"/>
 
             <ImageButton
-                android:layout_width="56dp"
-                android:layout_height="58dp"
-                android:layout_gravity="top"
-                android:onClick="ProfilePictureSelect"
+                android:id="@+id/imageButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="bottom|end"
                 android:background="@android:color/transparent"
+                android:onClick="ProfilePictureSelect"
                 android:src="@android:drawable/ic_menu_camera" />
 
         </FrameLayout>
 
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="first Name"
-        android:maxLines="1" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/lastName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Last Name"
-        android:maxLines="1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15sp"
+            android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="first Name"
+            android:paddingTop="25sp"
+            android:maxLines="1" />
+
+        <EditText
+            android:id="@+id/lastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last Name"
+            android:maxLines="1" />
 
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:focusableInTouchMode="true"
-        android:hint="Email"
-        android:imeActionId="@+id/login"
-        android:imeOptions="actionUnspecified"
-        android:inputType="textEmailAddress"
-        android:maxLines="1"/>
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:hint="Email"
+            android:imeActionId="@+id/login"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textEmailAddress"
+            android:maxLines="1" />
 
         <EditText
             android:id="@+id/phoneNumber"
@@ -73,25 +81,66 @@
             android:inputType="number"
             android:maxLines="1" />
 
-    <EditText
-        android:id="@+id/Password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:focusableInTouchMode="true"
-        android:hint="password"
-        android:visibility="gone"
-        android:imeActionId="@+id/login"
-        android:imeOptions="actionUnspecified"
-        android:inputType="textPassword"
-        android:maxLines="1" />
+            <!--<EditText-->
+                <!--android:id="@+id/facility"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:focusableInTouchMode="true"-->
+                <!--android:hint="Facility"-->
+                <!--android:editable="false"-->
+                <!--android:imeActionId="@+id/login"-->
+                <!--android:imeOptions="actionUnspecified"-->
+                <!--android:inputType="textEmailAddress"-->
+                <!--android:maxLines="1" />-->
 
-    <Button
-        style="?android:textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save"
-        android:onClick="Save"
-        android:textStyle="bold" />
+            <!--<EditText-->
+                <!--android:id="@+id/role"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:focusableInTouchMode="true"-->
+                <!--android:hint="Role"-->
+                <!--android:editable="false"-->
+                <!--android:imeActionId="@+id/login"-->
+                <!--android:imeOptions="actionUnspecified"-->
+                <!--android:inputType="textEmailAddress"-->
+                <!--android:maxLines="1" />-->
+
+
+
+            <TextView
+                android:id="@+id/facility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Facility"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:background="#ffffff"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/role"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Role"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:layout_marginTop="5dp"
+                android:background="#ffffff"
+                android:maxLines="1" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="Save"
+            android:text="Save"
+            android:layout_marginTop="17sp"
+            android:textStyle="bold" />
+
+        </LinearLayout>
+
+        </ScrollView>
 
     </LinearLayout>
 

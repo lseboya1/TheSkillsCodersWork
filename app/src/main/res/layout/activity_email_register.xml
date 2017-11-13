@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:padding="20dp"
-    android:background="@drawable/back1"
+    android:background="#FFFFFF"
     android:layout_height="match_parent"
     android:weightSum="1">
 
@@ -12,9 +12,8 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter your Gmail"
-        android:textColor="#1c7839"
-        android:textColorHint="#1c7839"/>
+        android:text="Enter your Email"
+        android:textColor="@android:color/black"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -24,9 +23,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
         android:text="Enter your email password"
-        android:textColor="#1c7839"
-        android:textColorHint="#1c7839"/>
+        android:textColor="@android:color/black"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -40,8 +39,6 @@
         android:layout_height="58dp"
         android:onClick="sendEmail"
         android:text="Send"
-        android:background="@drawable/shape_button"
-        android:textColor="#1c7839"
-        android:textColorHint="#1c7839" />
+        android:textColor="@android:color/black" />
 
 </LinearLayout>

@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/back1"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:weightSum="1">
 
     <ImageView
@@ -40,9 +40,6 @@
                 android:textColor="#1c7839"
                 android:textColorHint="#1c7839" />
 
-    <!-- Login Button -->
-
-
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
@@ -51,7 +48,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/shape_button"
         android:onClick="LogIn"
         android:text="Log in"
         android:textColor="#1c7839"

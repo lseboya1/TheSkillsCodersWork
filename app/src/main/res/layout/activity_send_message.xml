@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/back1"
+    android:background="#FFFFFF"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Leave form"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:textColor="#1c7839"
+            android:textColorHint="#1c7839" />
+
+
+    </android.support.v7.widget.Toolbar>
 
     <EditText
         android:id="@+id/header"
@@ -12,8 +34,7 @@
         android:layout_height="wrap_content"
         android:gravity="bottom|center"
         android:layout_marginTop="20dp"
-        android:textColor="#1c7839"
-        android:textColorHint="#1c7839"
+        android:textColor="@android:color/black"
         android:hint="Enter your Message Header" />
 
     <EditText
@@ -21,8 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textColor="#1c7839"
-        android:textColorHint="#1c7839"
+        android:textColor="@android:color/black"
         android:gravity="bottom|center"
         android:hint="Enter your message" />
 
@@ -30,12 +50,11 @@
         android:id="@+id/button6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_button"
+        android:layout_margin="16dp"
         android:onClick="Send"
         android:text="Send"
-        android:textColor="#1c7839"
-        android:textColorHint="#1c7839"
-        android:layout_margin="16dp"
+        android:padding="20dp"
+        android:textColor="@android:color/black"
         android:textStyle="bold" />
 
 </LinearLayout>

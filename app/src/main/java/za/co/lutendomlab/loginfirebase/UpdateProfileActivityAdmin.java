@@ -8,14 +8,14 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,10 +37,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 /**
- * Created by codetribe on 8/23/2017.
+ * Created by codeTribe on 11/10/2017.
  */
 
-public class UpdateProfileActivity extends AppCompatActivity {
+public class UpdateProfileActivityAdmin extends AppCompatActivity {
 
 
     private EditText name;
@@ -150,12 +150,12 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
     public void Save(View view){
         updateUser();
-        startActivity(new Intent(UpdateProfileActivity.this, ViewProfileStudent.class));
+                startActivity(new Intent(UpdateProfileActivityAdmin.this, ViewProfileAdmin.class));
     }
 
     public void ProfilePictureSelect(View view){
 
-        pd = new ProgressDialog(UpdateProfileActivity.this);
+        pd = new ProgressDialog(UpdateProfileActivityAdmin.this);
         pd.setMessage("Uploading....");
 
         Intent intent = new Intent();
@@ -206,7 +206,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
 
                             pd.dismiss();
-                            Toast.makeText(UpdateProfileActivity.this, "Upload successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdateProfileActivityAdmin.this, "Upload successful", Toast.LENGTH_SHORT).show();
 
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                     .setPhotoUri(Uri.parse(profile_url))
@@ -226,12 +226,12 @@ public class UpdateProfileActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             pd.dismiss();
-                            Toast.makeText(UpdateProfileActivity.this, "Upload Failed -> " + e, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdateProfileActivityAdmin.this, "Upload Failed -> " + e, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
                 else {
-                    Toast.makeText(UpdateProfileActivity.this, "Select an image", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateProfileActivityAdmin.this, "Select an image", Toast.LENGTH_SHORT).show();
                 }
 
             } catch (Exception e) {

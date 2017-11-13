@@ -8,7 +8,7 @@ import android.os.Bundle;
 public class SpashScreenActivity extends AppCompatActivity {
 
     //Splash screen timer
-    private static final int SPLASH_TIME_OUT = 4000;
+    private static final int SPLASH_TIME_OUT = 8000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
