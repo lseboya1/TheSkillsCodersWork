@@ -45,7 +45,6 @@ public class User implements Parcelable {
             }
         };
 
-<<<<<<< HEAD
     public User(String userId, String name, String lastName, String email, String role, String facility, String phoneNumber) {
         this.userId = userId;
         this.name = name;
@@ -56,10 +55,7 @@ public class User implements Parcelable {
         this.phoneNumber = phoneNumber;
     }
 
-    public User(String userId, String name, String lastName, String email, String phoneNumber) {
-=======
     public User(String userId, String name, String lastName, String email, String phoneNumber,ImageView profile) {
->>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
         this.userId = userId;
         this.name = name;
         this.lastName = lastName;

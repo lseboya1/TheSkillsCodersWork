@@ -103,11 +103,9 @@ public class HomeScreenUser extends AppCompatActivity
         setContentView(R.layout.home_screen_user);
         imageView =(ImageView)findViewById(R.id.imageView);
 
-<<<<<<< HEAD
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         //toolbar.setSubtitle(R.string.unofficial);
         setSupportActionBar(toolbar);
-=======
         NavigationView navigationView1 = (NavigationView)findViewById(R.id.nav_view);
 
         header = navigationView1.findViewById(R.id.the_name);
@@ -117,10 +115,7 @@ public class HomeScreenUser extends AppCompatActivity
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
->>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
 
-        TextView information = (TextView) findViewById(R.id.information);
-        information.setText(infor);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -135,22 +130,22 @@ public class HomeScreenUser extends AppCompatActivity
 //        user = firebaseAuth.getCurrentUser();
 
 
-        imageProfileSelect = (ImageView) findViewById(R.id.profile_picture_select);
+//        imageProfileSelect = (ImageView) findViewById(R.id.profile_picture_select);
         profile_Pic = (ImageView) findViewById(R.id.profile_picture);
-        imageProfileSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                pd = new ProgressDialog(HomeScreenUser.this);
-                pd.setMessage("Uploading....");
-
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_PICK);
-                startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST);
-
-            }
-        });
+//        imageProfileSelect.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                pd = new ProgressDialog(HomeScreenUser.this);
+//                pd.setMessage("Uploading....");
+//
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.setAction(Intent.ACTION_PICK);
+//                startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST);
+//
+//            }
+//        });
 
         user = firebaseAuth.getCurrentUser();
         if (user == null) {
@@ -235,8 +230,8 @@ public class HomeScreenUser extends AppCompatActivity
                 textViewUserName.setText("Name: " + userName + ", " + surname);
                 textViewUserEmail.setText("Email: " + user.getEmail());
 
-                TextView the_name = (TextView)header.findViewById(R.id.the_name);
-                the_name.setText(userName);
+//                TextView the_name = (TextView)header.findViewById(R.id.the_name);
+//                the_name.setText(userName);
 
             }
 

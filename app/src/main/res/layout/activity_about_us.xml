@@ -11,16 +11,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/information"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="first Name"
-        android:elevation="4dp"
-        android:padding="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="#ffffff" />
+        <TextView
+            android:id="@+id/information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="first Name"
+            android:elevation="4dp"
+            android:padding="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#ffffff" />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="MEET THE TEAM"
+            android:elevation="4dp"
+            android:padding="5dp"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#ffffff" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +51,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/lutendo" />
+            android:src="@drawable/profile_pic" />
 
         <TextView
             android:id="@+id/info_luu"
@@ -60,7 +75,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/itu" />
+            android:src="@drawable/profile_pic" />
 
         <TextView
             android:id="@+id/info_itu"
@@ -83,7 +98,7 @@
             android:id="@+id/profile_koketso"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/koki" />
+            android:src="@drawable/profile_pic" />
 
         <TextView
             android:id="@+id/info_koketso"

@@ -4,25 +4,29 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="30sp"
+    android:paddingRight="30dp"
     android:background="#FFFFFF"
     android:weightSum="1">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="5dp"
+        android:layout_weight="1.2"
         android:src="@drawable/geologo" />
+
+
 
 
             <EditText
                 android:id="@+id/email"
-                android:layout_width="319dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
-                android:layout_marginStart="30dp"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:textColor="#1c7839"
@@ -31,11 +35,10 @@
 
             <EditText
                 android:id="@+id/password"
-                android:layout_width="318dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:layout_marginBottom="15dp"
-                android:layout_marginStart="30dp"
                 android:inputType="textPassword"
                 android:textColor="#1c7839"
                 android:textColorHint="#1c7839" />
@@ -45,8 +48,6 @@
         android:layout_width="match_parent"
         android:layout_height="53dp"
         android:layout_marginBottom="30dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginTop="5dp"
         android:onClick="LogIn"
         android:text="Log in"
@@ -58,9 +59,7 @@
     <Button
         android:id="@+id/btn_reset_password"
         android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:background="@null"
         android:text="@string/btn_forgot_password"
@@ -71,8 +70,8 @@
 
     <Button
         android:id="@+id/btn_signup"
-        android:layout_width="212dp"
-        android:layout_height="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_weight="0.02"
         android:background="@null"
         android:text="Not Member!Get Registered"

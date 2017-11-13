@@ -125,14 +125,6 @@ public class AdminActivity extends AppCompatActivity
 
     }
 
-    public void SignOut(View view){
-
-        firebaseAuth.signOut();
-        finish();
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-
     public void Facilitators(){
 
         Intent intent = new Intent(this, ListViewFacilitatorsActivity.class);

@@ -81,27 +81,17 @@ public class UserAdapter extends ArrayAdapter<User> {
         email.setText("Email: " + currentUser.getEmail());
         phoneNumber.setText(String.format("Phone Number: %s",currentUser.getPhoneNumber()));
 
-<<<<<<< HEAD
 
-        profile.setImageResource(currentUser.getProfile());
-=======
 //        profile.setImageResource(currentUser.getProfile());
->>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
+//        profile.setImageResource(currentUser.getProfile());
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
         if(firebaseUser.getPhotoUrl() != null){
         String url = firebaseUser.getPhotoUrl().toString();
-<<<<<<< HEAD
-            int url1 = currentUser.getProfile();
         Glide.with(getContext()).load(url).into(profile);
-        }else {
-=======
-            ImageView url1 = currentUser.getProfile();
-        Glide.with(getContext()).load(url1).into(profile);
     }else {
->>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
             profile.setImageResource(R.drawable.profile_pic);
         }
 

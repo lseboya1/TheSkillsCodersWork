@@ -62,20 +62,18 @@ public class LoginActivity extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         if (user != null) {
-<<<<<<< HEAD
 //            Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
 //            startActivity(intent);
             progressDialog.setMessage("Logging in. Please wait...");
             progressDialog.show();
             navigateToUserScreen(user.getUid());
-=======
-            Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
-            startActivity(intent);
+//            Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
+//            startActivity(intent);
+
 //            navigateToUserScreen(user.getUid());
 //            progressDialog.setMessage("Logging in. Please wait...");
 //            progressDialog.show();
 
->>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
         }
 
         inputEmail = (EditText) findViewById(R.id.email);
@@ -172,21 +170,23 @@ public class LoginActivity extends AppCompatActivity {
 //                        finish();
 //                    }
 //                }
-                User user = dataSnapshot.getValue(User.class);
+                User user1 = dataSnapshot.getValue(User.class);
 
 //                if ("Able".equals(user.getStatus())) {
-                if ("Admin".equals(user.getRole())) {
+
+                if ("Admin".equals(user1.getRole())) {
                     Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                     startActivity(intent);
                     finish();
                     progressDialog.dismiss();
 
-                } else if ("Student".equals(user.getRole())) {
+                } else
+                    if ("Student".equals(user1.getRole())) {
                     Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
                     startActivity(intent);
                     finish();
                     progressDialog.dismiss();
-                }else if ("Facilitator".equals(user.getRole())) {
+                }else if ("Facilitator".equals(user1.getRole())) {
                     Intent intent = new Intent(LoginActivity.this, FacilitatorMainActivity.class);
                     startActivity(intent);
                     finish();
