@@ -12,14 +12,26 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/geologo"
         android:supportsRtl="true"
+<<<<<<< HEAD
         android:theme="@style/AppTheme.NoActionBar">
 
         <activity android:name=".SpashScreenActivity"
             android:theme="@style/AppTheme.NoActionBarSpash">
+=======
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".SpashScreenActivity"
+            android:theme="@style/AppTheme.NoAction">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+>>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
         </activity>
 
         <activity
             android:name=".LoginActivity"
+<<<<<<< HEAD
             android:label="Register"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
@@ -66,10 +78,38 @@
             android:label="About Us"/>
 
         <activity android:name=".ChangePassword"
+=======
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".SignupActivity"
+            android:label="Register" />
+
+        <activity
+            android:name=".UpdateProfileActivity"
+            android:label="Register" />
+
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:label="Reset password" />
+
+        <activity
+            android:name=".HomeScreenUser"
+            android:label="Home page" />
+
+        <activity
+            android:name=".SendMessage"
+            android:label="Send Message"/>
+
+        <activity
+            android:name=".ChangePassword"
+>>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
             android:label="Change password"/>
 
-        <activity android:name=".MapsActivity" />
+        <activity
+            android:name=".MapsActivity" />
 
+<<<<<<< HEAD
         <activity android:name=".LeaveApply"
             android:theme="@style/AppTheme"
             android:label="Apply for leave"/>
@@ -90,6 +130,30 @@
 
         <activity android:name=".AdminActivity"
             android:theme="@style/AppTheme"
+=======
+        <activity
+            android:name=".LeaveApply"
+            android:label="Apply for leave"/>
+
+        <activity
+            android:name=".AdminOption"
+            android:label="Student" />
+
+        <activity
+            android:name=".AdminOptionStudents"
+            android:label="Student" />
+
+        <activity
+            android:name=".timeSheet.TimeSheetsActivity"
+            android:label="Time sheet" />
+
+        <activity
+            android:name=".ListViewFacilitatorsActivity"
+            android:label="Facilitators" />
+
+        <activity
+            android:name=".AdminActivity"
+>>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
             android:label="Home page"  />
 
         <activity android:name=".FacilitatorMainActivity"

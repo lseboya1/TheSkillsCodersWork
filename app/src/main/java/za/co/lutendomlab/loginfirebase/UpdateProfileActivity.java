@@ -136,14 +136,22 @@ public class UpdateProfileActivity extends AppCompatActivity {
         facilityiput = facility.getText().toString().trim();
         roleinput = role.getText().toString().trim();
 
+<<<<<<< HEAD
         User user = new User(keyUser, nameinput , lastNameinput,emailinput,roleinput,facilityiput,phoneNumberinput );
+=======
+        User user = new User(keyUser, nameinput , lastNameinput,emailinput,phoneNumberinput,profile_Pic);
+>>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
 
         databaseReference.child("name").setValue(user.getName());
         databaseReference.child("lastName").setValue(user.getLastName());
         databaseReference.child("email").setValue(user.getEmail());
         databaseReference.child("phoneNumber").setValue(user.getPhoneNumber());
+<<<<<<< HEAD
         databaseReference.child("facility").setValue(user.getFacility());
         databaseReference.child("role").setValue(user.getRole());
+=======
+        databaseReference.child("").setValue(user.getProfile());
+>>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
 
         databaseReference.setValue(user);
     }

@@ -62,11 +62,20 @@ public class LoginActivity extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         if (user != null) {
+<<<<<<< HEAD
 //            Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
 //            startActivity(intent);
             progressDialog.setMessage("Logging in. Please wait...");
             progressDialog.show();
             navigateToUserScreen(user.getUid());
+=======
+            Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
+            startActivity(intent);
+//            navigateToUserScreen(user.getUid());
+//            progressDialog.setMessage("Logging in. Please wait...");
+//            progressDialog.show();
+
+>>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
         }
 
         inputEmail = (EditText) findViewById(R.id.email);

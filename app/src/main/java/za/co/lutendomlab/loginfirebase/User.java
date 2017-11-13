@@ -2,6 +2,8 @@ package za.co.lutendomlab.loginfirebase;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.ImageView;
+
 import com.google.firebase.auth.UserProfileChangeRequest;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +20,8 @@ public class User implements Parcelable {
     String facility;
     String phoneNumber;
     String status;
+    int numberOfLeave;
+    ImageView profile;
 
     protected User(Parcel in) {
         userId = in.readString();
@@ -29,10 +33,7 @@ public class User implements Parcelable {
         phoneNumber = in.readString();
     }
 
-        private int profile;
-
-
-        public static final Creator<User> CREATOR = new Creator<User>() {
+    public static final Creator<User> CREATOR = new Creator<User>() {
             @Override
             public User createFromParcel(Parcel in) {
                 return new User(in);
@@ -44,6 +45,7 @@ public class User implements Parcelable {
             }
         };
 
+<<<<<<< HEAD
     public User(String userId, String name, String lastName, String email, String role, String facility, String phoneNumber) {
         this.userId = userId;
         this.name = name;
@@ -55,12 +57,22 @@ public class User implements Parcelable {
     }
 
     public User(String userId, String name, String lastName, String email, String phoneNumber) {
+=======
+    public User(String userId, String name, String lastName, String email, String phoneNumber,ImageView profile) {
+>>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
         this.userId = userId;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.profile = profile;
     }
+
+    public User(String role) {
+        this.role = role;
+    }
+
+    public User() {}
 
     public User(String userId, String status) {
         this.userId = userId;
@@ -71,61 +83,58 @@ public class User implements Parcelable {
             this.name = name;
         }
 
-        public User() {
-        }
-
-        public void setName(String userId, String name) {
+    public void setName(String userId, String name) {
             this.name = name;
             this.userId = userId;
         }
 
-        public String getRole() {
+    public String getRole() {
             return role;
         }
 
-        public void setRole(String role) {
+    public void setRole(String role) {
             this.role = role;
         }
 
-        public String getFacility() {
+    public String getFacility() {
             return facility;
         }
 
-        public void setFacility(String facility) {
+    public void setFacility(String facility) {
             this.facility = facility;
         }
 
-        public String getName() {
+    public String getName() {
             return name;
         }
 
-        public String getEmail() {
+    public String getEmail() {
             return email;
         }
 
-        public String getUserId() {
+    public String getUserId() {
             return userId;
         }
 
-        public void setEmail(String email) {
+    public void setEmail(String email) {
             this.email = email;
         }
 
-        public String getLastName() {
+    public String getLastName() {
             return lastName;
         }
 
-        public void setLastName(String lastName) {
+    public void setLastName(String lastName) {
             this.lastName = lastName;
         }
 
-        @Override
-        public int describeContents() {
+    @Override
+    public int describeContents() {
             return 0;
         }
 
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
             dest.writeString(userId);
             dest.writeString(name);
             dest.writeString(lastName);
@@ -133,13 +142,14 @@ public class User implements Parcelable {
             dest.writeString(role);
             dest.writeString(facility);
             dest.writeString(phoneNumber);
+            dest.writeInt(numberOfLeave);
         }
 
-        public String getPhoneNumber() {
+    public String getPhoneNumber() {
             return phoneNumber;
         }
 
-        public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
             this.phoneNumber = phoneNumber;
         }
 
@@ -151,11 +161,19 @@ public class User implements Parcelable {
         this.status = status;
     }
 
-    public int getProfile() {
+    public ImageView getProfile() {
             return profile;
         }
 
-        public void setProfile(int profile) {
+    public void setProfile(ImageView profile) {
             this.profile = profile;
         }
+
+    public int getNumberOfLeave() {
+        return numberOfLeave;
     }
+
+    public void setNumberOfLeave(int numberOfLeave) {
+        this.numberOfLeave = numberOfLeave;
+    }
+}

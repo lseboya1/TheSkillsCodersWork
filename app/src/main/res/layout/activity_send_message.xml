@@ -12,6 +12,10 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+=======
+        android:visibility="gone"
+>>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
         android:layout_marginTop="10dp">
 
         <TextView

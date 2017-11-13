@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -155,7 +153,9 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                                 user.setFacility(facility);
                                 user.setPhoneNumber(phone);
                                 user.setStatus(Status);
+                                //add number Of days
 //                                user.setPhoneNumber(phone);
+                                user.setNumberOfLeave(15);
                                 user.setEmail(auth.getCurrentUser().getEmail());
                                 user.setName(auth.getCurrentUser().getUid(),name );
 

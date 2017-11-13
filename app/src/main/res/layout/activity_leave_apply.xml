@@ -16,9 +16,13 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:layout_marginTop="10dp"
             android:visibility="gone"
             android:theme="@style/AppTheme.AppBarOverlay">
+=======
+            android:layout_marginTop="10dp">
+>>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
 
             <!--<TextView-->
                 <!--android:layout_width="match_parent"-->

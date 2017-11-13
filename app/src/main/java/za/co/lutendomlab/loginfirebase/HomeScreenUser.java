@@ -85,6 +85,7 @@ public class HomeScreenUser extends AppCompatActivity
     Toolbar toolbar;
 
     String role;
+    View header;
     private FirebaseAuth firebaseAuth;
     ImageView mark_reg;
 
@@ -102,9 +103,21 @@ public class HomeScreenUser extends AppCompatActivity
         setContentView(R.layout.home_screen_user);
         imageView =(ImageView)findViewById(R.id.imageView);
 
+<<<<<<< HEAD
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         //toolbar.setSubtitle(R.string.unofficial);
         setSupportActionBar(toolbar);
+=======
+        NavigationView navigationView1 = (NavigationView)findViewById(R.id.nav_view);
+
+        header = navigationView1.findViewById(R.id.the_name);
+
+        TextView information = (TextView)findViewById(R.id.information);
+        information.setText(infor);
+
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+>>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
 
         TextView information = (TextView) findViewById(R.id.information);
         information.setText(infor);
@@ -221,6 +234,9 @@ public class HomeScreenUser extends AppCompatActivity
                 surname = user.getLastName();
                 textViewUserName.setText("Name: " + userName + ", " + surname);
                 textViewUserEmail.setText("Email: " + user.getEmail());
+
+                TextView the_name = (TextView)header.findViewById(R.id.the_name);
+                the_name.setText(userName);
 
             }
 

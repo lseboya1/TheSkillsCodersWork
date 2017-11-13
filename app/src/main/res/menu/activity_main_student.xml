@@ -17,12 +17,33 @@
             android:title="Apply for Leave" />
         <item
             android:id="@+id/about"
+<<<<<<< HEAD
             android:icon="@drawable/about_us"
             android:title="About Us" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/power"
             android:title="Log Out" />
+=======
+            android:title="About Us"
+            android:icon="@drawable/about_us"/>
+            <item
+                android:id="@+id/update_profile"
+                android:title="Update Profile"
+                android:icon="@drawable/update"/>
+            <item
+                android:id="@+id/send_notification"
+                android:title="Send Notification"
+                android:icon="@drawable/email"/>
+            <item
+                android:id="@+id/apply_leave"
+                android:title="Apply for Leave"
+                android:icon="@drawable/send" />
+            <item
+                android:id="@+id/logout"
+                android:title="Log Out"
+                android:icon="@drawable/power"/>
+>>>>>>> 35c23a1892ece4c374dca290bfb52987a132ef9c
     </group>
 
 </menu>
