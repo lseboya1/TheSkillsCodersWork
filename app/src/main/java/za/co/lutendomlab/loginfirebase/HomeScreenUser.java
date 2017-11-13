@@ -86,6 +86,7 @@ public class HomeScreenUser extends AppCompatActivity
 
 
     String role;
+    View header;
     private FirebaseAuth firebaseAuth;
 
     String infor = "Geofencing provides a plethora of applications for administrator, especially" +
@@ -110,6 +111,10 @@ public class HomeScreenUser extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen_user);
+
+        NavigationView navigationView1 = (NavigationView)findViewById(R.id.nav_view);
+
+        header = navigationView1.findViewById(R.id.the_name);
 
         TextView information = (TextView)findViewById(R.id.information);
         information.setText(infor);
@@ -232,6 +237,9 @@ public class HomeScreenUser extends AppCompatActivity
                 textViewUserName.setText("Name: " + userName + ", " + surname);
                 textViewUserEmail.setText("Email: " + user.getEmail());
 
+                TextView the_name = (TextView)header.findViewById(R.id.the_name);
+                the_name.setText(userName);
+
             }
 
             @Override
@@ -298,7 +306,6 @@ public class HomeScreenUser extends AppCompatActivity
                 Intent intent = new Intent(HomeScreenUser.this, UpdateProfileActivity.class);
 //                intent.putExtra("User_KEY",userID);
                 startActivity(intent);
-//                Toast.makeText(this, "update_profile", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.send_notification:

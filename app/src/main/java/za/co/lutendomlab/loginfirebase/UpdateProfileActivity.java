@@ -126,12 +126,13 @@ public class UpdateProfileActivity extends AppCompatActivity{
         phoneNumberinput = phoneNumber.getText().toString().trim();
         emailinput = email.getText().toString().trim();
 
-        User user = new User(keyUser, nameinput , lastNameinput,emailinput,phoneNumberinput);
+        User user = new User(keyUser, nameinput , lastNameinput,emailinput,phoneNumberinput,profile_Pic);
 
         databaseReference.child("name").setValue(user.getName());
         databaseReference.child("lastName").setValue(user.getLastName());
         databaseReference.child("email").setValue(user.getEmail());
         databaseReference.child("phoneNumber").setValue(user.getPhoneNumber());
+        databaseReference.child("").setValue(user.getProfile());
 
         databaseReference.setValue(user);
     }

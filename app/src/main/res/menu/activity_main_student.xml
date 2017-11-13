@@ -17,7 +17,7 @@
                 android:icon="@drawable/email"/>
             <item
                 android:id="@+id/apply_leave"
-                android:title="Aply for Leave"
+                android:title="Apply for Leave"
                 android:icon="@drawable/send" />
             <item
                 android:id="@+id/logout"

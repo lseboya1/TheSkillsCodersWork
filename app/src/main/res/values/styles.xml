@@ -8,9 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.">
+    <style name="AppTheme.NoAction">
         <item name="windowActionBar">true</item>
-        <item name="android:windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -18,8 +17,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="Theme.AppCompat.Light.DarkActionBar" />
+    <style name="AppTheme.AppBarOverlay"
+        parent="Theme.AppCompat.Light.DarkActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="Theme.AppCompat.Light.DarkActionBar" />
+    <style name="AppTheme.PopupOverlay"
+        parent="Theme.AppCompat.Light.DarkActionBar" />
 
 </resources>

@@ -62,9 +62,11 @@ public class LoginActivity extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         if (user != null) {
-            navigateToUserScreen(user.getUid());
-            progressDialog.setMessage("Logging in. Please wait...");
-            progressDialog.show();
+            Intent intent = new Intent(LoginActivity.this, HomeScreenUser.class);
+            startActivity(intent);
+//            navigateToUserScreen(user.getUid());
+//            progressDialog.setMessage("Logging in. Please wait...");
+//            progressDialog.show();
 
         }
 

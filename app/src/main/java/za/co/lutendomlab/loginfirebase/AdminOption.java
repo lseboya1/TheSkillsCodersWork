@@ -79,8 +79,6 @@ public class AdminOption extends AppCompatActivity implements AdapterView.OnItem
 
         role = roleList[position];
         status = statusList[position];
-
-        Toast.makeText(getApplicationContext(),"Selected" + role + " " + status , Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -101,7 +99,7 @@ public class AdminOption extends AppCompatActivity implements AdapterView.OnItem
         String keyUser = user.getUserId();
         String selectedRole = role;
 
-        User user2 = new User();
+        User user2 = new User(keyUser, role);
         user2.setRole(selectedRole);
         databaseReference.child("role").setValue(user2.getRole());
 

@@ -82,14 +82,14 @@ public class UserAdapter extends ArrayAdapter<User> {
         email.setText("Email: " + currentUser.getEmail());
         phoneNumber.setText(String.format("Phone Number: %s",currentUser.getPhoneNumber()));
 
-        profile.setImageResource(currentUser.getProfile());
+//        profile.setImageResource(currentUser.getProfile());
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
         if(firebaseUser.getPhotoUrl() != null){
         String url = firebaseUser.getPhotoUrl().toString();
-            int url1 = currentUser.getProfile();
+            ImageView url1 = currentUser.getProfile();
         Glide.with(getContext()).load(url1).into(profile);
     }else {
             profile.setImageResource(R.drawable.profile_pic);
