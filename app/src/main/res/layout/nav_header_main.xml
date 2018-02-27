@@ -19,33 +19,19 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/the_name"
+        android:id="@+id/student_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingRight="10dp"
-        android:text="gggfgfgfgfgfgfgfgf"
+        android:hint="codetribe student email"
         android:textColor="@android:color/white"
         android:weightSum="1"/>
-
-        <!--<ImageView-->
-            <!--android:id="@+id/imageView"-->
-            <!--android:layout_width="75dp"-->
-            <!--android:layout_height="75dp"-->
-            <!--app:srcCompat="@drawable/geologo" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/the_name"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/geo_timesheet"-->
-            <!--android:textAppearance="@style/TextAppearance.AppCompat.Body1" />-->
 
 
 </LinearLayout>

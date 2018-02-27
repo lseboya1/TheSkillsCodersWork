@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="za.co.lutendomlab.loginfirebase">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -14,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
 
-        <activity android:name=".SpashScreenActivity"
+        <activity android:name=".for_all_users.SpashScreenActivity"
             android:theme="@style/AppTheme.NoActionBarSpash">
 
             <intent-filter>
@@ -24,7 +25,7 @@
         </activity>
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".for_all_users.LoginActivity"
             android:label="Register"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
@@ -35,72 +36,85 @@
         </activity>
 
         <activity
-            android:name=".SignupActivity"
+            android:name=".for_all_users.SignupActivity"
             android:theme="@style/AppTheme"
             android:label="Register" />
 
-        <activity android:name=".UpdateProfileActivity"
+        <activity android:name=".student_activities.UpdateProfileActivity"
             android:label="Profile"
             android:theme="@style/AppTheme"/>
 
-        <activity android:name=".ViewProfileAdmin"
+        <activity android:name=".admin_activiteis.ViewProfileAdmin"
             android:label="Profile"
             android:theme="@style/AppTheme" />
 
-        <activity android:name=".ResetPasswordActivity"
+        <activity android:name=".for_all_users.ResetPasswordActivity"
             android:theme="@style/AppTheme"/>
 
-        <activity android:name=".ViewProfileStudent"
+        <activity android:name=".student_activities.ViewProfileStudent"
             android:label="Profile"
             android:theme="@style/AppTheme"/>
 
-        <activity android:name=".UpdateProfileActivityAdmin"
+        <activity android:name=".admin_activiteis.UpdateProfileActivityAdmin"
             android:label="Profile"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".HomeScreenUser"
-            android:label="Home" />
+            android:name=".student_activities.HomeScreenUser"
+            android:label="" />
 
-        <activity android:name=".SendMessage"
+        <activity android:name=".student_activities.SendMessage"
             android:theme="@style/AppTheme"
             android:label="Send Message"/>
 
-        <activity android:name=".AboutUsActivity"
+        <activity android:name=".for_all_users.AboutUsActivity"
             android:theme="@style/AppTheme"
             android:label="About Us"/>
 
-        <activity android:name=".ChangePassword"
+        <activity android:name=".for_all_users.ChangePassword"
+            android:label="Change Password"
             android:theme="@style/AppTheme.NoActionBar" />
 
 
         <activity
-            android:name=".MapsActivity" />
+            android:name=".student_activities.MapsActivity" />
 
-        <activity android:name=".LeaveApply"
+        <activity android:name=".student_activities.LeaveApply"
             android:theme="@style/AppTheme"
             android:label="Apply for leave"/>
 
-        <activity android:name=".AdminOption"
+        <activity android:name=".admin_activiteis.AdminOption"
             android:theme="@style/AppTheme" />
 
-        <activity android:name=".AdminOptionStudents"
+        <activity android:name=".admin_activiteis.AdminOptionStudents"
             android:theme="@style/AppTheme" />
 
         <activity android:name=".timeSheet.TimeSheetsActivity"
             android:theme="@style/AppTheme"
-            android:label="TimeSheet" />
+            android:label="Time Sheet" />
 
-        <activity android:name=".ListViewFacilitatorsActivity"
+        <activity android:name=".admin_activiteis.ListViewFacilitatorsActivity"
             android:theme="@style/AppTheme"
             android:label="Facilitator" />
 
-        <activity android:name=".AdminActivity"
+        <activity android:name=".admin_activiteis.AdminActivity"
+            android:label="Home Page Admin"
             android:theme="@style/AppTheme"/>
 
-        <activity android:name=".FacilitatorMainActivity"
+        <activity android:name=".admin_activiteis.FacilitatorMainActivity"
+            android:theme="@style/AppTheme" />
+
+        <activity android:name=".admin_activiteis.LeaveFormListActivity"
             android:theme="@style/AppTheme"
-            android:label="Home page"  />
+            android:label="Leave Forms"  />
+
+        <activity android:name=".admin_activiteis.ViewLeaveFormAvivity"
+            android:theme="@style/AppTheme"
+            android:label="Leave Forms"  />
+
+        <activity android:name=".admin_activiteis.DeactivatedStudents"
+            android:theme="@style/AppTheme"
+            android:label="Deactivated Students"  />
 
     </application>
 

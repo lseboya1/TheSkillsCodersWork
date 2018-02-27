@@ -4,13 +4,25 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/about"
-            android:title="About Us"
-            android:icon="@drawable/about_us"/>
-        <item
             android:id="@+id/update_profile"
             android:title="Update Profile"
             android:icon="@drawable/update"/>
+        <item
+            android:id="@+id/notifications"
+            android:title="Notifications"
+            android:icon="@drawable/send"/>
+        <item
+            android:id="@+id/leave_forms"
+            android:title="Leave Forms"
+            android:icon="@drawable/send"/>
+        <item
+            android:id="@+id/student"
+            android:title="Deactivated students"
+            android:icon="@drawable/send"/>
+        <item
+            android:id="@+id/about"
+            android:title="About Us"
+            android:icon="@drawable/about_us"/>
         <item
             android:id="@+id/logout"
             android:title="Log Out"

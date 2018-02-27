@@ -45,4 +45,10 @@
     <string name="action_settings">Settings</string>
     <string name="geo_timesheet">Geo-TimeSheet</string>
     <string name="mark_register">Mark Register</string>
+    <string name="send_notification">Send Notification</string>
+    <string name="apply_for_leave">Apply for Leave</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="about_us">About Us</string>
+    <string name="log_out">Log Out</string>
+    <string name="others">Others</string>
 </resources>

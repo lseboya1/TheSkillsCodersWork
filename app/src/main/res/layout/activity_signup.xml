@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="za.co.lutendomlab.loginfirebase.SignupActivity"
+    tools:context="za.co.lutendomlab.loginfirebase.for_all_users.SignupActivity"
     android:weightSum="1">
 
 

@@ -30,7 +30,7 @@
             android:onClick="EditProfile"
             android:layout_marginRight="10dp"
             android:padding="10dp"
-            android:src="@drawable/editprofile"
+            android:src="@drawable/about_us"
             android:paddingLeft="10dp" />
 
         <ScrollView
