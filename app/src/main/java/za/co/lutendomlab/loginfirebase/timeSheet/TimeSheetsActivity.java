@@ -12,6 +12,10 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -31,7 +35,7 @@ import za.co.lutendomlab.loginfirebase.R;
 import za.co.lutendomlab.loginfirebase.adapter_and_object.Register;
 import za.co.lutendomlab.loginfirebase.adapter_and_object.User;
 
-public class TimeSheetsActivity extends AppCompatActivity {
+public class TimeSheetsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
 //    TableLayout tl;
 //    TableRow tr;
@@ -66,12 +70,29 @@ public class TimeSheetsActivity extends AppCompatActivity {
     private ValueEventListener childEventListener;
     FirebaseAuth firebaseAuth;
 
+    TextView month;
+    TextView location;
+    TextView name;
+
+    Spinner month_list;
+    String monthSelected;
+    String [] monthList = {"January","February","March","April", "May","June", "July"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listview);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        month_list = (Spinner)findViewById(R.id.month_list);
+        month_list.setOnItemSelectedListener(this);
+
+        ArrayAdapter monthSpinner = new ArrayAdapter(this,android.R.layout.simple_spinner_item,monthList);
+        monthSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        month_list.setAdapter(monthSpinner);
+
         monday_date_week_1 = (TextView)findViewById(R.id.monday_date_week_1);
         monday_in_week_1 = (TextView)findViewById(R.id.monday_in_week_1);
         monday_out_week_1 = (TextView)findViewById(R.id.monday_out_week_1);
@@ -98,6 +119,7 @@ public class TimeSheetsActivity extends AppCompatActivity {
         userId = user.getUserId();
 
         firebaseAuth = FirebaseAuth.getInstance();
+
         firebaseDatabase = FirebaseDatabase.getInstance();
 //        databaseReference = firebaseDatabase.getReference().child("TimeSheet");
 //        databaseReference = firebaseDatabase.getReference().child("TimeSheet");
@@ -161,95 +183,95 @@ public class TimeSheetsActivity extends AppCompatActivity {
 //
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference().child("TimeSheet");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-//                Log.e("Count" , "" + dataSnapshot.getChildrenCount());
-
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-
-//                    Log.i("register",snapshot.toString());
-
-                    Register register = snapshot.getValue(Register.class);
-
-                    if(snapshot.getKey().equals(userId)) {
-
-                        Toast.makeText(TimeSheetsActivity.this, "User Key = "+ snapshot.getKey(), Toast.LENGTH_SHORT).show();
-
-//                        databaseReference = firebaseDatabase.getReference().child("TimeSheet").child(snapshot.getKey())
-//                                .child("December").child("Week1").child()
-
-//                        if (snapshot.child("February").getValue())) {
-                            if (Objects.equals(snapshot.getKey(), "February")) {
-
-                            Toast.makeText(TimeSheetsActivity.this, "Am in", Toast.LENGTH_SHORT).show();
-
-
-                            if (Objects.equals(snapshot.child(""), "Monday")) {
-                                monday_date_week_1.setText(register.getDate());
-                                monday_in_week_1.setText(register.getTime_in());
-                                monday_out_week_1.setText(register.getTime_out());
-                            }
-
-                            if (Objects.equals(snapshot.getKey(), "Tuesday")) {
-                                tuesday_date_week_1.setText(register.getDate());
-                                tuesday_in_week_1.setText(register.getTime_in());
-                                tuesday_out_week_1.setText(register.getTime_out());
-                            }
-
-                            if (Objects.equals(snapshot.getKey(), "Wednesday")) {
-                                wednesday_date_week_1.setText(register.getDate());
-                                wednseday_in_week_1.setText(register.getTime_in());
-                                wednesday_out_week_1.setText(register.getTime_out());
-                            }
-
-                            if (Objects.equals(snapshot.getKey(), "Thursday")) {
-                                thursday_date_week_1.setText(register.getDate());
-                                thursday_in_week_1.setText(register.getTime_in());
-                                thursday_out_week_1.setText(register.getTime_out());
-                            }
-
-                            if (Objects.equals(snapshot.getKey(), "Friday")) {
-                                friday_date_week_1.setText(register.getDate());
-                                friday_in_week_1.setText(register.getTime_in());
-                                friday_out_week_1.setText(register.getTime_out());
-                            }
-                        }
-                    }
-//                    String id = register.getId();
-//                    String name= register.getName();
-
-                    // Then add the value you require to add in your ArrayList
-//                    week_number.add(register.getWeek_number());
-//                    weekdays.add(register.getDay());
-//                    time_in.add(register.getTime_in());
-//                    time_out.add(register.getTime_out());
-//                    formattedDate.add(register.getDate());
-
-//                    Toast.makeText(TimeSheetsActivity.this, ""+ register, Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        databaseReference = firebaseDatabase.getReference().child("TimeSheet");
 //
-        TextView name = (TextView)findViewById(R.id.name);
-        TextView location = (TextView)findViewById(R.id.location);
-        TextView month = (TextView)findViewById(R.id.month);
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//
+////                Log.e("Count" , "" + dataSnapshot.getChildrenCount());
+//
+//                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+//
+////                    Log.i("register",snapshot.toString());
+//
+//                    Register register = snapshot.getValue(Register.class);
+//
+//                    if(snapshot.getKey().equals(userId)) {
+//
+//                        Toast.makeText(TimeSheetsActivity.this, "User Key = "+ snapshot.getKey(), Toast.LENGTH_SHORT).show();
+//
+////                        databaseReference = firebaseDatabase.getReference().child("TimeSheet").child(snapshot.getKey())
+////                                .child("December").child("Week1").child()
+//
+////                        if (snapshot.child("February").getValue())) {
+//                            if (Objects.equals(snapshot.getKey(), "February")) {
+//
+//                            Toast.makeText(TimeSheetsActivity.this, "Am in", Toast.LENGTH_SHORT).show();
 //
 //
-        month.setText("Month: February");
-//        month.setText("Month: " + register.getMonth());
-        name.setText("Name: " + user.getName() + " " + user.getLastName());
-        location.setText(String.format("Location: %s", user.getFacility()));
+//                            if (Objects.equals(snapshot.child(""), "Monday")) {
+//                                monday_date_week_1.setText(register.getDate());
+//                                monday_in_week_1.setText(register.getTime_in());
+//                                monday_out_week_1.setText(register.getTime_out());
+//                            }
+//
+//                            if (Objects.equals(snapshot.getKey(), "Tuesday")) {
+//                                tuesday_date_week_1.setText(register.getDate());
+//                                tuesday_in_week_1.setText(register.getTime_in());
+//                                tuesday_out_week_1.setText(register.getTime_out());
+//                            }
+//
+//                            if (Objects.equals(snapshot.getKey(), "Wednesday")) {
+//                                wednesday_date_week_1.setText(register.getDate());
+//                                wednseday_in_week_1.setText(register.getTime_in());
+//                                wednesday_out_week_1.setText(register.getTime_out());
+//                            }
+//
+//                            if (Objects.equals(snapshot.getKey(), "Thursday")) {
+//                                thursday_date_week_1.setText(register.getDate());
+//                                thursday_in_week_1.setText(register.getTime_in());
+//                                thursday_out_week_1.setText(register.getTime_out());
+//                            }
+//
+//                            if (Objects.equals(snapshot.getKey(), "Friday")) {
+//                                friday_date_week_1.setText(register.getDate());
+//                                friday_in_week_1.setText(register.getTime_in());
+//                                friday_out_week_1.setText(register.getTime_out());
+//                            }
+//                        }
+//                    }
+////                    String id = register.getId();
+////                    String name= register.getName();
+//
+//                    // Then add the value you require to add in your ArrayList
+////                    week_number.add(register.getWeek_number());
+////                    weekdays.add(register.getDay());
+////                    time_in.add(register.getTime_in());
+////                    time_out.add(register.getTime_out());
+////                    formattedDate.add(register.getDate());
+//
+////                    Toast.makeText(TimeSheetsActivity.this, ""+ register, Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//
+         name = (TextView)findViewById(R.id.name);
+         location = (TextView)findViewById(R.id.location);
+         month = (TextView)findViewById(R.id.month);
+         getTimeSheetData();
+//
+//
+//        month.setText("Month: February");
+////        month.setText("Month: " + register.getMonth());
+//        name.setText("Name: " + user.getName() + " " + user.getLastName());
+//        location.setText(String.format("Location: %s", user.getFacility()));
 ////        addHeaders();
 ////        addData();
 //    }
@@ -408,5 +430,100 @@ public class TimeSheetsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int posotion, long id) {
+        monthSelected = monthList[posotion];
+        getTimeSheetData();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+    }
+
+    public void getTimeSheetData(){
+
+        databaseReference = firebaseDatabase.getReference().child("TimeSheet").child(monthSelected);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+//                Log.e("Count" , "" + dataSnapshot.getChildrenCount());
+
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+//                    Log.i("register",snapshot.toString());
+
+                    Register register = snapshot.getValue(Register.class);
+
+                    if(snapshot.getKey().equals(userId)) {
+
+                        Toast.makeText(TimeSheetsActivity.this, "User Key = "+ snapshot.getKey(), Toast.LENGTH_SHORT).show();
+
+//                        databaseReference = firebaseDatabase.getReference().child("TimeSheet").child(snapshot.getKey())
+//                                .child("December").child("Week1").child()
+
+//                        if (snapshot.child("February").getValue())) {
+//                        if (Objects.equals(snapshot.getKey(), "February")) {
+
+                            Toast.makeText(TimeSheetsActivity.this, "Am in", Toast.LENGTH_SHORT).show();
+
+
+                            if (Objects.equals(register.getDay(), "Monday")) {
+                                monday_date_week_1.setText(register.getDate());
+                                monday_in_week_1.setText(register.getTime_in());
+                                monday_out_week_1.setText(register.getTime_out());
+                            }
+
+                            if (Objects.equals(register.getDay(), "Tuesday")) {
+                                tuesday_date_week_1.setText(register.getDate());
+                                tuesday_in_week_1.setText(register.getTime_in());
+                                tuesday_out_week_1.setText(register.getTime_out());
+                            }
+
+                            if (Objects.equals(register.getDay(), "Wednesday")) {
+                                wednesday_date_week_1.setText(register.getDate());
+                                wednseday_in_week_1.setText(register.getTime_in());
+                                wednesday_out_week_1.setText(register.getTime_out());
+                            }
+
+                            if (Objects.equals(register.getDay(), "Thursday")) {
+                                thursday_date_week_1.setText(register.getDate());
+                                thursday_in_week_1.setText(register.getTime_in());
+                                thursday_out_week_1.setText(register.getTime_out());
+                            }
+
+                            if (Objects.equals(register.getDay(), "Friday")) {
+                                friday_date_week_1.setText(register.getDate());
+                                friday_in_week_1.setText(register.getTime_in());
+                                friday_out_week_1.setText(register.getTime_out());
+                            }
+//                        }
+                    }
+//                    String id = register.getId();
+//                    String name= register.getName();
+
+                    // Then add the value you require to add in your ArrayList
+//                    week_number.add(register.getWeek_number());
+//                    weekdays.add(register.getDay());
+//                    time_in.add(register.getTime_in());
+//                    time_out.add(register.getTime_out());
+//                    formattedDate.add(register.getDate());
+
+//                    Toast.makeText(TimeSheetsActivity.this, ""+ register, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+//        month.setText("Month:" + monthSelected);
+        name.setText("Name: " + user.getName() + " " + user.getLastName());
+        location.setText(String.format("Location: %s", user.getFacility()));
+
     }
 }

@@ -22,7 +22,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -91,6 +94,8 @@ public class HomeScreenUser extends AppCompatActivity
     String Sign;
     String userID;
 
+    String dbKEy;
+
     private DatabaseReference databaseReferenceTimeSheet;
     private DatabaseReference databaseReference;
     FirebaseUser user;
@@ -123,6 +128,7 @@ public class HomeScreenUser extends AppCompatActivity
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         //toolbar.setSubtitle(R.string.unofficial);
+
         setSupportActionBar(toolbar);
         navigationView = (NavigationView)findViewById(R.id.nav_view);
         imageView = navigationView.getHeaderView(0).findViewById(R.id.imageView);
@@ -400,9 +406,10 @@ public class HomeScreenUser extends AppCompatActivity
 
 //                    Map<String, Object> childUpdate = new HashMap<>();
 //                    childUpdate.put(userID, registerValues);
-//                    databaseReferenceTimeSheet.child(month_year).child("Week" + weekNumber).child("Weekdays").child(weekdays).updateChildren(registerValues);
+//                    databaseReferenceTimeSheet.child(month_year).child("Week" + weekNumber).child("Weekdays").child(weekdays).updateChildren(registerValues)
 
-                    databaseReferenceTimeSheet.child(month_year).child(databaseReferenceTimeSheet.push().getKey()).updateChildren(registerValues);
+                    dbKEy = databaseReferenceTimeSheet.push().getKey();
+                    databaseReferenceTimeSheet.child(month_year).child(dbKEy).updateChildren(registerValues);
 
                     mark_reg = (ImageView)findViewById(R.id.mark_reg);
                     Glide.with(context).load(R.drawable.in).into(mark_reg);
@@ -438,10 +445,18 @@ public class HomeScreenUser extends AppCompatActivity
                 } else {
                     weekdays = Day.format(calendar.getTime());
                     time_out = date.format(currentLocalTime);
+                    Register register = new Register(formattedDate, weekdays, month_year, time_in, time_out, weekNumber);
+                    Map<String, Object> registerValues = register.toMap();
+
+//                    Map<String, Object> childUpdate = new HashMap<>();
+//                    childUpdate.put(userID, registerValues);
+//                    databaseReferenceTimeSheet.child(month_year).child("Week" + weekNumber).child("Weekdays").child(weekdays).updateChildren(registerValues);
+
+                    databaseReferenceTimeSheet.child(month_year).child(dbKEy).updateChildren(registerValues);
 
 //                    databaseReferenceTimeSheet.child(month_year).child("Week" + weekNumber).child("Weekdays").child(weekdays).child("timeOut").setValue(time_out);
 
-                    databaseReferenceTimeSheet.child(month_year).child(databaseReferenceTimeSheet.getKey()).setValue(time_out);
+//                    databaseReferenceTimeSheet.child(month_year).child(databaseReferenceTimeSheet.getKey()).setValue(time_out);
 
                     mark_reg = (ImageView)findViewById(R.id.mark_reg);
                     Glide.with(context).load(R.drawable.out).into(mark_reg);
