@@ -402,7 +402,7 @@ public class HomeScreenUser extends AppCompatActivity
 //                    childUpdate.put(userID, registerValues);
 //                    databaseReferenceTimeSheet.child(month_year).child("Week" + weekNumber).child("Weekdays").child(weekdays).updateChildren(registerValues);
 
-                    databaseReferenceTimeSheet.child(month_year).child("Week" + weekNumber).child(weekdays).updateChildren(registerValues);
+                    databaseReferenceTimeSheet.child(month_year).child(databaseReferenceTimeSheet.push().getKey()).updateChildren(registerValues);
 
                     mark_reg = (ImageView)findViewById(R.id.mark_reg);
                     Glide.with(context).load(R.drawable.in).into(mark_reg);
@@ -441,7 +441,7 @@ public class HomeScreenUser extends AppCompatActivity
 
 //                    databaseReferenceTimeSheet.child(month_year).child("Week" + weekNumber).child("Weekdays").child(weekdays).child("timeOut").setValue(time_out);
 
-                    databaseReferenceTimeSheet.child(month_year).child("Week" + weekNumber).child(weekdays).child("timeOut").setValue(time_out);
+                    databaseReferenceTimeSheet.child(month_year).child(databaseReferenceTimeSheet.getKey()).setValue(time_out);
 
                     mark_reg = (ImageView)findViewById(R.id.mark_reg);
                     Glide.with(context).load(R.drawable.out).into(mark_reg);
