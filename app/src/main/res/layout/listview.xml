@@ -108,7 +108,6 @@
                     android:layout_column="0"
                     android:layout_margin="1dp"
                     android:background="#FFFFFF"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:text=" Week 1 "
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -164,7 +163,6 @@
                     android:layout_height="match_parent"
                     android:layout_column="0"
                     android:layout_margin="1dp"
-                    android:layout_weight="1"
                     android:background="#FFFFFF"
                     android:gravity="center"
                     android:text="Monday"
@@ -178,6 +176,7 @@
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
+                    android:textColor="@android:color/black"
                     android:background="#FFFFFF"
                     android:gravity="center"
                     />
@@ -189,6 +188,7 @@
                     android:layout_weight="1"
                     android:layout_margin="1dp"
                     android:background="#FFFFFF"
+                    android:textColor="@android:color/black"
                     android:gravity="center"
                     android:layout_column="2" />
 
@@ -213,21 +213,19 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=" Tuesday"
-                    android:layout_margin="1dp"
                     android:layout_column="0"
-                    android:layout_weight="1"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
+                    android:layout_margin="1dp"
                     android:background="#FFFFFF"
                     android:gravity="center"
+                    android:text="Tuesday"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
                     />
 
                 <TextView
                     android:id="@+id/tuesday_date_week_1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
@@ -239,23 +237,21 @@
                     android:id="@+id/tuesday_in_week_1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
                     android:id="@+id/tuesday_out_week_1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
             </TableRow>
 
             <TableRow
@@ -271,7 +267,6 @@
                     android:text=" Wednesday"
                     android:layout_margin="1dp"
                     android:layout_column="0"
-                    android:layout_weight="1"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:background="#FFFFFF"
@@ -282,34 +277,31 @@
                     android:id="@+id/wednesday_date_week_1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_column="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
                     android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:gravity="center" />
 
                 <TextView
                     android:id="@+id/wednseday_in_week_1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
                     android:id="@+id/wednesday_out_week_1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center"/>
             </TableRow>
 
             <TableRow
@@ -325,7 +317,6 @@
                     android:text=" Thursday"
                     android:layout_margin="1dp"
                     android:layout_column="0"
-                    android:layout_weight="1"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:background="#FFFFFF"
@@ -336,7 +327,6 @@
                     android:id="@+id/thursday_date_week_1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
@@ -348,23 +338,21 @@
                     android:id="@+id/thursday_in_week_1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
                     android:id="@+id/thursday_out_week_1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
             </TableRow>
 
             <TableRow
@@ -375,7 +363,6 @@
                 android:layout_marginBottom="20dp">
 
                 <TextView
-                    android:id="@+id/friday_date_week_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text=" Friday"
@@ -383,6 +370,16 @@
                     android:layout_column="0"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/friday_date_week_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_column="1"
                     android:layout_weight="1"
                     android:background="#FFFFFF"
                     android:gravity="center"
@@ -392,34 +389,21 @@
                     android:id="@+id/friday_in_week_1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    />
+                    android:gravity="center" />
 
                 <TextView
                     android:id="@+id/friday_out_week_1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
-                    android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_column="1"
                     android:layout_weight="1"
-                    android:layout_margin="1dp"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
             </TableRow>
 
@@ -441,7 +425,6 @@
                     android:layout_column="0"
                     android:layout_margin="1dp"
                     android:background="#FFFFFF"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:text=" Week 2 "
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -496,14 +479,14 @@
                     android:layout_height="match_parent"
                     android:layout_column="0"
                     android:layout_margin="1dp"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:layout_weight="1"
                     android:background="#FFFFFF"
                     android:gravity="center"
-                    android:text=" Monday" />
+                    android:text="Monday"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/monday_date_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
@@ -514,6 +497,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/monday_in_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -523,6 +507,7 @@
                     android:layout_column="2" />
 
                 <TextView
+                    android:id="@+id/monday_out_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -542,20 +527,19 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=" Tuesday"
-                    android:layout_margin="1dp"
                     android:layout_column="0"
-                    android:layout_weight="1"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
+                    android:layout_margin="1dp"
                     android:background="#FFFFFF"
                     android:gravity="center"
+                    android:text="Tuesday"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
                     />
 
                 <TextView
+                    android:id="@+id/tuesday_date_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
@@ -564,24 +548,24 @@
                     />
 
                 <TextView
+                    android:id="@+id/tuesday_in_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/tuesday_out_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
             </TableRow>
 
             <TableRow
@@ -597,7 +581,6 @@
                     android:text=" Wednesday"
                     android:layout_margin="1dp"
                     android:layout_column="0"
-                    android:layout_weight="1"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:background="#FFFFFF"
@@ -605,35 +588,34 @@
                     />
 
                 <TextView
+                    android:id="@+id/wednesday_date_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/wednseday_in_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/wednesday_out_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center"/>
             </TableRow>
 
             <TableRow
@@ -649,7 +631,6 @@
                     android:text=" Thursday"
                     android:layout_margin="1dp"
                     android:layout_column="0"
-                    android:layout_weight="1"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:background="#FFFFFF"
@@ -657,9 +638,9 @@
                     />
 
                 <TextView
+                    android:id="@+id/thursday_date_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
@@ -668,24 +649,24 @@
                     />
 
                 <TextView
+                    android:id="@+id/thursday_in_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/thursday_out_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
             </TableRow>
 
             <TableRow
@@ -693,7 +674,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                >
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -703,15 +684,14 @@
                     android:layout_column="0"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
-                    android:layout_weight="1"
                     android:background="#FFFFFF"
                     android:gravity="center"
                     />
 
                 <TextView
+                    android:id="@+id/friday_date_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
@@ -720,24 +700,24 @@
                     />
 
                 <TextView
+                    android:id="@+id/friday_in_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/friday_out_week_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
             </TableRow>
 
             <LinearLayout
@@ -756,7 +736,6 @@
                     android:layout_column="0"
                     android:layout_margin="1dp"
                     android:background="#FFFFFF"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:text=" Week 3 "
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -811,14 +790,14 @@
                     android:layout_height="match_parent"
                     android:layout_column="0"
                     android:layout_margin="1dp"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:layout_weight="1"
                     android:background="#FFFFFF"
                     android:gravity="center"
-                    android:text=" Monday" />
+                    android:text="Monday"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/monday_date_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
@@ -829,6 +808,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/monday_in_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -838,6 +818,7 @@
                     android:layout_column="2" />
 
                 <TextView
+                    android:id="@+id/monday_out_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -857,20 +838,19 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=" Tuesday"
-                    android:layout_margin="1dp"
                     android:layout_column="0"
-                    android:layout_weight="1"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
+                    android:layout_margin="1dp"
                     android:background="#FFFFFF"
                     android:gravity="center"
+                    android:text="Tuesday"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
                     />
 
                 <TextView
+                    android:id="@+id/tuesday_date_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
@@ -879,24 +859,24 @@
                     />
 
                 <TextView
+                    android:id="@+id/tuesday_in_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/tuesday_out_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
             </TableRow>
 
             <TableRow
@@ -912,7 +892,6 @@
                     android:text=" Wednesday"
                     android:layout_margin="1dp"
                     android:layout_column="0"
-                    android:layout_weight="1"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:background="#FFFFFF"
@@ -920,35 +899,34 @@
                     />
 
                 <TextView
+                    android:id="@+id/wednesday_date_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/wednseday_in_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/wednesday_out_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center"/>
             </TableRow>
 
             <TableRow
@@ -964,7 +942,6 @@
                     android:text=" Thursday"
                     android:layout_margin="1dp"
                     android:layout_column="0"
-                    android:layout_weight="1"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:background="#FFFFFF"
@@ -972,9 +949,9 @@
                     />
 
                 <TextView
+                    android:id="@+id/thursday_date_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
@@ -983,24 +960,24 @@
                     />
 
                 <TextView
+                    android:id="@+id/thursday_in_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/thursday_out_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
             </TableRow>
 
             <TableRow
@@ -1008,7 +985,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                >
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -1018,15 +995,14 @@
                     android:layout_column="0"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
-                    android:layout_weight="1"
                     android:background="#FFFFFF"
                     android:gravity="center"
                     />
 
                 <TextView
+                    android:id="@+id/friday_date_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
@@ -1035,24 +1011,24 @@
                     />
 
                 <TextView
+                    android:id="@+id/friday_in_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/friday_out_week_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
             </TableRow>
 
             <LinearLayout
@@ -1071,7 +1047,6 @@
                     android:layout_column="0"
                     android:layout_margin="1dp"
                     android:background="#FFFFFF"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:text=" Week 4 "
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -1126,14 +1101,14 @@
                     android:layout_height="match_parent"
                     android:layout_column="0"
                     android:layout_margin="1dp"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:layout_weight="1"
                     android:background="#FFFFFF"
                     android:gravity="center"
-                    android:text=" Monday" />
+                    android:text="Monday"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/monday_date_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
@@ -1144,6 +1119,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/monday_in_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -1153,6 +1129,7 @@
                     android:layout_column="2" />
 
                 <TextView
+                    android:id="@+id/monday_out_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -1172,20 +1149,19 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=" Tuesday"
-                    android:layout_margin="1dp"
                     android:layout_column="0"
-                    android:layout_weight="1"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
+                    android:layout_margin="1dp"
                     android:background="#FFFFFF"
                     android:gravity="center"
+                    android:text="Tuesday"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
                     />
 
                 <TextView
+                    android:id="@+id/tuesday_date_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
@@ -1194,24 +1170,24 @@
                     />
 
                 <TextView
+                    android:id="@+id/tuesday_in_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/tuesday_out_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
             </TableRow>
 
             <TableRow
@@ -1227,7 +1203,6 @@
                     android:text=" Wednesday"
                     android:layout_margin="1dp"
                     android:layout_column="0"
-                    android:layout_weight="1"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:background="#FFFFFF"
@@ -1235,35 +1210,34 @@
                     />
 
                 <TextView
+                    android:id="@+id/wednesday_date_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/wednseday_in_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/wednesday_out_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center"/>
             </TableRow>
 
             <TableRow
@@ -1279,7 +1253,6 @@
                     android:text=" Thursday"
                     android:layout_margin="1dp"
                     android:layout_column="0"
-                    android:layout_weight="1"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:background="#FFFFFF"
@@ -1287,9 +1260,9 @@
                     />
 
                 <TextView
+                    android:id="@+id/thursday_date_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
@@ -1298,24 +1271,24 @@
                     />
 
                 <TextView
+                    android:id="@+id/thursday_in_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/thursday_out_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
             </TableRow>
 
             <TableRow
@@ -1323,7 +1296,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                >
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -1333,15 +1306,14 @@
                     android:layout_column="0"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
-                    android:layout_weight="1"
                     android:background="#FFFFFF"
                     android:gravity="center"
                     />
 
                 <TextView
+                    android:id="@+id/friday_date_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_margin="1dp"
                     android:layout_column="1"
                     android:layout_weight="1"
@@ -1350,24 +1322,24 @@
                     />
 
                 <TextView
+                    android:id="@+id/friday_in_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
 
                 <TextView
+                    android:id="@+id/friday_out_week_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="1"
                     android:layout_margin="1dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_column="2" />
+                    android:gravity="center" />
             </TableRow>
 
         </TableLayout>

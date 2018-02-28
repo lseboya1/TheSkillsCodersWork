@@ -61,6 +61,24 @@ public class TimeSheetsActivity extends AppCompatActivity implements AdapterView
     TextView thursday_date_week_1,thursday_in_week_1,thursday_out_week_1;
     TextView friday_date_week_1, friday_in_week_1, friday_out_week_1;
 
+    TextView monday_date_week_2, monday_in_week_2,monday_out_week_2;
+    TextView tuesday_date_week_2 ,tuesday_in_week_2,tuesday_out_week_2;
+    TextView wednesday_date_week_2,wednseday_in_week_2,wednesday_out_week_2;
+    TextView thursday_date_week_2,thursday_in_week_2,thursday_out_week_2;
+    TextView friday_date_week_2, friday_in_week_2, friday_out_week_2;
+
+    TextView monday_date_week_3, monday_in_week_3,monday_out_week_3;
+    TextView tuesday_date_week_3 ,tuesday_in_week_3,tuesday_out_week_3;
+    TextView wednesday_date_week_3,wednseday_in_week_3,wednesday_out_week_3;
+    TextView thursday_date_week_3,thursday_in_week_3,thursday_out_week_3;
+    TextView friday_date_week_3, friday_in_week_3, friday_out_week_3;
+
+    TextView monday_date_week_4, monday_in_week_4,monday_out_week_4;
+    TextView tuesday_date_week_4 ,tuesday_in_week_4,tuesday_out_week_4;
+    TextView wednesday_date_week_4,wednseday_in_week_4,wednesday_out_week_4;
+    TextView thursday_date_week_4,thursday_in_week_4,thursday_out_week_4;
+    TextView friday_date_week_4, friday_in_week_4, friday_out_week_4;
+
     User user;
     Register register;
     String userId;
@@ -93,6 +111,7 @@ public class TimeSheetsActivity extends AppCompatActivity implements AdapterView
         monthSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         month_list.setAdapter(monthSpinner);
 
+        //week  one
         monday_date_week_1 = (TextView)findViewById(R.id.monday_date_week_1);
         monday_in_week_1 = (TextView)findViewById(R.id.monday_in_week_1);
         monday_out_week_1 = (TextView)findViewById(R.id.monday_out_week_1);
@@ -112,6 +131,69 @@ public class TimeSheetsActivity extends AppCompatActivity implements AdapterView
         friday_date_week_1 = (TextView)findViewById(R.id.friday_date_week_1);
         friday_in_week_1 = (TextView)findViewById(R.id.friday_in_week_1);
         friday_out_week_1 = (TextView)findViewById(R.id.friday_out_week_1);
+
+        //week two
+        monday_date_week_2 = (TextView)findViewById(R.id.monday_date_week_2);
+        monday_in_week_2 = (TextView)findViewById(R.id.monday_in_week_2);
+        monday_out_week_2 = (TextView)findViewById(R.id.monday_out_week_2);
+
+        tuesday_date_week_2 = (TextView)findViewById(R.id.tuesday_date_week_2);
+        tuesday_in_week_2 = (TextView)findViewById(R.id.tuesday_in_week_2);
+        tuesday_out_week_2 = (TextView)findViewById(R.id.tuesday_out_week_2);
+
+        wednesday_date_week_2 = (TextView)findViewById(R.id.wednesday_date_week_2);
+        wednseday_in_week_2 = (TextView)findViewById(R.id.wednseday_in_week_2);
+        wednesday_out_week_2 = (TextView)findViewById(R.id.wednesday_out_week_2);
+
+        thursday_date_week_2 = (TextView)findViewById(R.id.thursday_date_week_2);
+        thursday_in_week_2 = (TextView)findViewById(R.id.thursday_in_week_2);
+        thursday_out_week_2 = (TextView)findViewById(R.id.thursday_out_week_2);
+
+        friday_date_week_2 = (TextView)findViewById(R.id.friday_date_week_2);
+        friday_in_week_2 = (TextView)findViewById(R.id.friday_in_week_2);
+        friday_out_week_2 = (TextView)findViewById(R.id.friday_out_week_2);
+
+        //week three
+        monday_date_week_3 = (TextView)findViewById(R.id.monday_date_week_3);
+        monday_in_week_3 = (TextView)findViewById(R.id.monday_in_week_3);
+        monday_out_week_3 = (TextView)findViewById(R.id.monday_out_week_3);
+
+        tuesday_date_week_3 = (TextView)findViewById(R.id.tuesday_date_week_3);
+        tuesday_in_week_3 = (TextView)findViewById(R.id.tuesday_in_week_3);
+        tuesday_out_week_3 = (TextView)findViewById(R.id.tuesday_out_week_3);
+
+        wednesday_date_week_3 = (TextView)findViewById(R.id.wednesday_date_week_3);
+        wednseday_in_week_3 = (TextView)findViewById(R.id.wednseday_in_week_3);
+        wednesday_out_week_3 = (TextView)findViewById(R.id.wednesday_out_week_3);
+
+        thursday_date_week_3 = (TextView)findViewById(R.id.thursday_date_week_3);
+        thursday_in_week_3 = (TextView)findViewById(R.id.thursday_in_week_3);
+        thursday_out_week_3 = (TextView)findViewById(R.id.thursday_out_week_3);
+
+        friday_date_week_3 = (TextView)findViewById(R.id.friday_date_week_3);
+        friday_in_week_3 = (TextView)findViewById(R.id.friday_in_week_3);
+        friday_out_week_3 = (TextView)findViewById(R.id.friday_out_week_3);
+
+        //week four
+        monday_date_week_4 = (TextView)findViewById(R.id.monday_date_week_4);
+        monday_in_week_4 = (TextView)findViewById(R.id.monday_in_week_4);
+        monday_out_week_4 = (TextView)findViewById(R.id.monday_out_week_4);
+
+        tuesday_date_week_4 = (TextView)findViewById(R.id.tuesday_date_week_4);
+        tuesday_in_week_4 = (TextView)findViewById(R.id.tuesday_in_week_4);
+        tuesday_out_week_4 = (TextView)findViewById(R.id.tuesday_out_week_4);
+
+        wednesday_date_week_4 = (TextView)findViewById(R.id.wednesday_date_week_4);
+        wednseday_in_week_4 = (TextView)findViewById(R.id.wednseday_in_week_4);
+        wednesday_out_week_4 = (TextView)findViewById(R.id.wednesday_out_week_4);
+
+        thursday_date_week_4 = (TextView)findViewById(R.id.thursday_date_week_4);
+        thursday_in_week_4 = (TextView)findViewById(R.id.thursday_in_week_4);
+        thursday_out_week_4 = (TextView)findViewById(R.id.thursday_out_week_4);
+
+        friday_date_week_4 = (TextView)findViewById(R.id.friday_date_week_4);
+        friday_in_week_4 = (TextView)findViewById(R.id.friday_in_week_4);
+        friday_out_week_4 = (TextView)findViewById(R.id.friday_out_week_4);
 
         Intent intent = getIntent();
         user = intent.getParcelableExtra("userProfile");
@@ -265,7 +347,6 @@ public class TimeSheetsActivity extends AppCompatActivity implements AdapterView
          name = (TextView)findViewById(R.id.name);
          location = (TextView)findViewById(R.id.location);
          month = (TextView)findViewById(R.id.month);
-         getTimeSheetData();
 //
 //
 //        month.setText("Month: February");
@@ -444,7 +525,9 @@ public class TimeSheetsActivity extends AppCompatActivity implements AdapterView
 
     public void getTimeSheetData(){
 
-        databaseReference = firebaseDatabase.getReference().child("TimeSheet").child(monthSelected);
+
+
+        databaseReference = firebaseDatabase.getReference().child("TimeSheet").child(userId).child(monthSelected);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -458,7 +541,7 @@ public class TimeSheetsActivity extends AppCompatActivity implements AdapterView
 
                     Register register = snapshot.getValue(Register.class);
 
-                    if(snapshot.getKey().equals(userId)) {
+//                    if(snapshot.getKey().equals(userId)) {
 
                         Toast.makeText(TimeSheetsActivity.this, "User Key = "+ snapshot.getKey(), Toast.LENGTH_SHORT).show();
 
@@ -470,37 +553,144 @@ public class TimeSheetsActivity extends AppCompatActivity implements AdapterView
 
                             Toast.makeText(TimeSheetsActivity.this, "Am in", Toast.LENGTH_SHORT).show();
 
+                            //Week 1
+                    if (Objects.equals(register.getWeek_number(), "1")) {
 
-                            if (Objects.equals(register.getDay(), "Monday")) {
-                                monday_date_week_1.setText(register.getDate());
-                                monday_in_week_1.setText(register.getTime_in());
-                                monday_out_week_1.setText(register.getTime_out());
-                            }
+                        if (Objects.equals(register.getDay(), "Monday")) {
+                            monday_date_week_1.setText(register.getDate());
+                            monday_in_week_1.setText(register.getTime_in());
+                            monday_out_week_1.setText(register.getTime_out());
+                        }
 
-                            if (Objects.equals(register.getDay(), "Tuesday")) {
-                                tuesday_date_week_1.setText(register.getDate());
-                                tuesday_in_week_1.setText(register.getTime_in());
-                                tuesday_out_week_1.setText(register.getTime_out());
-                            }
+                        if (Objects.equals(register.getDay(), "Tuesday")) {
+                            tuesday_date_week_1.setText(register.getDate());
+                            tuesday_in_week_1.setText(register.getTime_in());
+                            tuesday_out_week_1.setText(register.getTime_out());
+                        }
 
-                            if (Objects.equals(register.getDay(), "Wednesday")) {
-                                wednesday_date_week_1.setText(register.getDate());
-                                wednseday_in_week_1.setText(register.getTime_in());
-                                wednesday_out_week_1.setText(register.getTime_out());
-                            }
+                        if (Objects.equals(register.getDay(), "Wednesday")) {
+                            wednesday_date_week_1.setText(register.getDate());
+                            wednseday_in_week_1.setText(register.getTime_in());
+                            wednesday_out_week_1.setText(register.getTime_out());
+                        }
 
-                            if (Objects.equals(register.getDay(), "Thursday")) {
-                                thursday_date_week_1.setText(register.getDate());
-                                thursday_in_week_1.setText(register.getTime_in());
-                                thursday_out_week_1.setText(register.getTime_out());
-                            }
+                        if (Objects.equals(register.getDay(), "Thursday")) {
+                            thursday_date_week_1.setText(register.getDate());
+                            thursday_in_week_1.setText(register.getTime_in());
+                            thursday_out_week_1.setText(register.getTime_out());
+                        }
 
-                            if (Objects.equals(register.getDay(), "Friday")) {
-                                friday_date_week_1.setText(register.getDate());
-                                friday_in_week_1.setText(register.getTime_in());
-                                friday_out_week_1.setText(register.getTime_out());
-                            }
-//                        }
+                        if (Objects.equals(register.getDay(), "Friday")) {
+                            friday_date_week_1.setText(register.getDate());
+                            friday_in_week_1.setText(register.getTime_in());
+                            friday_out_week_1.setText(register.getTime_out());
+
+                        }
+                    }
+
+                    //Week 2
+                    if (Objects.equals(register.getWeek_number(), "2")) {
+
+                        if (Objects.equals(register.getDay(), "Monday")) {
+                            monday_date_week_2.setText(register.getDate());
+                            monday_in_week_2.setText(register.getTime_in());
+                            monday_out_week_2.setText(register.getTime_out());
+                        }
+
+                        if (Objects.equals(register.getDay(), "Tuesday")) {
+                            tuesday_date_week_2.setText(register.getDate());
+                            tuesday_in_week_2.setText(register.getTime_in());
+                            tuesday_out_week_2.setText(register.getTime_out());
+                        }
+
+                        if (Objects.equals(register.getDay(), "Wednesday")) {
+                            wednesday_date_week_2.setText(register.getDate());
+                            wednseday_in_week_2.setText(register.getTime_in());
+                            wednesday_out_week_2.setText(register.getTime_out());
+                        }
+
+                        if (Objects.equals(register.getDay(), "Thursday")) {
+                            thursday_date_week_2.setText(register.getDate());
+                            thursday_in_week_2.setText(register.getTime_in());
+                            thursday_out_week_2.setText(register.getTime_out());
+                        }
+
+                        if (Objects.equals(register.getDay(), "Friday")) {
+                            friday_date_week_2.setText(register.getDate());
+                            friday_in_week_2.setText(register.getTime_in());
+                            friday_out_week_2.setText(register.getTime_out());
+
+                        }
+                    }
+
+                    //Week 3
+                    if (Objects.equals(register.getWeek_number(), "3")) {
+
+                        if (Objects.equals(register.getDay(), "Monday")) {
+                            monday_date_week_3.setText(register.getDate());
+                            monday_in_week_3.setText(register.getTime_in());
+                            monday_out_week_3.setText(register.getTime_out());
+                        }
+
+                        if (Objects.equals(register.getDay(), "Tuesday")) {
+                            tuesday_date_week_3.setText(register.getDate());
+                            tuesday_in_week_3.setText(register.getTime_in());
+                            tuesday_out_week_3.setText(register.getTime_out());
+                        }
+
+                        if (Objects.equals(register.getDay(), "Wednesday")) {
+                            wednesday_date_week_3.setText(register.getDate());
+                            wednseday_in_week_3.setText(register.getTime_in());
+                            wednesday_out_week_3.setText(register.getTime_out());
+                        }
+
+                        if (Objects.equals(register.getDay(), "Thursday")) {
+                            thursday_date_week_3.setText(register.getDate());
+                            thursday_in_week_3.setText(register.getTime_in());
+                            thursday_out_week_3.setText(register.getTime_out());
+                        }
+
+                        if (Objects.equals(register.getDay(), "Friday")) {
+                            friday_date_week_3.setText(register.getDate());
+                            friday_in_week_3.setText(register.getTime_in());
+                            friday_out_week_3.setText(register.getTime_out());
+
+                        }
+                    }
+
+                    //Week 4
+                    if (Objects.equals(register.getWeek_number(), "4")) {
+
+                        if (Objects.equals(register.getDay(), "Monday")) {
+                            monday_date_week_4.setText(register.getDate());
+                            monday_in_week_4.setText(register.getTime_in());
+                            monday_out_week_4.setText(register.getTime_out());
+                        }
+
+                        if (Objects.equals(register.getDay(), "Tuesday")) {
+                            tuesday_date_week_4.setText(register.getDate());
+                            tuesday_in_week_4.setText(register.getTime_in());
+                            tuesday_out_week_4.setText(register.getTime_out());
+                        }
+
+                        if (Objects.equals(register.getDay(), "Wednesday")) {
+                            wednesday_date_week_4.setText(register.getDate());
+                            wednseday_in_week_4.setText(register.getTime_in());
+                            wednesday_out_week_4.setText(register.getTime_out());
+                        }
+
+                        if (Objects.equals(register.getDay(), "Thursday")) {
+                            thursday_date_week_4.setText(register.getDate());
+                            thursday_in_week_4.setText(register.getTime_in());
+                            thursday_out_week_4.setText(register.getTime_out());
+                        }
+
+                        if (Objects.equals(register.getDay(), "Friday")) {
+                            friday_date_week_4.setText(register.getDate());
+                            friday_in_week_4.setText(register.getTime_in());
+                            friday_out_week_4.setText(register.getTime_out());
+
+                        }
                     }
 //                    String id = register.getId();
 //                    String name= register.getName();
